@@ -19,7 +19,7 @@
             text-primary hover:text-white hover:bg-primary
             border-2 border-primary
             active:translate-y-0.5
-            shadow hover:shadow-2xl
+            shadow hover:shadow-2xl active:shadow-inner
             transition-all
             
     }

@@ -6,12 +6,12 @@ import SocialLinks from 'cfg/social'
 
 const Home: NextPage = () => {
     return (
-        <div className="h-screen flex flex-col p-8 lg:px-32 pt-14 space-y-6">
-            <div className="flex-1 flex flex-col justify-around items-center text-center gap-2">
+        <div className="min-h-screen flex flex-col p-8 lg:px-32 space-y-6">
+            <div className="flex-1 flex flex-col justify-around items-center text-center gap-2 sm:min-h-fit min-h-screen pt-16">
                 <div className="pfp">
                     <Image width="460" height="460" layout='intrinsic' alt="PFP" src={`https://github.com/${process.env.GH_USERNAME}.png`} />
                 </div>
-                <div className="text-2xl">Hi, I&apos;m <span className="text-primary">Amy</span>. A student based in Sydney who likes to mess around with music stuff. <br /> Here&apos;s a lil page for my accounts.</div>
+                <div className="text-2xl">Hi, I&apos;m <span className="text-primary">Amy</span>. A student based in Australia who likes to mess around with music stuff. <br /> Here&apos;s a lil page for my accounts.</div>
             </div>
             <div className="flex flex-wrap items-center justify-center gap-3">
                 {
