@@ -14,10 +14,10 @@ const IconButton: NextPage<IconButtonProps> = (props) => {
         <Link
             href={props.href}
         >
-            <a className={styles.icon_button}>
+            <a className="action">
                 <Icon 
                     path={props.icon}
-                    className={styles.mdi}
+                    className="h-6"
                 />
                 {props.text}
             </a>
