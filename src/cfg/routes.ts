@@ -1,27 +1,28 @@
 export const routes: Route[] = [
     {
         name: "Home",
-        path: "/",
+        href: "/",
     },
     {
         name: "Portfolio",
-        path: "/portfolio",
+        href: "/portfolio",
     },
     {
         name: "About",
-        path: "/about",
+        href: "/about",
     },
     {
         name: "Radio",
-        path: "/radio",
+        href: "/radio",
     },
     {
         name: "RotMG Stuff",
-        path: "https://rotmg-mirror.github.io/",
+        href: "https://rotmg-mirror.github.io/",
     }
 ]
 
 export interface Route {
     name: string,
-    path: string
+    href: string,
+    current?: boolean
 }

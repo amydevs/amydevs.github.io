@@ -3,11 +3,10 @@ import { Disclosure } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 import Link from "next/link";
 import ThemeSwitch from "./themeswitch";
+import { routes } from "cfg/routes";
 
 const Header: FC = () => {
-    const navigation = [
-        { name: 'Logout', href: '/api/auth/signout', current: false }
-    ]
+    const navigation = routes.map(e => { e.current = false; return e })
 
     return (
         <Disclosure as="nav" className="fixed top-0 left-0 right-0 transition-all z-50 shadow-lg scroll0:shadow-none dark:bg-[#1C1B22] bg-white">
@@ -33,7 +32,7 @@ const Header: FC = () => {
                                     </Link>
                                 </div>
                                 <div className="hidden sm:ml-6 sm:block">
-                                    <div className="flex space-x-4">
+                                    <div className="flex">
                                         
                                         {navigation.map((item) => (
                                             <Link
@@ -48,7 +47,9 @@ const Header: FC = () => {
                                                 </a>
                                             </Link>
                                         ))}
-                                        <ThemeSwitch />
+                                        <span className="pl-1">
+                                            <ThemeSwitch />
+                                        </span>
                                     </div>
                                 </div>
                             </div>
