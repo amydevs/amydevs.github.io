@@ -1,12 +1,12 @@
 import IconButton from "components/IconButton";
 import type { NextPage } from "next";
-import Head from "next/head";
 import Image from "next/image";
 import SocialLinks from 'cfg/social'
+import { ArrowDownIcon } from "@heroicons/react/24/solid";
 
 const Home: NextPage = () => {
     return (
-        <div className="min-h-screen flex flex-col px-8 lg:px-32 space-y-6">
+        <div className="min-h-screen flex flex-col px-8 pb-8 lg:px-32 space-y-6">
             <div className="flex-1 flex flex-col justify-around items-center text-center gap-2 pt-16 sm:min-h-fit min-h-screen">
                 <div className="pfp">
                     <Image width="460" height="460" layout='intrinsic' alt="PFP" src={`https://github.com/${process.env.GH_USERNAME}.png`} />
@@ -15,6 +15,9 @@ const Home: NextPage = () => {
                     <span className="text-3xl">Hi, I&apos;m <span className="text-primary">Amy</span>.</span> <br />
                     <span className="text-2xl">I&apos;m comp-sci student based in Australia.</span><br /> 
                 </div>
+                <button className="baseAction p-3 rounded-full sm:hidden">
+                    <ArrowDownIcon height="24px" />
+                </button>
             </div>
             <div className="flex flex-wrap items-center justify-center gap-3">
                 {
