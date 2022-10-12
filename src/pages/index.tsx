@@ -16,8 +16,11 @@ const Home: NextPage = () => {
                     <span className="text-3xl">Hi, I&apos;m <span className="text-primary">Amy</span>.</span> <br />
                     <span className="text-2xl">I&apos;m comp-sci student based in Australia.</span><br /> 
                 </div>
+                <div className="p-3">
+                    <div className="h-6" />
+                </div>
                 <Link href="/#social">
-                    <a className="action p-3 rounded-full sm:hidden">
+                    <a className="action p-3 rounded-full sm:hidden  absolute bottom-8">
                         <ArrowDownIcon height="24px" />
                     </a>
                 </Link>
