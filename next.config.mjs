@@ -30,6 +30,6 @@ export default defineNextConfig({
     domains: [
       "github.com"
     ],
-    unoptimized: type
+    unoptimized: false
   }
 });
