@@ -4,7 +4,7 @@
 
 @layer base {
     .card {
-        @apply flex flex-col rounded border-2 border-primary p-6 shadow
+        @apply rounded border-2 border-primary p-6 shadow
     }
     .card.hover {
         @apply sm:border-gray-300 sm:hover:border-primary transition-all hover:shadow-2xl
