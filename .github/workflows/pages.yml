@@ -23,9 +23,6 @@ concurrency:
   group: "pages"
   cancel-in-progress: true
 
-env:
-  type: export
-
 jobs:
   # Build job
   build:
@@ -73,6 +70,8 @@ jobs:
         run: ${{ steps.detect-package-manager.outputs.runner }} next build
       - name: Static HTML export with Next.js
         run: ${{ steps.detect-package-manager.outputs.runner }} next export
+        env:
+          npm_lifecycle_event: export
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         with:
