@@ -16,7 +16,7 @@ const Home: NextPage = () => {
                     <span className="text-3xl">Hi, I&apos;m <span className="text-primary">Amy</span>.</span> <br />
                     <span className="text-2xl">I&apos;m comp-sci student based in Australia.</span><br /> 
                 </div>
-                <div className="p-3">
+                <div className="p-3 sm:hidden">
                     <div className="h-6" />
                 </div>
                 <Link href="/#social">
