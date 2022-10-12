@@ -54,7 +54,7 @@ const Header: FC = () => {
                                 <div className="flex flex-1 items-center sm:items-stretch justify-between">
                                     <div className="flex flex-shrink-0 px-3 text-lg items-center hover:text-primary transition-all">
                                         <Link href="/">
-                                            <a>Amy<span className="text-primary">!</span></a>
+                                            <a>Amy<span className="text-primary">;</span></a>
                                         </Link>
                                     </div>
                                     <div className="hidden sm:ml-6 sm:block">
