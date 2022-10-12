@@ -4,9 +4,11 @@ import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 import Link from "next/link";
 import ThemeSwitch from "./ThemeSwitch";
 import { routes } from "cfg/routes";
+import { useRouter } from "next/router";
 
 const Header: FC = () => {
-    const navigation = routes.map(e => { e.current = false; return e })
+    const router = useRouter();
+    const navigation = routes.map(e => { e.current = e.href == router.asPath; return e })
 
     return (
         <Disclosure as="nav" className="fixed top-0 left-0 right-0 z-50 dark:bg-[#1C1B22] bg-white">
@@ -33,14 +35,13 @@ const Header: FC = () => {
                                 </div>
                                 <div className="hidden sm:ml-6 sm:block">
                                     <div className="flex">
-                                        
                                         {navigation.map((item) => (
                                             <Link
                                                 key={item.name}
                                                 href={item.href}
                                             >
                                                 <a 
-                                                    className="px-3 py-2 rounded-md text-sm text-inherit hover:tracking-[0.2em] transition-all"
+                                                    className={`px-3 py-2 rounded-md text-sm hover:tracking-[0.2em] transition-all ${item.current && "text-primary font-semibold"}`}
                                                     aria-current={item.current ? 'page' : undefined}
                                                 >
                                                     {item.name}
