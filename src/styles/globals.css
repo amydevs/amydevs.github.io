@@ -26,8 +26,4 @@
             transition-all
             
     }
-
-    .pfp > span {
-        @apply rounded-full shadow hover:shadow-lg transition-all ease-in-out
-    }
 }

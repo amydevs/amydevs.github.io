@@ -12,8 +12,8 @@ const About: NextPage = () => {
     })
 
     return (
-        <div className="pt-20 px-8 sm:px-32">
-            <div className='card'>
+        <div className="mt-20 m-8 sm:px-32">
+            <div className="card prose dark:prose-invert prose-img:inline prose-img:m-0 max-w-full">
                 {
                     mkdwn.data && (
                         <ReactMarkdown rehypePlugins={[rehypeRaw]}>
@@ -22,6 +22,7 @@ const About: NextPage = () => {
                     )
                 }
             </div>
+            
         </div>
     )
 }

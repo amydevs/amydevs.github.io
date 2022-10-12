@@ -19,6 +19,7 @@ module.exports = {
     plugins: [
         plugin(({addVariant}) => {
             addVariant('scroll0', ['html:not([scroll]) &', 'html[scroll="0"] &']);
-        })
+        }),
+        require('@tailwindcss/typography'),
     ],
 };
