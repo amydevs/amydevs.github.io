@@ -1,5 +1,4 @@
 import { NextPage } from "next";
-import styles from 'styles/components/ProjectCard.module.scss';
 
 import IconButton, { IconButtonProps } from "./IconButton";
 
@@ -11,10 +10,10 @@ export interface ProjectCardProps {
 
 const ProjectCard: NextPage<ProjectCardProps> = (props) => {
     return (
-        <div className={styles.card}>
+        <div className="card">
             <span className='title'>{props.title}</span>
-            <div className={styles.description}>{props.description}</div>
-            <div className={styles.actions}>
+            <div className="">{props.description}</div>
+            <div className="">
                 { 
                     props.actions.map((action, i) => {
                         return <IconButton key={i} {...action}></IconButton>
