@@ -72,7 +72,7 @@ const Header: FC = () => {
                                                     </a>
                                                 </Link>
                                             ))}
-                                            <span className="pl-1">
+                                            <span className="pl-2 translate-y-[1px]">
                                                 <ThemeSwitch />
                                             </span>
                                         </div>
