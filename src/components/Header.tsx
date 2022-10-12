@@ -58,10 +58,10 @@ const Header: FC = () => {
                     <Disclosure.Panel className={`sm:hidden ${!open ? "max-h-0" : "max-h-96"} overflow-hidden transition-all`} static>
                         <div className="space-y-1 pt-2 pb-3">
                             {navigation.map((item) => (
-                                <Link href={item.href} key={item.name}>
+                                <Link href={item.href} key={item.name} passHref>
                                     <Disclosure.Button
                                         as="a"
-                                        className="block px-6 py-2 hover:text-primary transition-all cursor-pointer"
+                                        className="block px-6 py-2 hover:text-primary transition-all"
                                         aria-current={item.current ? 'page' : undefined}
                                     >
                                         {item.name}
