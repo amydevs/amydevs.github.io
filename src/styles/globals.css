@@ -17,8 +17,8 @@
     }
 
     .action {
-        @apply flex text-xl w-fit whitespace-nowrap items-center
-            py-0.5 px-3 pr-4 gap-1 rounded-lg
+        @apply flex text-lg w-fit whitespace-nowrap items-center
+            px-3 pr-4 gap-1 rounded-lg
             text-primary hover:text-white hover:bg-primary
             border-2 border-primary
             active:translate-y-0.5
