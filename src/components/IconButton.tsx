@@ -14,7 +14,7 @@ const IconButton: NextPage<IconButtonProps> = (props) => {
         <Link
             href={props.href}
         >
-            <a className="action">
+            <a className="action icon">
                 <Icon 
                     path={props.icon}
                     className="h-6"
