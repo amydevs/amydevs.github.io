@@ -10,7 +10,7 @@ const Header: FC = () => {
 
     return (
         <Disclosure as="nav" className="fixed top-0 left-0 right-0 transition-all z-50 shadow-lg scroll0:shadow-none dark:bg-[#1C1B22] bg-white">
-            {({open}) => (
+            {({open, close}) => (
                 <>
                     <div className={`mx-auto max-w-7xl px-3 sm:px-6 lg:px-8 sm:border-b-0 border-b-[1px] border-white/30`}>
                         <div className="relative flex h-14 items-center justify-between">
@@ -58,7 +58,7 @@ const Header: FC = () => {
                     <Disclosure.Panel className={`sm:hidden ${!open ? "max-h-0" : "max-h-96"} overflow-hidden transition-all`} static>
                         <div className="space-y-1 pt-2 pb-3">
                             {navigation.map((item) => (
-                                <Link href={item.href} key={item.name} passHref>
+                                <Link href={item.href} key={item.name} onClick={() => close()} passHref>
                                     <Disclosure.Button
                                         as="a"
                                         className="block px-6 py-2 hover:text-primary transition-all"
