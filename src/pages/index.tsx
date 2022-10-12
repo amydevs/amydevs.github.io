@@ -20,7 +20,7 @@ const Home: NextPage = () => {
                     <div className="h-6" />
                 </div>
                 <Link href="/#social">
-                    <a className="action p-3 rounded-full sm:hidden  absolute bottom-8">
+                    <a className="action p-3 rounded-full sm:hidden absolute bottom-8">
                         <ArrowDownIcon height="24px" />
                     </a>
                 </Link>
