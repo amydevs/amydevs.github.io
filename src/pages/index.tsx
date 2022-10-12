@@ -11,7 +11,10 @@ const Home: NextPage = () => {
                 <div className="pfp">
                     <Image width="460" height="460" layout='intrinsic' alt="PFP" src={`https://github.com/${process.env.GH_USERNAME}.png`} />
                 </div>
-                <div className="text-2xl">Hi, I&apos;m <span className="text-primary">Amy</span>. A student based in Australia who likes to mess around with music stuff. <br /> Here&apos;s a lil page for my accounts.</div>
+                <div>
+                    <span className="text-3xl">Hi, I&apos;m <span className="text-primary">Amy</span>.</span> <br />
+                    <span className="text-2xl">I&apos;m comp-sci student based in Australia.</span><br /> 
+                </div>
             </div>
             <div className="flex flex-wrap items-center justify-center gap-3">
                 {
