@@ -13,6 +13,8 @@ function defineNextConfig(config) {
   return config;
 }
 
+const type = process.env.npm_lifecycle_event === "export" || process.env.type === "export";
+
 export default defineNextConfig({
   env: {
     GH_USERNAME: "jy1263"
@@ -28,6 +30,6 @@ export default defineNextConfig({
     domains: [
       "github.com"
     ],
-    unoptimized: process.env.npm_lifecycle_event === "export"
+    unoptimized: type
   }
 });
