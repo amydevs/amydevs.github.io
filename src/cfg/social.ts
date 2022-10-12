@@ -1,5 +1,5 @@
 import { IconButtonProps } from "../components/IconButton";
-import { mdiGithub, mdiSpotify, mdiMusicCircle, mdiSoundcloud, mdiFaceWomanProfile } from "@mdi/js";
+import { mdiGithub, mdiSpotify, mdiMusicCircle, mdiSoundcloud } from "@mdi/js";
 
 const links: IconButtonProps[] = [
     {
@@ -31,16 +31,6 @@ const links: IconButtonProps[] = [
         "href": "https://soundcloud.com/owotter",
         "icon": mdiSoundcloud,
         "text": "Soundcloud"
-    },
-    {
-        "href": "https://soundcloud.com/owotterwip",
-        "icon": mdiSoundcloud,
-        "text": "WIP Soundcloud"
-    },
-    {
-        "href": "https://pronouns.page/u/AyanAmy",
-        "icon": mdiFaceWomanProfile,
-        "text": "Pronouns"
     }
 ];
 
