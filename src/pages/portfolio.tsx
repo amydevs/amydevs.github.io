@@ -4,8 +4,6 @@ import Donut from "components/Donut";
 import ProjectCard from "components/ProjectCard";
 
 import project_cards from "cfg/project_cards";
-import Link from "next/link";
-import IconButton from "components/IconButton";
 
 const Portfolio: NextPage = () => {
     return(

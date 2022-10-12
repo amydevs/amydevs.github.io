@@ -23,11 +23,6 @@ const links: IconButtonProps[] = [
         "text": "Bandcamp"
     },
     {
-        "href": "https://app.matter.online/artists/@ayanamy",
-        "icon": mdiMusicCircle,
-        "text": "Matter Music"
-    },
-    {
         "href": "https://soundcloud.com/owotter",
         "icon": mdiSoundcloud,
         "text": "Soundcloud"
