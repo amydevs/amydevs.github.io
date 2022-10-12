@@ -1,12 +1,11 @@
-import { NextPage } from "next";
-import { useEffect, useState } from "react";
+import { FC, useEffect, useState } from "react";
 
 let 
     A = 1,
     B = 1
 ;
 
-const Donut: NextPage = () => {
+const Donut: FC<JSX.IntrinsicElements["div"]> = (props) => {
     const [donut_text, set_donut_text] = useState("Donut");
 
     const asciiframe = () => {
@@ -48,7 +47,7 @@ const Donut: NextPage = () => {
     });
 
     return (
-        <div>
+        <div {...props}>
             <pre 
                 id="d" 
                 style={{

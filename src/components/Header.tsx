@@ -12,7 +12,7 @@ const Header: FC = () => {
         <Disclosure as="nav" className="fixed top-0 left-0 right-0 z-50 dark:bg-[#1C1B22] bg-white">
             {({open, close}) => (
                 <>
-                    <div className={`mx-auto max-w-7xl px-3 sm:px-6 lg:px-8 sm:border-b-0 border-b-[1px] border-white/30 ${!open && "shadow-lg scroll0:shadow-none transition-all"}`}>
+                    <div className={`auto-limit-w sm:border-b-0 border-b-[1px] border-white/30 ${!open && "shadow-lg scroll0:shadow-none transition-all"}`}>
                         <div className="relative flex h-14 items-center justify-between">
                             <div className="absolute inset-y-0 right-0 flex items-center sm:hidden">
                                 {/* Mobile menu button*/}

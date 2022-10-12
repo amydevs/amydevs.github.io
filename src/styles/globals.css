@@ -3,6 +3,10 @@
 @tailwind utilities;
 
 @layer base {
+    .auto-limit-w {
+        @apply mx-auto max-w-7xl px-3 sm:px-6 lg:px-8
+    }
+
     .card {
         @apply rounded border-2 border-primary p-6 shadow
     }
