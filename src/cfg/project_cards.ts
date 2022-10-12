@@ -64,6 +64,22 @@ const project_cards: ProjectCardProps[] = [
         ]
     },
     {
+        title: "SRXDCustomLeaderboard",
+        description: "A third-party open-source private leaderboard client and server for SRXD.",
+        actions: [
+            {
+                text: "GitHub (Server)",
+                href: "https://github.com/SRXDModdingGroup/SRXDCustomLeaderboardServer",
+                icon: mdiGithub
+            },
+            {
+                text: "GitHub (Client)",
+                href: "https://github.com/SRXDModdingGroup/SRXDCustomLeaderboard",
+                icon: mdiGithub
+            }
+        ]
+    },
+    {
         title: "Exalta Launcher",
         description: "A third-party open-source launcher built in Rust for Realm of the Mad God Exalted.",
         actions: [
