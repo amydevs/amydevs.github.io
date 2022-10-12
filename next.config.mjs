@@ -10,31 +10,27 @@ import { env } from "./src/env/server.mjs";
  * @constraint {{import('next').NextConfig}}
  */
 function defineNextConfig(config) {
-  return config;
+    return config;
 }
 
 const type = process.env.npm_lifecycle_event === "export" || process.env.type === "export";
 
 export default defineNextConfig({
-  env: {
-    GH_USERNAME: "jy1263"
-  },
-  reactStrictMode: true,
-  swcMinify: true,
-  // Next.js i18n docs: https://nextjs.org/docs/advanced-features/i18n-routing
-  // i18n: {
-  //   locales: ["en"],
-  //   defaultLocale: "en",
-  // },
-  images: {
-    domains: [
-      "github.com"
-    ],
-    unoptimized: true
-  },
-  experimental: {
+    env: {
+        GH_USERNAME: "jy1263"
+    },
+    reactStrictMode: true,
+    swcMinify: true,
+    // Next.js i18n docs: https://nextjs.org/docs/advanced-features/i18n-routing
+    // i18n: {
+    //   locales: ["en"],
+    //   defaultLocale: "en",
+    // },
     images: {
-      unoptimized: true
+        domains: [
+            "github.com"
+        ],
+        unoptimized: true,
+        loader: "custom"
     }
-  }
 });
