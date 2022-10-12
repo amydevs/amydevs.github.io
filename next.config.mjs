@@ -32,4 +32,9 @@ export default defineNextConfig({
     ],
     unoptimized: true
   },
+  experimental: {
+    images: {
+      unoptimized: true
+    }
+  }
 });
