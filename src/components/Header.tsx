@@ -38,11 +38,11 @@ const Header: FC = () => {
             <Disclosure as="nav" className="fixed top-0 left-0 right-0 z-50 dark:bg-[#1C1B22] bg-white">
                 {({open, close}) => (
                     <>
-                        <div className={`auto-limit-w sm:border-b-0 border-b-[1px] border-white/30 ${!open && "shadow-lg scroll0:shadow-none transition-all xl:rounded-b-xl"}`}>
+                        <div className={`auto-limit-w sm:border-b-0 border-b-[1px] border-white/30 ${!open && "shadow-lg scroll0:shadow-none transition-all xl:rounded-xl rounded-t-none"}`}>
                             <div className="relative flex h-14 items-center justify-between">
                                 <div className="absolute inset-y-0 right-0 flex items-center sm:hidden">
                                     {/* Mobile menu button*/}
-                                    <Disclosure.Button className="inline-flex items-center justify-center rounded-md p-2">
+                                    <Disclosure.Button className="inline-flex items-center justify-center p-2">
                                         <span className="sr-only">Open main menu</span>
                                         {open ? (
                                             <XMarkIcon className="block h-6 w-6 text-primary" aria-hidden="true" />
@@ -65,7 +65,7 @@ const Header: FC = () => {
                                                     href={item.href}
                                                 >
                                                     <a 
-                                                        className={`px-3 py-2 rounded-md text-sm hover:tracking-[0.2em] transition-all ${item.current && "text-primary font-semibold"}`}
+                                                        className={`px-3 py-2 text-sm hover:tracking-[0.2em] transition-all ${item.current && "text-primary font-semibold"}`}
                                                         aria-current={item.current ? 'page' : undefined}
                                                     >
                                                         {item.name}
