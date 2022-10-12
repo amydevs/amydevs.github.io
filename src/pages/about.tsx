@@ -13,7 +13,7 @@ const About: NextPage = () => {
     console.log()
 
     return (
-        <div className="mt-20 m-8 md:px-32">
+        <div className="mt-20 auto-limit-w">
             <div className="card prose sm:p-12 dark:prose-invert prose-img:inline prose-img:m-0 max-w-full">
                 {
                     mkdwn.data ? (
