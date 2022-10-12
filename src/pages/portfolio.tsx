@@ -10,7 +10,7 @@ import IconButton from "components/IconButton";
 const Portfolio: NextPage = () => {
     return(
         <div className="pt-16 pb-2">
-            <div className="flex flex-wrap gap-3 p-3 flex-col sm:flex-row">
+            <div className="flex flex-wrap gap-3 p-3">
                 {
                     project_cards.map((card, i) => {
                         return <ProjectCard key={i} {...card} />

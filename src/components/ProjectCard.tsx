@@ -10,7 +10,7 @@ export interface ProjectCardProps {
 
 const ProjectCard: NextPage<ProjectCardProps> = (props) => {
     return (
-        <div className="card hover flex-1 sm:flex-[1_0_49.2%] min-h-[24vh]">
+        <div className="card hover flex-1 min-w-full sm:min-w-[45%] lg:min-w-[500px] min-h-[24vh]">
             <h1>
                 {props.title}
             </h1>
