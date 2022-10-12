@@ -1,6 +1,6 @@
 import "../styles/globals.css";
 import type { AppType } from "next/dist/shared/lib/utils";
-import Header from "components/header";
+import Header from "components/Header";
 import { ThemeProvider } from "next-themes";
 
 const MyApp: AppType = ({ Component, pageProps }) => {

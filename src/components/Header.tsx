@@ -2,7 +2,7 @@ import { FC } from "react";
 import { Disclosure } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 import Link from "next/link";
-import ThemeSwitch from "./themeswitch";
+import ThemeSwitch from "./ThemeSwitch";
 import { routes } from "cfg/routes";
 
 const Header: FC = () => {
