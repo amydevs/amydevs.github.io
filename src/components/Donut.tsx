@@ -44,7 +44,7 @@ const Donut: FC<JSX.IntrinsicElements["div"]> = (props) => {
     useEffect(() => {
         const id = setInterval(asciiframe, 50);
         return () => clearInterval(id);
-    });
+    }, []);
 
     return (
         <div {...props}>
