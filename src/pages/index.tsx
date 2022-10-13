@@ -9,7 +9,7 @@ const Home: NextPage = () => {
     return (
         <div className="min-h-screen flex flex-col px-8 pb-8 lg:px-32 space-y-6">
             <div className="flex-1 flex flex-col justify-around items-center text-center gap-2 pt-16 sm:min-h-fit min-h-screen">
-                <div className="flex overflow-hidden rounded-full shadow hover:shadow-lg transition-all ease-in-out">
+                <div className="grid overflow-hidden rounded-full shadow hover:shadow-lg transition-all ease-in-out">
                     <Image width="460" height="460" layout='intrinsic' alt="PFP" src={`https://github.com/${process.env.GH_USERNAME}.png`} />
                 </div>
                 <div>
