@@ -17,7 +17,7 @@ const type = process.env.npm_lifecycle_event === "export" || process.env.type ==
 
 export default defineNextConfig({
     env: {
-        GH_USERNAME: "jy1263"
+        GH_USERNAME: "amydevs"
     },
     reactStrictMode: true,
     swcMinify: true,
