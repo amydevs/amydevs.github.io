@@ -85,12 +85,12 @@ const project_cards: ProjectCardProps[] = [
         actions: [
             {
                 text: "GitHub",
-                href: "https://github.com/amydevs/exalta",
+                href: "https://github.com/amydevs/exalta-launcher",
                 icon: mdiGithub
             },
             {
                 text: "Download",
-                href: "https://github.com/amydevs/exalta/releases/latest",
+                href: "https://github.com/amydevs/exalta-launcher/releases/latest",
                 icon: mdiDownload
             }
         ]
