@@ -3,12 +3,12 @@ import { mdiGithub, mdiSpotify, mdiMusicCircle, mdiSoundcloud } from "@mdi/js";
 
 const links: IconButtonProps[] = [
     {
-        "href": "https://github.com/jy1263/",
+        "href": "https://github.com/amydevs/",
         "icon": mdiGithub,
         "text": "Github"
     },
     {
-        "href": "https://github.com/jy1263/jy1263.github.io",
+        "href": "https://github.com/amydevs/amydevs.github.io",
         "icon": mdiGithub,
         "text": "This Repository"
     },
