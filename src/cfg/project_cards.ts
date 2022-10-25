@@ -9,7 +9,7 @@ const project_cards: ProjectCardProps[] = [
         actions: [
             {
                 text: "GitHub",
-                href: 'https://github.com/jy1263/chip-8-emu-rs',
+                href: 'https://github.com/amydevs/chip-8-emu-rs',
                 icon: mdiGithub
             }
         ]
@@ -20,7 +20,7 @@ const project_cards: ProjectCardProps[] = [
         actions: [
             {
                 text: "GitHub",
-                href: 'https://github.com/jy1263/TaxCalculatorLaravel',
+                href: 'https://github.com/amydevs/TaxCalculatorLaravel',
                 icon: mdiGithub
             },
             {
@@ -36,7 +36,7 @@ const project_cards: ProjectCardProps[] = [
         actions: [
             {
                 text: "GitHub",
-                href: 'https://github.com/jy1263/TapeSync',
+                href: 'https://github.com/amydevs/TapeSync',
                 icon: mdiGithub
             }
         ]
@@ -47,7 +47,7 @@ const project_cards: ProjectCardProps[] = [
         actions: [
             {
                 text: "GitHub",
-                href: 'https://github.com/jy1263/TapeMobile',
+                href: 'https://github.com/amydevs/TapeMobile',
                 icon: mdiGithub
             }
         ]
@@ -85,12 +85,12 @@ const project_cards: ProjectCardProps[] = [
         actions: [
             {
                 text: "GitHub",
-                href: "https://github.com/jy1263/exalta",
+                href: "https://github.com/amydevs/exalta",
                 icon: mdiGithub
             },
             {
                 text: "Download",
-                href: "https://github.com/jy1263/exalta/releases/latest",
+                href: "https://github.com/amydevs/exalta/releases/latest",
                 icon: mdiDownload
             }
         ]
