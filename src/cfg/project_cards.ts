@@ -31,39 +31,6 @@ const project_cards: ProjectCardProps[] = [
         ]
     },
     {
-        title: "TapeSync",
-        description: "A modification for the productivity and organization application Tape, to enable synchronization of items between different systems using existing sync services.",
-        actions: [
-            {
-                text: "GitHub",
-                href: 'https://github.com/amydevs/TapeSync',
-                icon: mdiGithub
-            }
-        ]
-    },
-    {
-        title: "TapeMobile",
-        description: "A modification for the productivity and organization application Tape, that ports it to mobile devices and the PWA platform.",
-        actions: [
-            {
-                text: "GitHub",
-                href: 'https://github.com/amydevs/TapeMobile',
-                icon: mdiGithub
-            }
-        ]
-    },
-    {
-        title: "SRXDBepInExInstaller",
-        description: "A installer for the modding framework BepInEx for the game Spin Rhythm XD written in Python and Tkinter.",
-        actions: [
-            {
-                text: "GitHub",
-                href: 'https://github.com/SRXDModdingGroup/SRXDBepInExInstaller',
-                icon: mdiGithub
-            }
-        ]
-    },
-    {
         title: "SRXDCustomLeaderboard",
         description: "A third-party open-source private leaderboard client and server for SRXD.",
         actions: [
@@ -92,6 +59,55 @@ const project_cards: ProjectCardProps[] = [
                 text: "Download",
                 href: "https://github.com/amydevs/exalta-launcher/releases/latest",
                 icon: mdiDownload
+            }
+        ]
+    },
+    {
+        title: "MaebeeTV Website Rewrite",
+        description: "A simple tax calculator for the Australian taxation system. Built with Laravel and PHP.",
+        actions: [
+            {
+                text: "GitHub",
+                href: 'https://github.com/amydevs/maebeetv',
+                icon: mdiGithub
+            },
+            {
+                text: "Website",
+                href: 'https://maebeetv.vercel.app',
+                icon: mdiWeb
+            }
+        ]
+    },
+    {
+        title: "SRXDBepInExInstaller",
+        description: "A installer for the modding framework BepInEx for the game Spin Rhythm XD written in Python and Tkinter.",
+        actions: [
+            {
+                text: "GitHub",
+                href: 'https://github.com/SRXDModdingGroup/SRXDBepInExInstaller',
+                icon: mdiGithub
+            }
+        ]
+    },
+    {
+        title: "TapeSync",
+        description: "A modification for the productivity and organization application Tape, to enable synchronization of items between different systems using existing sync services.",
+        actions: [
+            {
+                text: "GitHub",
+                href: 'https://github.com/amydevs/TapeSync',
+                icon: mdiGithub
+            }
+        ]
+    },
+    {
+        title: "TapeMobile",
+        description: "A modification for the productivity and organization application Tape, that ports it to mobile devices and the PWA platform.",
+        actions: [
+            {
+                text: "GitHub",
+                href: 'https://github.com/amydevs/TapeMobile',
+                icon: mdiGithub
             }
         ]
     }
