@@ -64,7 +64,7 @@ const project_cards: ProjectCardProps[] = [
     },
     {
         title: "MaebeeTV Website Rewrite",
-        description: "A simple tax calculator for the Australian taxation system. Built with Laravel and PHP.",
+        description: "The landing page for MaebeeTV rewritten in Next.js extended with team management features.",
         actions: [
             {
                 text: "GitHub",
