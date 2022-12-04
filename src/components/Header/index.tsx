@@ -35,7 +35,7 @@ const Header: FC = () => {
                 <meta property="og:image" content={image_src} />
                 <meta name="twitter:image" content={image_src} />
             </Head>
-            <Disclosure as="nav" className="fixed top-0 left-0 right-0 z-50 dark:bg-[#1C1B22] bg-white">
+            <Disclosure as="nav" className="fixed top-0 left-0 right-0 z-50 dark:bg-[#1C1B22] bg-white transition-colors">
                 {({open, close}) => (
                     <>
                         <div className={`auto-limit-w sm:border-b-0 border-b-[1px] border-white/30 ${!open && "shadow-lg scroll0:shadow-none transition-all xl:rounded-xl rounded-t-none"}`}>

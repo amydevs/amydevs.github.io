@@ -5,7 +5,10 @@
 @layer base {
     html {
         scroll-behavior: smooth !important;
-        @apply dark:bg-[#1C1B22]
+        @apply bg-white transition-colors
+    }
+    html.dark {
+        @apply bg-[#1C1B22]
     }
 
     .auto-limit-w {
