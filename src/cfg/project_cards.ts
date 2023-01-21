@@ -15,6 +15,22 @@ const project_cards: ProjectCardProps[] = [
         ]
     },
     {
+        title: "SpinShare Desktop Client",
+        description: "Former developer and translator for the SpinShare desktop client.",
+        actions: [
+            {
+                text: "GitHub",
+                href: "https://github.com/SpinShare/client",
+                icon: mdiGithub
+            },
+            {
+                text: "Download",
+                href: "https://spinsha.re/client",
+                icon: mdiDownload
+            }
+        ]
+    },
+    {
         title: "Simple Australian Tax Calculator",
         description: "A simple tax calculator for the Australian taxation system. Built with Laravel and PHP.",
         actions: [
