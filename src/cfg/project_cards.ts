@@ -16,7 +16,7 @@ const project_cards: ProjectCardProps[] = [
     },
     {
         title: "SpinShare Desktop Client",
-        description: "Former developer and translator for the SpinShare desktop client.",
+        description: "Former developer and translator for the SpinShare desktop client built with Vue.js and Electron.",
         actions: [
             {
                 text: "GitHub",
@@ -31,24 +31,8 @@ const project_cards: ProjectCardProps[] = [
         ]
     },
     {
-        title: "Simple Australian Tax Calculator",
-        description: "A simple tax calculator for the Australian taxation system. Built with Laravel and PHP.",
-        actions: [
-            {
-                text: "GitHub",
-                href: 'https://github.com/amydevs/TaxCalculatorLaravel',
-                icon: mdiGithub
-            },
-            {
-                text: "Demo",
-                href: 'https://austaxcalc.000webhostapp.com/',
-                icon: mdiWeb
-            }
-        ]
-    },
-    {
         title: "SRXDCustomLeaderboard",
-        description: "A third-party open-source private leaderboard client and server for SRXD.",
+        description: "A third-party open-source private leaderboard client and server built with Next.js and React for SRXD.",
         actions: [
             {
                 text: "GitHub (Server)",
@@ -80,7 +64,7 @@ const project_cards: ProjectCardProps[] = [
     },
     {
         title: "MaebeeTV Website Rewrite",
-        description: "The landing page for MaebeeTV rewritten in Next.js extended with team management features.",
+        description: "The landing page for MaebeeTV rewritten in Next.js and React extended with team management features.",
         actions: [
             {
                 text: "GitHub",
@@ -102,6 +86,22 @@ const project_cards: ProjectCardProps[] = [
                 text: "GitHub",
                 href: 'https://github.com/SRXDModdingGroup/SRXDBepInExInstaller',
                 icon: mdiGithub
+            }
+        ]
+    },
+    {
+        title: "Simple Australian Tax Calculator",
+        description: "A simple tax calculator for the Australian taxation system. Built with Laravel and PHP.",
+        actions: [
+            {
+                text: "GitHub",
+                href: 'https://github.com/amydevs/TaxCalculatorLaravel',
+                icon: mdiGithub
+            },
+            {
+                text: "Demo",
+                href: 'https://austaxcalc.000webhostapp.com/',
+                icon: mdiWeb
             }
         ]
     },
