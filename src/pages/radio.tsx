@@ -7,7 +7,7 @@ const Radio: NextPage = () => {
 
     return (
         <div className="pt-20 auto-limit-w">
-            <div className='card hover p-0 overflow-hidden relative'>
+            <div className='card hover p-0 overflow-hidden relative bg-primary'>
                 {
                     !loaded && <div className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2'><Spinner className='fill-primary' /></div>
                 }
