@@ -17,7 +17,7 @@ const ProjectCard: NextPage<ProjectCardProps> = (props) => {
             <div className="text-sm flex-1">
                 {props.description}
             </div>
-            <div className="flex self-end gap-1">
+            <div className="flex w-full self-end gap-1 flex-wrap justify-end">
                 {props.actions.map((action, i) => (
                     <IconButton key={i} {...action} />
                 ))}
