@@ -79,6 +79,17 @@ const project_cards: ProjectCardProps[] = [
         ]
     },
     {
+        title: "rxgithub",
+        description: "A Rust Actix Web App to embed GitHub code snippets, images, gifs, videos, gists, & more on Discord, Slack, Telegram, Twitter, etc.",
+        actions: [
+            {
+                text: "GitHub",
+                href: 'https://github.com/amydevs/rxgithub',
+                icon: mdiGithub
+            }
+        ]
+    },
+    {
         title: "SRXDBepInExInstaller",
         description: "A installer for the modding framework BepInEx for the game Spin Rhythm XD written in Python and Tkinter.",
         actions: [
