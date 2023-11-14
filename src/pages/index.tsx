@@ -3,8 +3,6 @@ import type { NextPage } from "next";
 import Image from "next/image";
 import SocialLinks from 'cfg/social'
 import { ArrowDownIcon } from "@heroicons/react/24/solid";
-import { mdiGithub } from "@mdi/js";
-import Icon from "@mdi/react";
 import Link from "next/link";
 import Spinner from "components/Spinner";
 import { useEffect, useState } from "react";
@@ -33,10 +31,12 @@ const Home: NextPage = () => {
                 <div className="p-3 sm:hidden">
                     <div className="h-6" />
                 </div>
-                <Link href="/#social">
-                    <a className="action p-3 rounded-full sm:hidden absolute bottom-8">
-                        <ArrowDownIcon height="24px" />
-                    </a>
+                <Link
+                    href="/#social"
+                    className="action p-3 rounded-full sm:hidden absolute bottom-8">
+
+                    <ArrowDownIcon height="24px" />
+
                 </Link>
             </div>
             <div id="social" className="flex flex-wrap items-center justify-center gap-3">
@@ -49,7 +49,6 @@ const Home: NextPage = () => {
                 }
             </div>
         </div>
-        
     );
 };
 

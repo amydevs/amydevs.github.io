@@ -11,18 +11,16 @@ export interface IconButtonProps {
 
 const IconButton: NextPage<IconButtonProps> = (props) => {
     return (
-        <Link
-            href={props.href}
-        >
-            <a className="action icon">
-                <Icon 
-                    path={props.icon}
-                    className="h-6"
-                />
-                {props.text}
-            </a>
-        </Link>
-    )
+        (<Link href={props.href} className="action icon">
+
+            <Icon 
+                path={props.icon}
+                className="h-6"
+            />
+            {props.text}
+
+        </Link>)
+    );
 }
 
 export default IconButton;
