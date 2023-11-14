@@ -22,7 +22,7 @@ const Home: NextPage = () => {
                     >   
                         <Spinner className={`fill-primary ${pfpLoaded && "hidden"}`} />
                     </div>
-                    <Image className={`${!pfpLoaded && "opacity-0"} transition-all`} onLoad={() => setPfpLoaded(true)} width="460" height="460" layout='intrinsic' alt="PFP" src={`https://github.com/${process.env.GH_USERNAME}.png`} />
+                    <Image className={`${!pfpLoaded && "opacity-0"} transition-all`} onLoad={() => setPfpLoaded(true)} width="460" height="460" alt="PFP" src={`https://github.com/${process.env.GH_USERNAME}.png`} />
                 </div>
                 <div>
                     <span className="text-3xl">Hi, I&apos;m <span className="text-primary">Amy</span>.</span> <br />
