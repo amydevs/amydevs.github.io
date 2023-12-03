@@ -31,22 +31,6 @@ const project_cards: ProjectCardProps[] = [
         ]
     },
     {
-        title: "SRXDCustomLeaderboard",
-        description: "A third-party open-source private leaderboard client and server built with Next.js and React for SRXD.",
-        actions: [
-            {
-                text: "GitHub (Server)",
-                href: "https://github.com/SRXDModdingGroup/SRXDCustomLeaderboardServer",
-                icon: mdiGithub
-            },
-            {
-                text: "GitHub (Client)",
-                href: "https://github.com/SRXDModdingGroup/SRXDCustomLeaderboard",
-                icon: mdiGithub
-            }
-        ]
-    },
-    {
         title: "Exalta Launcher",
         description: "A third-party open-source launcher built in Rust for Realm of the Mad God Exalted.",
         actions: [
@@ -59,6 +43,44 @@ const project_cards: ProjectCardProps[] = [
                 text: "Download",
                 href: "https://github.com/amydevs/exalta-launcher/releases/latest",
                 icon: mdiDownload
+            }
+        ]
+    },
+    {
+        title: "js-ws",
+        description: "A Node.js WebSocket wrapper library that provides a multiplexed WebStreams API.",
+        actions: [
+            {
+                text: "GitHub",
+                href: "https://github.com/MatrixAI/js-ws",
+                icon: mdiGithub
+            }
+        ]
+    },
+    {
+        title: "js-mdns",
+        description: "A Node.js mDNS responder implementation written in Typescript.",
+        actions: [
+            {
+                text: "GitHub",
+                href: "https://github.com/MatrixAI/js-mdns",
+                icon: mdiGithub
+            }
+        ]
+    },
+    {
+        title: "SRXDCustomLeaderboard",
+        description: "A third-party open-source private leaderboard client and server built with Next.js and React for SRXD.",
+        actions: [
+            {
+                text: "GitHub (Server)",
+                href: "https://github.com/SRXDModdingGroup/SRXDCustomLeaderboardServer",
+                icon: mdiGithub
+            },
+            {
+                text: "GitHub (Client)",
+                href: "https://github.com/SRXDModdingGroup/SRXDCustomLeaderboard",
+                icon: mdiGithub
             }
         ]
     },
@@ -108,11 +130,6 @@ const project_cards: ProjectCardProps[] = [
                 text: "GitHub",
                 href: 'https://github.com/amydevs/TaxCalculatorLaravel',
                 icon: mdiGithub
-            },
-            {
-                text: "Demo",
-                href: 'https://austaxcalc.000webhostapp.com/',
-                icon: mdiWeb
             }
         ]
     },
