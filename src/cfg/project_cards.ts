@@ -69,6 +69,22 @@ const project_cards: ProjectCardProps[] = [
         ]
     },
     {
+        title: "YirrgayConnect",
+        description: "A Twitter-like social media platform focused on interactive multimedia and community-driven content moderation built using Next.js, Postgres, and Tailwind. Created as a Engineers Without Borders project for university.",
+        actions: [
+            {
+                text: "GitHub",
+                href: "https://github.com/amydevs/yirrgay-connect",
+                icon: mdiGithub
+            },
+            {
+                text: "Demo",
+                href: "https://yirrgayconnect.vercel.app",
+                icon: mdiWeb
+            }
+        ]
+    },
+    {
         title: "SRXDCustomLeaderboard",
         description: "A third-party open-source private leaderboard client and server built with Next.js and React for SRXD.",
         actions: [
