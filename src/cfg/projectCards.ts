@@ -1,6 +1,6 @@
 import { ProjectCardProps } from "components/ProjectCard";
 
-import { mdiGithub, mdiWeb, mdiDownload } from '@mdi/js';
+import { mdiGithub, mdiWeb } from '@mdi/js';
 
 const projectCards: ProjectCardProps[] = [
     {
