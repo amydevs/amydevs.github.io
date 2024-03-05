@@ -5,7 +5,7 @@ const bentoCards: BentoCardProps[] = [
         title: "Polykey-CLI",
         description: "A CLI secrets management system that facilitates zero-trust workflows.",
         href: "https://github.com/MatrixAI/Polykey-cli",
-        image: "/bento/polykey.png",
+        image: "/bento/polykey.gif",
         className: "top-0 left-0 w-3/5 h-1/2"
     },
     {
