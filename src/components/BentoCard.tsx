@@ -28,7 +28,7 @@ const BentoCard = React.forwardRef<
                     left: ${scrollY}px;
                 }
             `}</style>
-            <div className={cn(isJs && scrollY != null && "max-w-[100vw]", "bento-text absolute h-1/2 w-full bottom-0 bg-gradient-to-t from-gray-950 to-gray-400/0 flex items-end text-white")}>
+            <div className={cn(isJs && scrollY != null && "group-hover:max-w-[100vw]", "bento-text absolute h-1/2 w-full bottom-0 bg-gradient-to-t from-gray-950 to-gray-400/0 flex items-end text-white")}>
                 <div className="m-4">
                     <h3 className="bento-title">
                         <Link className="decoration-primary underline" href={href}>{ title }</Link>
