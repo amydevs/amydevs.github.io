@@ -7,10 +7,11 @@ import bentoCards from "cfg/bentoCards";
 
 import BentoCard from "components/BentoCard";
 import { useEffect, useState, useRef } from "react";
+import { cn } from "utils/cn";
 
 const Portfolio: NextPage = () => {
     const bentoScrollWrapperRef = useRef<HTMLDivElement>(null);
-    const [ bentoScroll, setBentoScroll ] = useState<number>(0);
+    const [ bentoScroll, setBentoScroll ] = useState<number | undefined>(undefined);
     useEffect(() => {
         const scrollHandler = () => {
             setBentoScroll(bentoScrollWrapperRef.current?.scrollLeft || 0);
@@ -25,7 +26,10 @@ const Portfolio: NextPage = () => {
     
     return(
         <div className="space-y-3">
-            <div ref={bentoScrollWrapperRef} className="overflow-y-auto h-screen sm:h-fit pt-16 px-0 flex sm:block sm:auto-limit-w">
+            <div ref={bentoScrollWrapperRef} className={cn(bentoScroll != null && "focus-within:overflow-x-hidden", "overflow-x-auto h-screen sm:h-fit pt-16 px-0 flex sm:block sm:auto-limit-w")}>
+                <div>
+
+                </div>
                 <div className="min-w-[768px] sm:min-w-min flex-1 relative w-full aspect-video sm:rounded-lg overflow-hidden">
                     { bentoCards.map(({...props}, i) => <BentoCard scrollY={bentoScroll} key={i} {...props} />) }
                 </div>
