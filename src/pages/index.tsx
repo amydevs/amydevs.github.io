@@ -6,7 +6,6 @@ import { ArrowDownIcon } from "@heroicons/react/24/solid";
 import Link from "next/link";
 
 const Home: NextPage = () => {
-
     return (
         <div className="min-h-screen flex flex-col px-8 pb-8 lg:px-32 space-y-6">
             <div className="flex-1 flex flex-col justify-around items-center text-center gap-2 pt-16 sm:min-h-fit min-h-screen">

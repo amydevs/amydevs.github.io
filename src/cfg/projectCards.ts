@@ -2,50 +2,7 @@ import { ProjectCardProps } from "components/ProjectCard";
 
 import { mdiGithub, mdiWeb, mdiDownload } from '@mdi/js';
 
-const project_cards: ProjectCardProps[] = [
-    {
-        title: "Chip-8 Interpretting Emulator",
-        description: "A Chip-8 Interpretting Emulator Written in Rust.",
-        actions: [
-            {
-                text: "GitHub",
-                href: 'https://github.com/amydevs/chip-8-emu-rs',
-                icon: mdiGithub
-            }
-        ]
-    },
-    {
-        title: "SpinShare Desktop Client",
-        description: "Former developer and translator for the SpinShare desktop client built with Vue.js and Electron.",
-        actions: [
-            {
-                text: "GitHub",
-                href: "https://github.com/SpinShare/client",
-                icon: mdiGithub
-            },
-            {
-                text: "Download",
-                href: "https://spinsha.re/client",
-                icon: mdiDownload
-            }
-        ]
-    },
-    {
-        title: "Exalta Launcher",
-        description: "A third-party open-source launcher built in Rust for Realm of the Mad God Exalted.",
-        actions: [
-            {
-                text: "GitHub",
-                href: "https://github.com/amydevs/exalta-launcher",
-                icon: mdiGithub
-            },
-            {
-                text: "Download",
-                href: "https://github.com/amydevs/exalta-launcher/releases/latest",
-                icon: mdiDownload
-            }
-        ]
-    },
+const projectCards: ProjectCardProps[] = [
     {
         title: "js-ws",
         description: "A Node.js WebSocket wrapper library that provides a multiplexed WebStreams API.",
@@ -173,4 +130,4 @@ const project_cards: ProjectCardProps[] = [
     }
 ]
 
-export default project_cards;
+export default projectCards;
