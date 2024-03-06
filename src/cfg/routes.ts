@@ -14,10 +14,6 @@ export const routes: Route[] = [
     {
         name: "Radio",
         href: "/radio",
-    },
-    {
-        name: "RotMG Stuff",
-        href: "https://rotmg-mirror.github.io/",
     }
 ]
 
