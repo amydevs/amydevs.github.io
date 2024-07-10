@@ -1,4 +1,5 @@
 import Head from "next/head";
+import Image from "next/image";
 
 function Home() {
   return (
@@ -9,7 +10,13 @@ function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className="flex-1">
-        
+        <section className="flex flex-col justify-around items-center text-center gap-8 min-h-[calc(100vh-5rem)] auto-limit-w">
+          <Image className="rounded-full" width={460} height={460} src={`https://github.com/amydevs.png`} alt="PFP" />
+          <div>
+            <span className="text-2xl font-medium">Hi, I&apos;m <span className="text-primary">Amy</span>.</span> <br />
+            <span className="text-xl">I&apos;m a software engineer and computer science student based in Australia.</span><br />
+          </div>
+        </section>
       </main>
     </>
   );
