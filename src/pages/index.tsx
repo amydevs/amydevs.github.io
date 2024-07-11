@@ -8,17 +8,19 @@ import { useEffect } from "react";
 import { Button } from "~/components/ui/button";
 import { hslToHex } from "~/lib/utils";
 import { env } from '~/env';
+import { useTheme } from "next-themes";
 
 function Home() {
   // const [scrollPosition, setScrollPosition] = React.useState(0);
   // const [pageHeight, setPageHeight] = React.useState(0);
+  const theme = useTheme();
   const [cloudColor, setCloudColor] = React.useState("");  
 
   useEffect(() => {
     const hslColor = getComputedStyle(document.body).getPropertyValue('--primary');
     const [h, s, l] = hslColor.split(' ').map((e) => Number(e.replace("%", "")))
     setCloudColor(hslToHex(h!, s!, l!));
-  }, []);
+  }, [theme.resolvedTheme]);
 
   // useEffect(() => {
   //   const handleScroll = () => {
