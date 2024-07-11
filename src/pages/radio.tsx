@@ -2,7 +2,6 @@ import * as React from 'react';
 import { LoaderCircle } from 'lucide-react';
 import { useState } from 'react';
 import { cn } from '~/lib/utils';
-import { useTheme } from 'next-themes';
 
 const Radio = () => {
   const ref = React.useRef<HTMLIFrameElement>(null);
@@ -24,7 +23,7 @@ const Radio = () => {
           allowFullScreen
           allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
           loading="lazy"
-          />
+        />
       </div>
     </div>
         
