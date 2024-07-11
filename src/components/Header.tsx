@@ -40,14 +40,12 @@ const Header = React.forwardRef<
 
     <MobileNavbar routes={routes} className={cn("md:hidden -z-10 max-h-screen", !mobileEnable && "-top-full transition-all")} />
     <div className="md:hidden ml-auto">
-      <Button
-        variant="ghost"
-        size="icon"
-        className={cn("transition-all -translate-y-1", mobileEnable && "rotate-90 text-primary")}
+      <button      
+        className={cn("transition-all w-9 h-9 flex justify-center items-center -translate-y-1", mobileEnable && "rotate-90 text-primary")}
         onClick={() => setMobileEnable(!mobileEnable)}
       >
         <Menu height={24} width={24} />
-      </Button>
+      </button>
     </div>
     
     <nav className="hidden md:flex ml-auto gap-6">
