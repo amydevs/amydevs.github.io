@@ -46,7 +46,7 @@ function Home() {
             <span className="text-2xl font-medium">Hi, I&apos;m <span className="text-primary">Amy</span>.</span> <br />
             <span className="text-xl">I&apos;m a software engineer and computer science student based in Australia.</span><br />
           </div>
-          <Button asChild size="icon" className="rounded-full hidden md:inline-flex">
+          <Button asChild size="icon" className="rounded-full invisible md:visible">
             <Link href="#socials">
               <ArrowDown />
             </Link>
