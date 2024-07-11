@@ -3,9 +3,12 @@ import * as React from "react";
 import { cn } from "~/lib/utils";
 import MobileNavbar from "./MobileNavbar";
 import { type Route } from "~/types";
-import { Menu } from "lucide-react";
+import { Menu, Moon, Sun } from "lucide-react";
 import { Button } from "./ui/button";
 import { useRouter } from "next/router";
+import dynamic from "next/dynamic";
+
+const ThemeSwitch = dynamic(() => import("./ThemeSwitch"), { ssr: false });
 
 const Header = React.forwardRef<
   HTMLDivElement,
@@ -38,7 +41,7 @@ const Header = React.forwardRef<
     <MobileNavbar routes={routes} className={cn("md:hidden -z-10 max-h-screen", !mobileEnable && "-top-full transition-all")} />
     <div className="md:hidden ml-auto">
       <Button
-        variant="link"
+        variant="ghost"
         size="icon"
         className={cn("transition-all", mobileEnable && "rotate-90 text-primary")}
         onClick={() => setMobileEnable(!mobileEnable)}
@@ -59,6 +62,18 @@ const Header = React.forwardRef<
           </Link>
         )
       }
+      <ThemeSwitch>
+        {
+          (theme) => (
+            <Button onClick={() => theme.setTheme(theme.resolvedTheme == "dark" ? "light" : "dark")} className="-translate-y-1" variant="ghost" size="icon">
+              {
+                theme.resolvedTheme == "dark" ? <Sun height={24} width={24} /> : <Moon height={24} width={24} />
+              }
+            </Button>
+          )
+        }
+      </ThemeSwitch>
+      
     </nav>
   </div>)
 })

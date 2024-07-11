@@ -25,7 +25,7 @@ const ProjectCard = React.forwardRef<
     ref={cardRef}
     className={cn(`
           h-72 flex flex-col hover:shadow-xl transition-all relative overflow-hidden
-          after:content-[''] after:absolute after:bg-[radial-gradient(hsl(var(--primary)/5%),#3984ff00_70%)]
+          after:content-[''] after:absolute after:bg-[radial-gradient(hsl(var(--primary)/10%),#3984ff00_70%)]
           after:left-[var(--x)] after:top-[var(--y)] after:-translate-x-1/2 after:-translate-y-1/2 after:w-[100rem] after:h-[100rem] after:z-10
         `, className)}
     style={{
