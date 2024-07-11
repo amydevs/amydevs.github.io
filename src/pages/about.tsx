@@ -40,7 +40,7 @@ const getStaticProps: GetStaticProps<{
 function About({
   mdxSource
 }: InferGetStaticPropsType<typeof getStaticProps>) {
-  return <div className="auto-limit-w py-3 prose dark:prose-invert prose-img:inline prose-img:m-0">
+  return <div suppressHydrationWarning className="auto-limit-w py-3 prose dark:prose-invert prose-img:inline prose-img:m-0">
     <MDXRemote {...mdxSource} />
   </div>
 }
