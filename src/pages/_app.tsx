@@ -44,7 +44,7 @@ const MyApp: AppType = ({ Component, pageProps }) => {
         <meta property="og:image" content={image_src} />
         <meta name="twitter:image" content={image_src} />
 
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/favicon.png" type="image/png" />
       </Head>
       <ThemeProvider
         attribute="class"
