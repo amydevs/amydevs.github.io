@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss"
+import plugin from 'tailwindcss/plugin';
 
 const config = {
   darkMode: ["class"],
@@ -78,6 +79,20 @@ const config = {
   plugins: [
     require("tailwindcss-animate"),
     require('@tailwindcss/typography'),
+    plugin(({matchVariant}) => {
+      matchVariant(
+        'scroll-x',
+        (value) => {
+          return ['html:not([scrollX]) &', `html[scrollX="${value}"] &`]
+        }
+      )
+      matchVariant(
+        'scroll-y',
+        (value) => {
+          return ['html:not([scrollY]) &', `html[scrollY="${value}"] &`]
+        }
+      )
+    }),
   ],
 } satisfies Config
 

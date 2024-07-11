@@ -63,11 +63,10 @@ function Portfolio() {
   
   React.useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
-      console.log("mouse");
       setMousePos([e.clientX, e.clientY]);
     }
     // for some reason this gets rid of issues with scrolling
-    const handleScroll = (e: Event) => {
+    const handleScroll = () => {
       const newScrollPos: [number, number] = [window.scrollX, window.scrollY];
       // const scrollDiff = [newScrollPos[0] - scrollPos[0], newScrollPos[1] - scrollPos[1]];
       setScrollPos(newScrollPos);

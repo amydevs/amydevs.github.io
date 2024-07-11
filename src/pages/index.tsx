@@ -1,7 +1,6 @@
 import { Cloud, PerspectiveCamera } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 import { ArrowDown, AudioLines, Github, Music } from "lucide-react";
-import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
 import * as React from "react";

@@ -7,8 +7,9 @@ import { cn } from "~/lib/utils";
 import { ThemeProvider } from "next-themes";
 
 import "~/styles/globals.css";
-import { Route } from "~/types";
+import { type Route } from "~/types";
 import Head from "next/head";
+import ScrollProvider from "~/contexts/ScrollProvider";
 
 const MyApp: AppType = ({ Component, pageProps }) => {
   const router = useRouter();
@@ -31,19 +32,19 @@ const MyApp: AppType = ({ Component, pageProps }) => {
   return (
     <>
       <Head>
-          <title>{title}</title>
-          <meta property="og:title" content={title} />
-          <meta property="og:type" content="website" />
+        <title>{title}</title>
+        <meta property="og:title" content={title} />
+        <meta property="og:type" content="website" />
           
-          <meta name="description" content={description} />
-          <meta property="og:description" content={description} />
-          <meta name="twitter:description" content={description} />
+        <meta name="description" content={description} />
+        <meta property="og:description" content={description} />
+        <meta name="twitter:description" content={description} />
 
-          <link rel="image_src" href={image_src} />
-          <meta property="og:image" content={image_src} />
-          <meta name="twitter:image" content={image_src} />
+        <link rel="image_src" href={image_src} />
+        <meta property="og:image" content={image_src} />
+        <meta name="twitter:image" content={image_src} />
 
-          <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/favicon.ico" />
       </Head>
       <ThemeProvider
         attribute="class"
@@ -51,12 +52,14 @@ const MyApp: AppType = ({ Component, pageProps }) => {
         enableSystem
         disableTransitionOnChange
       >
-        <div className={cn('flex min-h-screen flex-col', GeistSans.className)}>
-          <div className="sticky top-0 z-50">
-            <Header suppressHydrationWarning routes={newRoutes} className="auto-limit-w md:rounded-b-lg" />
+        <ScrollProvider>
+          <div className={cn('flex min-h-screen flex-col', GeistSans.className)}>
+            <div className="sticky top-0 z-50">
+              <Header suppressHydrationWarning routes={newRoutes} className="auto-limit-w md:rounded-b-lg transition-all scroll-y-[0]:shadow-none shadow-lg" />
+            </div>
+            <Component {...pageProps} />
           </div>
-          <Component {...pageProps} />
-        </div>
+        </ScrollProvider>
       </ThemeProvider>  
     </>
   );
