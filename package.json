@@ -37,6 +37,7 @@
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.13",
     "@types/eslint": "^8.56.10",
+    "@types/he": "^1.2.3",
     "@types/mdx": "^2.0.13",
     "@types/node": "^20.14.10",
     "@types/react": "^18.3.3",
@@ -46,6 +47,7 @@
     "@typescript-eslint/parser": "^7.1.1",
     "eslint": "^8.57.0",
     "eslint-config-next": "^14.2.4",
+    "he": "^1.2.0",
     "postcss": "^8.4.39",
     "prettier": "^3.3.2",
     "prettier-plugin-tailwindcss": "^0.6.5",
