@@ -14,13 +14,24 @@ function Home() {
   // const [scrollPosition, setScrollPosition] = React.useState(0);
   // const [pageHeight, setPageHeight] = React.useState(0);
   const theme = useTheme();
+  const magicHeight = 932;
   const [cloudColor, setCloudColor] = React.useState("");  
+  const [windowHeight, setWindowHeight] = React.useState(magicHeight);
 
   useEffect(() => {
     const hslColor = getComputedStyle(document.body).getPropertyValue('--primary');
     const [h, s, l] = hslColor.split(' ').map((e) => Number(e.replace("%", "")))
     setCloudColor(hslToHex(h!, s!, l!));
   }, [theme.resolvedTheme]);
+
+  useEffect(() => {
+    const resizeHandler = () => {
+      setWindowHeight(window.innerHeight);
+    }
+    window.addEventListener('resize', resizeHandler, { passive: true });
+    resizeHandler();
+    return window.removeEventListener('resize', resizeHandler)
+  }, []);
 
   // useEffect(() => {
   //   const handleScroll = () => {
@@ -59,7 +70,7 @@ function Home() {
             <Canvas dpr={0.25}>
               {/* <AdaptiveDpr pixelated /> */}
               <ambientLight intensity={Math.PI / 2} />
-              <PerspectiveCamera makeDefault position={[0, 4.75, 7]} fov={90}>
+              <PerspectiveCamera makeDefault position={[0, 4.75 + Math.min((magicHeight - windowHeight) / magicHeight, 0) * 1.2, 7]} fov={90}>
                 <spotLight position={[0, 40, 2]} angle={0.5} decay={1} distance={45} penumbra={1} intensity={2000} />
                 <spotLight position={[-19, 0, -8]} color="red" angle={0.25} decay={0.75} distance={185} penumbra={-1} intensity={400} />
               </PerspectiveCamera>
