@@ -3,8 +3,6 @@ import React from "react";
 import { cn } from "~/lib/utils";
 import { type Route } from "~/types";
 import ThemeSwitch from "./ThemeSwitch";
-import { Button } from "./ui/button";
-import { Moon, Sun } from "lucide-react";
 
 const MobileNavbar = React.forwardRef<
   HTMLDivElement,
@@ -29,17 +27,17 @@ const MobileNavbar = React.forwardRef<
           </Link>
         )
       }
-    <ThemeSwitch>
+      <ThemeSwitch>
         {
-            (theme) => (
-                <button onClick={() => theme.setTheme(theme.resolvedTheme == "dark" ? "light" : "dark")} className="text-left">
-                    {
-                        theme.resolvedTheme == "dark" ? "Light" : "Dark"
-                    }
-                </button>
-            )
+          (theme) => (
+            <button onClick={() => theme.setTheme(theme.resolvedTheme == "dark" ? "light" : "dark")} className="text-left">
+              {
+                theme.resolvedTheme == "dark" ? "Light" : "Dark"
+              }
+            </button>
+          )
         }
-    </ThemeSwitch>
+      </ThemeSwitch>
     </nav>
   </div>
 ))

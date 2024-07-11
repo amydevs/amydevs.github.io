@@ -8,8 +8,28 @@ import rehypeRaw from 'rehype-raw';
 const getStaticProps: GetStaticProps<{
   mdxSource: MDXRemoteSerializeResult;
 }> = async () => {
-  const res = await fetch(`https://raw.githubusercontent.com/${env.NEXT_PUBLIC_GH_USER}/${env.NEXT_PUBLIC_GH_USER}/master/README.md`)
+  const repo = `${env.NEXT_PUBLIC_GH_USER}/${env.NEXT_PUBLIC_GH_USER}`
+  const res = await fetch(`https://raw.githubusercontent.com/${repo}/master/README.md`)
   const source = await res.text();
+
+  const imageUrls = [];
+  for (const match of source.matchAll(/<img.*?src=['"](.*?)['"]/gi)) {
+    if (match[1] != null) {
+      imageUrls.push(match[1].trim());
+    }
+  }
+
+  const profileRes = await fetch(`https://github.com/${repo}`);
+  const profile = await profileRes.text();
+  for (const match of profile.matchAll(/src="(.*?)" data-canonical-src="(.*?)"/g)) {
+    if (match[1] == null || match[2] == null) {
+      continue;
+    }
+    const camoUrl = decodeURI(match[1].trim());
+    const realUrl = decodeURI(match[2].trim());
+    source.replace(realUrl, camoUrl);
+  }
+
   const mdxSource = await serialize(source, { mdxOptions: { format: "md", rehypePlugins: [rehypeRaw] } })
   return { props: { mdxSource } }
 };
