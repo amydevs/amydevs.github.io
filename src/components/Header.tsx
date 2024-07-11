@@ -43,7 +43,7 @@ const Header = React.forwardRef<
       <Button
         variant="ghost"
         size="icon"
-        className={cn("transition-all", mobileEnable && "rotate-90 text-primary")}
+        className={cn("transition-all -translate-y-1", mobileEnable && "rotate-90 text-primary")}
         onClick={() => setMobileEnable(!mobileEnable)}
       >
         <Menu height={24} width={24} />

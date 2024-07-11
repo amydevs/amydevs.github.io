@@ -53,7 +53,7 @@ const MyApp: AppType = ({ Component, pageProps }) => {
       >
         <div className={cn('flex min-h-screen flex-col', GeistSans.className)}>
           <div className="sticky top-0 z-50">
-            <Header suppressHydrationWarning routes={newRoutes} className="auto-limit-w md:rounded-bl md:rounded-br" />
+            <Header suppressHydrationWarning routes={newRoutes} className="auto-limit-w md:rounded-b-lg" />
           </div>
           <Component {...pageProps} />
         </div>
