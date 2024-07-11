@@ -54,8 +54,8 @@ function Home() {
         </section>
         <section id="socials" className="h-screen relative flex pt-20">
           <div className="absolute -top-96 left-0 right-0 bottom-0 -z-10 transition-all">
-            <Canvas>
-              <AdaptiveDpr pixelated />
+            <Canvas dpr={0.25}>
+              {/* <AdaptiveDpr pixelated /> */}
               <ambientLight intensity={Math.PI / 2} />
               <PerspectiveCamera makeDefault position={[0, 4.75, 7]} fov={90}>
                 <spotLight position={[0, 40, 2]} angle={0.5} decay={1} distance={45} penumbra={1} intensity={2000} />
