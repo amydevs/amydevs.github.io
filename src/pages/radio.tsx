@@ -13,7 +13,7 @@ const Radio = () => {
         {
           !loaded && <div className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2'><LoaderCircle className='text-primary animate-spin' /></div>
         }
-        <iframe ref={ref} className={cn("flex-1", !loaded && "invisible")} onLoad={() => {setLoaded(true)}} src="https://open.spotify.com/embed/artist/15HdoPMP89EsIfIvN1coko?utm_source=generator&theme=0" width="100%" frameBorder="0" allowFullScreen allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+        <iframe ref={ref} className={cn("flex-1 rounded-[12px]", !loaded && "invisible")} onLoad={() => {setLoaded(true)}} src="https://open.spotify.com/embed/artist/15HdoPMP89EsIfIvN1coko?utm_source=generator&theme=0" width="100%" frameBorder="0" allowFullScreen allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
       </div>
     </div>
         
