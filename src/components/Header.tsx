@@ -4,6 +4,8 @@ import { cn } from "~/lib/utils";
 import MobileNavbar from "./MobileNavbar";
 import { type Route } from "~/types";
 import { Menu } from "lucide-react";
+import { Button } from "./ui/button";
+import { useRouter } from "next/router";
 
 const Header = React.forwardRef<
   HTMLDivElement,
@@ -12,9 +14,19 @@ const Header = React.forwardRef<
   }
 >(({ routes, className, ...props }, ref) => {
   const [mobileEnable, setMobileEnable] = React.useState(false);
+  const router = useRouter();
+  
+  React.useEffect(() => {
+    const routeChangeHandler = () => {
+      setMobileEnable(false);
+    };
+    router.events.on('routeChangeStart', routeChangeHandler);
+    return () => router.events.off('routeChangeStart', routeChangeHandler);
+  }, [router.events]);
+
   return (<div
     ref={ref}
-    className={cn('flex h-20 py-6 bg-background text-lg font-medium', className)}
+    className={cn('flex h-20 py-6 bg-background text-lg font-medium z-50', className)}
     {...props}
   >
     <div>
@@ -25,12 +37,14 @@ const Header = React.forwardRef<
 
     <MobileNavbar routes={routes} className={cn("md:hidden -z-10 max-h-screen", !mobileEnable && "-top-full transition-all")} />
     <div className="md:hidden ml-auto">
-      <button
+      <Button
+        variant="link"
+        size="icon"
         className={cn("transition-all", mobileEnable && "rotate-90 text-primary")}
         onClick={() => setMobileEnable(!mobileEnable)}
         >
         <Menu height={24} width={24} />
-      </button>
+      </Button>
     </div>
     
     <nav className="hidden md:flex ml-auto gap-6">

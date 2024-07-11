@@ -18,8 +18,8 @@ const MyApp: AppType = ({ Component, pageProps }) => {
   
   return (
     <div className={cn('flex min-h-screen flex-col', GeistSans.className)}>
-      <div className="sticky auto-limit-w">
-      <Header routes={newRoutes} className="w-full" />
+      <div className="sticky top-0 z-10">
+        <Header routes={newRoutes} className="auto-limit-w md:rounded-bl md:rounded-br" />
       </div>
       <Component {...pageProps} />
     </div>
