@@ -10,7 +10,7 @@ const Radio = () => {
 
   return (
     <div className='flex py-3 auto-limit-w min-h-[calc(100vh-5rem)]'>
-      <Card className="flex flex-1">
+      <Card className="flex flex-1 overflow-hidden">
         {
           !loaded && <div className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2'><LoaderCircle className='text-primary animate-spin' /></div>
         }

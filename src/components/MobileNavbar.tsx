@@ -1,8 +1,10 @@
+import dynamic from "next/dynamic";
 import Link from "next/link";
 import React from "react";
 import { cn } from "~/lib/utils";
 import { type Route } from "~/types";
-import ThemeSwitch from "./ThemeSwitch";
+
+const ThemeSwitch = dynamic(() => import("./ThemeSwitch"), { ssr: false });
 
 const MobileNavbar = React.forwardRef<
   HTMLDivElement,
@@ -30,7 +32,7 @@ const MobileNavbar = React.forwardRef<
       <ThemeSwitch>
         {
           (theme) => (
-            <button onClick={() => theme.setTheme(theme.resolvedTheme == "dark" ? "light" : "dark")} className="text-left">
+            <button onClick={() => theme.setTheme(theme.resolvedTheme == "dark" ? "light" : "dark")} className="text-left hover:text-primary">
               {
                 theme.resolvedTheme == "dark" ? "Light" : "Dark"
               }

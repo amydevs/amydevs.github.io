@@ -59,16 +59,26 @@ ProjectCard.displayName = "ProjectCard"
 
 function Portfolio() {
   const [mousePos, setMousePos] = React.useState<[number, number]>([-999999, -999999]);
+  const [_scrollPos, setScrollPos] = React.useState<[number, number]>([0, 0]);
+  
   React.useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
+      console.log("mouse");
       setMousePos([e.clientX, e.clientY]);
     }
+    // for some reason this gets rid of issues with scrolling
+    const handleScroll = (e: Event) => {
+      const newScrollPos: [number, number] = [window.scrollX, window.scrollY];
+      // const scrollDiff = [newScrollPos[0] - scrollPos[0], newScrollPos[1] - scrollPos[1]];
+      setScrollPos(newScrollPos);
+    }
     window.addEventListener('mousemove', handleMouseMove, { passive: true });
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => {
       window.removeEventListener('mousemove', handleMouseMove);
+      window.removeEventListener('scroll', handleScroll);
     }
-    
-  });
+  }, []);
 
   return <main className="auto-limit-w grid grid-cols-1 md:grid-cols-2 gap-3 py-3 max-w-6xl">
     {

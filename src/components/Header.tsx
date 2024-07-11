@@ -23,8 +23,8 @@ const Header = React.forwardRef<
     const routeChangeHandler = () => {
       setMobileEnable(false);
     };
-    router.events.on('routeChangeStart', routeChangeHandler);
-    return () => router.events.off('routeChangeStart', routeChangeHandler);
+    router.events.on('routeChangeComplete', routeChangeHandler);
+    return () => router.events.off('routeChangeComplete', routeChangeHandler);
   }, [router.events]);
 
   return (<div
@@ -65,7 +65,7 @@ const Header = React.forwardRef<
       <ThemeSwitch>
         {
           (theme) => (
-            <Button onClick={() => theme.setTheme(theme.resolvedTheme == "dark" ? "light" : "dark")} className="-translate-y-1" variant="ghost" size="icon">
+            <Button onClick={() => theme.setTheme(theme.resolvedTheme == "dark" ? "light" : "dark")} className="-translate-y-1 hover:text-primary" variant="ghost" size="icon">
               {
                 theme.resolvedTheme == "dark" ? <Sun height={24} width={24} /> : <Moon height={24} width={24} />
               }
