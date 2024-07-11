@@ -17,13 +17,13 @@ const MobileNavbar = React.forwardRef<
     <nav className="flex flex-col gap-6">
       {
         routes.map((route, i) => 
-        <Link
-        className={cn("hover:text-primary transition-all", route.current && 'text-primary')}
+          <Link
+            className={cn("hover:text-primary transition-all", route.current && 'text-primary')}
             href={route.href}
             key={i}
-            >
+          >
             {route.name}
-        </Link>
+          </Link>
         )
       }
     </nav>

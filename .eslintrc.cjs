@@ -5,7 +5,7 @@ const config = {
     "project": true
   },
   "plugins": [
-    "@typescript-eslint"
+    "@typescript-eslint",
   ],
   "extends": [
     "next/core-web-vitals",
@@ -13,6 +13,13 @@ const config = {
     "plugin:@typescript-eslint/stylistic-type-checked"
   ],
   "rules": {
+    // Indent with 2 spaces
+    "indent": ["error", 2],
+    // Indent JSX with 2 spaces
+    "react/jsx-indent": ["error", 2],
+    // Indent props with 2 spaces
+    "react/jsx-indent-props": ["error", 2],
+
     "@typescript-eslint/array-type": "off",
     "@typescript-eslint/consistent-type-definitions": "off",
     "@typescript-eslint/consistent-type-imports": [

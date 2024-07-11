@@ -42,7 +42,7 @@ const Header = React.forwardRef<
         size="icon"
         className={cn("transition-all", mobileEnable && "rotate-90 text-primary")}
         onClick={() => setMobileEnable(!mobileEnable)}
-        >
+      >
         <Menu height={24} width={24} />
       </Button>
     </div>
@@ -54,7 +54,7 @@ const Header = React.forwardRef<
             className={cn("hover:text-primary transition-all", route.current && 'text-primary')}
             href={route.href}
             key={i}
-            >
+          >
             {route.name}
           </Link>
         )

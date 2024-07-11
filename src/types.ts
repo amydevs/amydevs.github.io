@@ -17,6 +17,6 @@ type ProjectCardData = {
 };
 
 export type {
-    Route,
-    ProjectCardData
+  Route,
+  ProjectCardData
 }
