@@ -65,17 +65,17 @@ function Home() {
             </Canvas>
           </div>
           <div className="auto-limit-w flex items-center justify-center gap-3">
-            <Button variant="outline" asChild>
+            <Button asChild>
               <Link href={`https://github.com/${env.NEXT_PUBLIC_GH_USER}`}>
                 <Github className="mr-1" />GitHub
               </Link>
             </Button>
-            <Button variant="outline" asChild>
+            <Button asChild>
               <Link href="https://open.spotify.com/artist/15HdoPMP89EsIfIvN1coko?si=pyuDsYIpRcu2AHDYVYIn-Q">
                 <Music className="mr-1" />Spotify
               </Link>
             </Button>
-            <Button variant="outline" asChild>
+            <Button asChild>
               <Link href="https://soundcloud.com/owotter">
                 <AudioLines className="mr-1" />SoundCloud
               </Link>
