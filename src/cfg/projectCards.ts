@@ -1,7 +1,66 @@
-import { Github, Globe } from "lucide-react";
+import { Download, Github, Globe } from "lucide-react";
 import { type ProjectCardData } from "~/types";
 
 const projectCards: ProjectCardData[] = [
+  {
+    title: "Polykey-CLI",
+    description: "A CLI secrets management system that facilitates zero-trust workflows.",
+    actions: [
+      {
+        text: "GitHub",
+        href: "https://github.com/MatrixAI/Polykey-cli",
+        icon: Github
+      }
+    ]
+  },
+  {
+    title: "SpinShare Client",
+    description: "Former developer and translator for the SpinShare desktop client built with Vue.js and Electron.",
+    actions: [
+      {
+        text: "Download",
+        href: "https://spinsha.re/client",
+        icon: Download
+      },
+      {
+        text: "GitHub",
+        href: "https://github.com/SpinShare/client",
+        icon: Github
+      }
+    ]
+  },
+  {
+    title: "Exalta Launcher",
+    description: "A third-party open-source launcher built in Rust for Realm of the Mad God Exalted.",
+    actions: [
+      {
+        text: "Download",
+        href: "https://github.com/amydevs/exalta-launcher/releases/latest",
+        icon: Download
+      },
+      {
+        text: "GitHub",
+        href: "https://github.com/amydevs/exalta-launcher",
+        icon: Github
+      }
+    ]
+  },
+  {
+    title: "Chip-8 Emulator",
+    description: "A Chip-8 Interpreting Emulator Written in Rust.",
+    actions: [
+      {
+        text: "Download",
+        href: "https://github.com/amydevs/chip-8-emu-rs/releases/latest",
+        icon: Download
+      },
+      {
+        text: "GitHub",
+        href: "https://github.com/amydevs/chip-8-emu-rs",
+        icon: Github
+      }
+    ]
+  },
   {
     title: "js-ws",
     description: "A Node.js WebSocket wrapper library that provides a multiplexed WebStreams API.",
