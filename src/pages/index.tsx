@@ -4,7 +4,6 @@ import { ArrowDown, AudioLines, Github, Music } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import * as React from "react";
-import { useEffect } from "react";
 import { Button } from "~/components/ui/button";
 import { hslToHex } from "~/lib/utils";
 import { env } from '~/env';
@@ -15,16 +14,18 @@ function Home() {
   // const [pageHeight, setPageHeight] = React.useState(0);
   const theme = useTheme();
   const magicHeight = 932;
-  const [cloudColor, setCloudColor] = React.useState("");  
   const [windowHeight, setWindowHeight] = React.useState(magicHeight);
 
-  useEffect(() => {
-    const hslColor = getComputedStyle(document.body).getPropertyValue('--primary');
+  const cloudColor = React.useMemo(() => {
+    if (typeof window === 'undefined' || !('getComputedStyle' in window)) {
+      return '#000000';
+    }
+    const hslColor = window.getComputedStyle(document.body).getPropertyValue('--primary');
     const [h, s, l] = hslColor.split(' ').map((e) => Number(e.replace("%", "")))
-    setCloudColor(hslToHex(h!, s!, l!));
+    return hslToHex(h!, s!, l!);
   }, [theme.resolvedTheme]);
 
-  useEffect(() => {
+  React.useEffect(() => {
     const resizeHandler = () => {
       setWindowHeight(window.innerHeight);
     }
