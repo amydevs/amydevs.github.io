@@ -1,3 +1,4 @@
+import type { GetStaticProps, InferGetStaticPropsType } from "next/types";
 import { Cloud, PerspectiveCamera } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 import { ArrowDown, AudioLines, Github, Music } from "lucide-react";
@@ -8,10 +9,21 @@ import { Button } from "~/components/ui/button";
 import { hslToHex } from "~/lib/utils";
 import { env } from '~/env';
 import { useTheme } from "next-themes";
+import * as plaiceholder from 'plaiceholder';
 
-function Home() {
-  // const [scrollPosition, setScrollPosition] = React.useState(0);
-  // const [pageHeight, setPageHeight] = React.useState(0);
+const pfpSrc = `https://github.com/${env.NEXT_PUBLIC_GH_USER}.png`;
+
+const getStaticProps: GetStaticProps<{
+  blurDataURL: string;
+}> = async ({}) => {
+  const buffer = await fetch(pfpSrc).then(async (res) =>
+    Buffer.from(await res.arrayBuffer())
+  );
+  const { base64 } = await plaiceholder.getPlaiceholder(buffer, { size: 10 });
+  return { props: { blurDataURL: base64 } };
+}
+
+function Home({ blurDataURL }: InferGetStaticPropsType<typeof getStaticProps>) {
   const theme = useTheme();
   const magicHeight = 932;
   const [windowHeight, setWindowHeight] = React.useState(magicHeight);
@@ -34,28 +46,11 @@ function Home() {
     return window.removeEventListener('resize', resizeHandler)
   }, []);
 
-  // useEffect(() => {
-  //   const handleScroll = () => {
-  //     setScrollPosition(window.scrollY);
-  //   };
-  //   const handleResize = () => {
-  //     setPageHeight(window.innerHeight);
-
-  //   }
-  //   handleResize();
-  //   window.addEventListener('scroll', handleScroll, { passive: true });
-  //   window.addEventListener('resize', handleResize, { passive: true });
-  //   return () => {
-  //     window.removeEventListener('scroll', handleScroll);
-  //     window.removeEventListener('resize', handleResize);
-  //   };
-  // }, []);
-
   return (
     <>
       <main className="flex-1">
         <section className="flex flex-col justify-around items-center text-center gap-8 min-h-[calc(100vh-5rem)] auto-limit-w">
-          <Image className="rounded-full" width={460} height={460} src={`https://github.com/${env.NEXT_PUBLIC_GH_USER}.png`} alt="PFP" />
+          <Image className="rounded-full" width={460} height={460} placeholder="blur" blurDataURL={blurDataURL} src={pfpSrc} alt="PFP" />
           <div>
             <span className="text-2xl font-medium">Hi, I&apos;m <span className="text-primary">Amy</span>.</span> <br />
             <span className="text-xl">I&apos;m a software engineer and computer science student based in Australia.</span><br />
@@ -101,3 +96,7 @@ function Home() {
 }
 
 export default Home;
+
+export {
+  getStaticProps
+}
