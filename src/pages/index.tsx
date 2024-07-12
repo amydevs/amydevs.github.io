@@ -38,6 +38,8 @@ function Home({ blurDataURL }: InferGetStaticPropsType<typeof getStaticProps>) {
     const hslColor = window.getComputedStyle(document.body).getPropertyValue('--primary');
     const [h, s, l] = hslColor.split(' ').map((e) => Number(e.replace("%", "")))
     return hslToHex(h!, s!, l!);
+    // linter doesn't get that the it should be a dep, as I'm using DOM apis in this effect.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [theme.resolvedTheme]);
 
   React.useEffect(() => {

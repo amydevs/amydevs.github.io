@@ -5,6 +5,7 @@ import projectCards from "~/cfg/projectCards";
 import { Button } from "~/components/ui/button";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "~/components/ui/card";
 import { cn } from "~/lib/utils";
+import { useScroll } from "~/contexts/ScrollProvider";
 
 const ProjectCard = React.forwardRef<
   HTMLDivElement,
@@ -26,10 +27,11 @@ const ProjectCard = React.forwardRef<
     className={cn(`
           h-72 flex flex-col hover:shadow-xl transition-all relative overflow-hidden
           after:content-[''] after:absolute
+          after:transition-[height,width] after:duration-700 after:ease-out
           after:bg-[radial-gradient(hsl(var(--primary)/10%),#3984ff00_70%)]
           dark:after:bg-[radial-gradient(hsl(var(--primary)/30%),#3984ff00_70%)]
           after:left-[var(--x)] after:top-[var(--y)] after:-translate-x-1/2 after:-translate-y-1/2 after:w-[100rem] after:h-[100rem] after:z-10
-        `, className)}
+        `, x < 0 && y < 0 && "after:h-0 after:w-0", className)}
     style={{
       ...props.style,
       '--x': `${x - (rect?.left ?? 0)}px`,
@@ -61,23 +63,16 @@ ProjectCard.displayName = "ProjectCard"
 
 function Portfolio() {
   const [mousePos, setMousePos] = React.useState<[number, number]>([-999999, -999999]);
-  const [_scrollPos, setScrollPos] = React.useState<[number, number]>([0, 0]);
+  // for some reason this gets rid of issues with scrolling
+  useScroll();
   
   React.useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
       setMousePos([e.clientX, e.clientY]);
     }
-    // for some reason this gets rid of issues with scrolling
-    const handleScroll = () => {
-      const newScrollPos: [number, number] = [window.scrollX, window.scrollY];
-      // const scrollDiff = [newScrollPos[0] - scrollPos[0], newScrollPos[1] - scrollPos[1]];
-      setScrollPos(newScrollPos);
-    }
     window.addEventListener('mousemove', handleMouseMove, { passive: true });
-    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => {
       window.removeEventListener('mousemove', handleMouseMove);
-      window.removeEventListener('scroll', handleScroll);
     }
   }, []);
 
