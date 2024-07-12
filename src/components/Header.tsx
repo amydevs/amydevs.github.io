@@ -29,7 +29,7 @@ const Header = React.forwardRef<
 
   return (<div
     ref={ref}
-    className={cn('flex h-20 py-6 bg-background text-lg font-medium z-50', className)}
+    className={cn('flex h-20 py-6 bg-background text-lg font-medium z-50', className, mobileEnable && 'shadow-none')}
     {...props}
   >
     <div>
