@@ -10,7 +10,10 @@ const config = {
   "extends": [
     "next/core-web-vitals",
     "plugin:@typescript-eslint/recommended-type-checked",
-    "plugin:@typescript-eslint/stylistic-type-checked"
+    "plugin:@typescript-eslint/stylistic-type-checked",
+  ],
+  "ignorePatterns": [
+    "src/components/ui/"
   ],
   "rules": {
     // Indent with 2 spaces
@@ -21,7 +24,10 @@ const config = {
     "react/jsx-indent-props": ["error", 2],
 
     "@typescript-eslint/array-type": "off",
-    "@typescript-eslint/consistent-type-definitions": "off",
+    "@typescript-eslint/consistent-type-definitions": [
+      "warn",
+      "type"
+    ],
     "@typescript-eslint/consistent-type-imports": [
       "warn",
       {
@@ -35,7 +41,7 @@ const config = {
         "argsIgnorePattern": "^_"
       }
     ],
-    "@typescript-eslint/require-await": "off",
+    "@typescript-eslint/require-await": "error",
     "@typescript-eslint/no-misused-promises": [
       "error",
       {
