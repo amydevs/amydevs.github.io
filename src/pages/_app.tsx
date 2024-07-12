@@ -56,12 +56,12 @@ const MyApp: AppType = ({ Component, pageProps }) => {
       >
         <ScrollProvider>
           <div className={cn('flex min-h-screen flex-col', GeistSans.className)}>
-            <div className="sticky top-0 z-50">
+            <header className="sticky top-0 z-50">
               <Header suppressHydrationWarning routes={newRoutes} className="auto-limit-w xl:rounded-b-lg transition-all scroll-y-[0]:shadow-none shadow-lg" />
-            </div>
+            </header>
             <Component {...pageProps} />
             <footer>
-              <Footer />
+              <Footer className="auto-limit-w" />
             </footer>
           </div>
         </ScrollProvider>
