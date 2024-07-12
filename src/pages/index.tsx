@@ -14,8 +14,11 @@ import * as plaiceholder from 'plaiceholder';
 const pfpSrc = `https://github.com/${env.NEXT_PUBLIC_GH_USER}.png`;
 
 const getStaticProps: GetStaticProps<{
-  blurDataURL: string;
+  blurDataURL?: string;
 }> = async ({}) => {
+  if (env.NODE_ENV !== 'production') {
+    return { props: {} };
+  }
   const buffer = await fetch(pfpSrc).then(async (res) =>
     Buffer.from(await res.arrayBuffer())
   );
@@ -50,7 +53,7 @@ function Home({ blurDataURL }: InferGetStaticPropsType<typeof getStaticProps>) {
     <>
       <main className="flex-1">
         <section className="flex flex-col justify-around items-center text-center gap-8 min-h-[calc(100vh-5rem)] auto-limit-w">
-          <Image className="rounded-full" width={460} height={460} placeholder="blur" blurDataURL={blurDataURL} src={pfpSrc} alt="PFP" />
+          <Image className="rounded-full" width={460} height={460} placeholder={blurDataURL == null ? "empty" : "blur"} blurDataURL={blurDataURL} src={pfpSrc} alt="PFP" />
           <div>
             <span className="text-2xl font-medium">Hi, I&apos;m <span className="text-primary">Amy</span>.</span> <br />
             <span className="text-xl">I&apos;m a software engineer and computer science student based in Australia.</span><br />
