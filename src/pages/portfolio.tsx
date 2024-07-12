@@ -26,8 +26,8 @@ const ProjectCard = React.forwardRef<
     className={cn(`
           h-72 flex flex-col hover:shadow-xl transition-all relative overflow-hidden
           after:content-[''] after:absolute
-          after:bg-[radial-gradient(hsl(var(--primary)/10%),#3984ff00_70%)]
-          dark:after:bg-[radial-gradient(hsl(var(--primary)/30%),#3984ff00_70%)]
+          after:bg-[radial-gradient(hsl(var(--primary)/10%),#3984ff00_30%)]
+          dark:after:bg-[radial-gradient(hsl(var(--primary)/30%),#3984ff00_30%)]
           after:left-[var(--x)] after:top-[var(--y)] after:-translate-x-1/2 after:-translate-y-1/2 after:w-[100rem] after:h-[100rem] after:z-10
         `, className)}
     style={{
@@ -62,10 +62,15 @@ ProjectCard.displayName = "ProjectCard"
 function Portfolio() {
   const [mousePos, setMousePos] = React.useState<[number, number]>([-999999, -999999]);
   const [_scrollPos, setScrollPos] = React.useState<[number, number]>([0, 0]);
+
+  const cardRefs = React.useRef<Array<HTMLDivElement>>([]);
+
+  const [currentElement, setCurrentElement] = React.useState<Element | null>(null);
   
   React.useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
       setMousePos([e.clientX, e.clientY]);
+      setCurrentElement(document.elementFromPoint(e.clientX, e.clientY));
     }
     // for some reason this gets rid of issues with scrolling
     const handleScroll = () => {
@@ -83,9 +88,16 @@ function Portfolio() {
 
   return <main className="auto-limit-w grid grid-cols-1 md:grid-cols-2 gap-3 py-3 max-w-6xl">
     {
-      projectCards.map((card, i) =>
-        <ProjectCard key={i} mousePos={mousePos} {...card} />
-      )
+      projectCards.map((card, i) => {
+        const elementHighlighted = currentElement === cardRefs.current[i] || cardRefs.current[i]?.contains(currentElement);
+        return <ProjectCard
+          className={cn('after:invisible', elementHighlighted && 'after:visible')}
+          ref={(element) => {cardRefs.current[i] = (element!)}}
+          key={i}
+          mousePos={elementHighlighted ? mousePos : undefined}
+          {...card}
+        />;
+      })
     }
   </main>;
 }
