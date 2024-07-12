@@ -16,6 +16,10 @@ const Footer = React.forwardRef<
           Built by{" "}
           <Link className="underline text-primary" href={`https://github.com/${env.NEXT_PUBLIC_GH_USER}`}>
             { env.NEXT_PUBLIC_GH_USER }
+          </Link>{" "}
+          with {" "}
+          <Link className="underline text-primary" href={"https://nextjs.org/"}>
+            next.js
           </Link>
           .
           The source code is available on{" "}
