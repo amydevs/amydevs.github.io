@@ -10,6 +10,7 @@ import "~/styles/globals.css";
 import { type Route } from "~/types";
 import Head from "next/head";
 import ScrollProvider from "~/contexts/ScrollProvider";
+import Footer from "~/components/Footer";
 
 const MyApp: AppType = ({ Component, pageProps }) => {
   const router = useRouter();
@@ -44,7 +45,8 @@ const MyApp: AppType = ({ Component, pageProps }) => {
         <meta property="og:image" content={image_src} />
         <meta name="twitter:image" content={image_src} />
 
-        <link rel="icon" href="/favicon.png" type="image/png" />
+        <link rel="icon" href="/favicon-16x16.png" sizes="16x16" type="image/png" />
+        <link rel="icon" href="/favicon-32x32.png" sizes="32x32" type="image/png" />
       </Head>
       <ThemeProvider
         attribute="class"
@@ -58,6 +60,9 @@ const MyApp: AppType = ({ Component, pageProps }) => {
               <Header suppressHydrationWarning routes={newRoutes} className="auto-limit-w xl:rounded-b-lg transition-all scroll-y-[0]:shadow-none shadow-lg" />
             </div>
             <Component {...pageProps} />
+            <footer>
+              <Footer />
+            </footer>
           </div>
         </ScrollProvider>
       </ThemeProvider>  
