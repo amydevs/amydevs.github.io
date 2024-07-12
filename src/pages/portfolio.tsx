@@ -81,7 +81,7 @@ function Portfolio() {
     }
   }, []);
 
-  return <main className="auto-limit-w grid grid-cols-1 md:grid-cols-2 gap-3 py-3 max-w-6xl">
+  return <main className="auto-limit-w grid grid-cols-1 md:grid-cols-2 gap-3 py-3">
     {
       projectCards.map((card, i) =>
         <ProjectCard key={i} mousePos={mousePos} {...card} />
