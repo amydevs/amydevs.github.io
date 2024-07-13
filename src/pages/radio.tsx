@@ -1,11 +1,15 @@
 import * as React from 'react';
 import { LoaderCircle } from 'lucide-react';
-import { useState } from 'react';
 import { cn } from '~/lib/utils';
 
 const Radio = () => {
   const ref = React.useRef<HTMLIFrameElement>(null);
-  const [loaded, setLoaded] = useState((ref.current?.contentDocument)?.readyState === 'complete');
+  const [loaded, setLoaded] = React.useState(true);
+  
+  // Make sure that the iFrame exists on SSR/SSG, only loading component when JS is available.
+  React.useEffect(() => {
+    setLoaded(ref.current?.contentDocument?.readyState === 'complete');
+  }, []);
 
   return (
     <div className='flex py-3 auto-limit-w min-h-[calc(100vh-5rem)]'>
