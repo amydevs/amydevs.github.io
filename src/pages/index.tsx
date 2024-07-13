@@ -6,7 +6,7 @@ import Image from "next/image";
 import Link from "next/link";
 import * as React from "react";
 import { Button } from "~/components/ui/button";
-import { hslToHex } from "~/lib/utils";
+import { cn, hslToHex } from "~/lib/utils";
 import { env } from '~/env';
 import { useTheme } from "next-themes";
 import * as plaiceholder from 'plaiceholder';
@@ -30,6 +30,8 @@ function Home({ blurDataURL }: InferGetStaticPropsType<typeof getStaticProps>) {
   const theme = useTheme();
   const magicHeight = 932;
   const [windowHeight, setWindowHeight] = React.useState(magicHeight);
+  const imageRef = React.useRef<HTMLImageElement>(null);
+  const [imageLoaded, setImageLoaded] = React.useState(true);
 
   const cloudColor = React.useMemo(() => {
     if (typeof window === 'undefined' || !('getComputedStyle' in window)) {
@@ -55,7 +57,7 @@ function Home({ blurDataURL }: InferGetStaticPropsType<typeof getStaticProps>) {
     <>
       <main className="flex-1">
         <section className="flex flex-col justify-around items-center text-center gap-8 min-h-[calc(100vh-5rem)] auto-limit-w">
-          <Image className="rounded-full" width={460} height={460} placeholder={blurDataURL == null ? "empty" : "blur"} blurDataURL={blurDataURL} src={pfpSrc} alt="PFP" />
+          <Image ref={imageRef} className={cn("rounded-full transition-all blur-none", !imageLoaded && "blur-sm")} width={460} height={460} placeholder={blurDataURL == null ? "empty" : "blur"} blurDataURL={blurDataURL} src={pfpSrc} alt="PFP" onLoadStart={() => setImageLoaded(false)} onLoad={() => setImageLoaded(true)} />
           <div>
             <span className="text-2xl font-medium">Hi, I&apos;m <span className="text-primary">Amy</span>.</span> <br />
             <span className="text-xl">I&apos;m a software engineer and computer science student based in Australia.</span><br />
