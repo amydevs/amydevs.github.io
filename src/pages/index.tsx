@@ -53,11 +53,15 @@ function Home({ blurDataURL }: InferGetStaticPropsType<typeof getStaticProps>) {
     return window.removeEventListener('resize', resizeHandler)
   }, []);
 
+  React.useEffect(() => {
+    setImageLoaded(imageRef.current?.complete ?? false);
+  }, []);
+
   return (
     <>
       <main className="flex-1">
         <section className="flex flex-col justify-around items-center text-center gap-8 min-h-[calc(100vh-5rem)] auto-limit-w">
-          <Image ref={imageRef} className={cn("rounded-full transition-all blur-none", !imageLoaded && "blur-sm")} width={460} height={460} placeholder={blurDataURL == null ? "empty" : "blur"} blurDataURL={blurDataURL} src={pfpSrc} alt="PFP" onLoadStart={() => setImageLoaded(false)} onLoad={() => setImageLoaded(true)} />
+          <Image ref={imageRef} className={cn("rounded-full transition-all blur-none", !imageLoaded && "blur-sm")} width={460} height={460} placeholder={blurDataURL == null ? "empty" : "blur"} blurDataURL={blurDataURL} src={pfpSrc} alt="PFP" onLoad={() => setImageLoaded(true)} />
           <div>
             <span className="text-2xl font-medium">Hi, I&apos;m <span className="text-primary">Amy</span>.</span> <br />
             <span className="text-xl">I&apos;m a software engineer and computer science student based in Australia.</span><br />
