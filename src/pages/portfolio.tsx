@@ -29,10 +29,10 @@ function Portfolio() {
             <CardTitle>{card.title}</CardTitle>
           </CardHeader>
           <CardContent className="flex-1 overflow-y-auto">
-              <div className="h-full w-full overflow-y-auto">
-                {card.description}
-              </div>
-            </CardContent>
+            <div className="h-full w-full overflow-y-auto">
+              {card.description}
+            </div>
+          </CardContent>
           <CardFooter className="flex justify-end gap-3">
             {
               card.actions.map((action, i) =>
