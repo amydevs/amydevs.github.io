@@ -15,7 +15,7 @@ const getStaticProps: GetStaticProps<{ post: Post }, { slug: string }> = async (
 }
 
 function BlogPost({ post }: InferGetStaticPropsType<typeof getStaticProps>) {
-  return <main className="auto-limit-w flex flex-col items-center">
+  return <main className="auto-limit-w max-w-5xl flex flex-col items-center">
     <div className="pt-32 pb-24 md:text-center">
         <div className="font-bold text-primary mb-4">
             { post.frontmatter.topic ?? "Miscellaneous" }

@@ -15,5 +15,21 @@ For some context, the about page is statically generated from my [GitHub profile
 
 ![readme profile](./2024-07-15-piggyback-gh-camo/about.png)
 
+But these images take forever to load! What do I do?!?!
+
+![about page loads so slowly!](./2024-07-15-piggyback-gh-camo/slow_load.gif)
+
+Ah right, silly me. I'm using Next.js, which means I should be able to take advantage of the `next/image` package for image optimization/caching right?
+
+Well when I first started working on this site, I had the brilliant idea of wanting it to be hosted on GitHub pages so that all my individual repository-specific pages will be routed by GitHub automagically. So unfortunately, I can't take advantage of Vercel's image caching with `next/image`.
+
+## Cloudflare?
+
+Well the fantastic thing about the `next/image` package, is that it supports a variety of custom "loaders" that allow for different CDNs do be used for image caching.
+
+Well I've been wanting to switch over to using Cloudflare nameservers for a long while. So I might as well make the switch and get a CDN along with it, right?
+
+So I logged into my dashboard, went over to NameCheap, and pointed my nameservers to CloudFlare, and...
 
 
+## Piggybacking Off GitHub's Own CDN
