@@ -34,15 +34,15 @@ const projectCards: ProjectCardData[] = [
     description: "A third-party open-source launcher built in Rust for Realm of the Mad God Exalted.",
     actions: [
       {
+        text: "GitHub",
+        href: "https://github.com/amydevs/exalta-launcher",
+        icon: Github
+      },
+      {
         text: "Download",
         href: "https://github.com/amydevs/exalta-launcher/releases/latest",
         icon: Download
       },
-      {
-        text: "GitHub",
-        href: "https://github.com/amydevs/exalta-launcher",
-        icon: Github
-      }
     ]
   },
   {
@@ -50,15 +50,15 @@ const projectCards: ProjectCardData[] = [
     description: "A Chip-8 Interpreting Emulator Written in Rust.",
     actions: [
       {
+        text: "GitHub",
+        href: "https://github.com/amydevs/chip-8-emu-rs",
+        icon: Github
+      },
+      {
         text: "Download",
         href: "https://github.com/amydevs/chip-8-emu-rs/releases/latest",
         icon: Download
       },
-      {
-        text: "GitHub",
-        href: "https://github.com/amydevs/chip-8-emu-rs",
-        icon: Github
-      }
     ]
   },
   {
