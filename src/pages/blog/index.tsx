@@ -2,7 +2,8 @@ import { type InferGetStaticPropsType } from "next";
 import Link from "next/link";
 import * as React from "react";
 import GlowCard from "~/components/GlowCard";
-import { CardContent, CardDescription, CardHeader, CardTitle } from "~/components/ui/card";
+import { Button } from "~/components/ui/button";
+import { CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "~/components/ui/card";
 import { useScroll } from "~/contexts/ScrollProvider";
 import { getAllPosts } from "~/lib/ssg/utils";
 
@@ -40,9 +41,14 @@ function BlogHome({ posts }: InferGetStaticPropsType<typeof getStaticProps>) {
                 Created On {new Date(post.frontmatter.date).toDateString()}
               </CardDescription>
             </CardHeader>
-            <CardContent>
-              {post.frontmatter.description}
+            <CardContent className="flex-1 overflow-y-auto">
+              <div className="h-full w-full overflow-y-auto">
+                {post.frontmatter.description}
+              </div>
             </CardContent>
+            <CardFooter className="flex gap-3">
+              <Button className="px-0" variant="link">Read More</Button>
+            </CardFooter>
           </GlowCard>
         </Link>
       )
