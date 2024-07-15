@@ -15,15 +15,15 @@ const getStaticProps: GetStaticProps<{ post: Post }, { slug: string }> = async (
 }
 
 function BlogPost({ post }: InferGetStaticPropsType<typeof getStaticProps>) {
-  return <main className="auto-limit-w pt-3 flex flex-col gap-3">
-    <h1 className="font-bold text-3xl md:text-5xl">
-      {post.frontmatter.title}
-    </h1>
-    <p className="text-sm text-muted-foreground">
-      Created On {new Date(post.frontmatter.created).toDateString()}
-      <br />
-      Updated On {new Date(post.frontmatter.updated ?? post.frontmatter.created).toDateString()}
-    </p>
+  return <main className="auto-limit-w flex flex-col">
+    <div className="pt-32 pb-24 md:text-center">
+        <div className="font-bold text-primary mb-4">
+            { post.frontmatter.topic ?? "Miscellaneous" }
+        </div>
+        <h1 className="font-extrabold text-4xl">
+        {post.frontmatter.title}
+        </h1>
+    </div>
     <MDXRemote {...post} />
   </main>;
 }
