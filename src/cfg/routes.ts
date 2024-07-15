@@ -16,7 +16,7 @@ const routes: Route[] = [
   {
     name: "Blog",
     pathname: "/blog",
-    currentPathnameRegex: /\/blog\/.*/,
+    currentPathnameRegex: /\/blog(?:\/.*)?/,
   },
   {
     name: "Radio",
