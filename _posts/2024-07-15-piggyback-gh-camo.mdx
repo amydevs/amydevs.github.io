@@ -18,19 +18,41 @@ keywords:
 
 When I was first remaking my personal site (the one you're on right now), I decided I wanted to solve one of the major annoyances I've had with my [about page](https://amydev.me/about).
 
-For some context, the about page is statically generated from my [GitHub profile readme](https://github.com/amydevs) for the sake of my laziness. I use little GitHub profile badges that kind of look like this:
+For some context, the about page is statically generated from my [GitHub profile `README.md`](https://github.com/amydevs) for the sake of my laziness. I use little GitHub profile badges that kind of look like this:
 
 ![readme profile](/blog/2024-07-15-piggyback-gh-camo/about.png)
 
-```ts
+To do this, I use a `getStaticProps` function to fetch my GitHub profile `README.md` and serialize it using `next-mdx-remote`:
+
+```tsx
 export async function getStaticProps() {
-    
+  const repo = `${env.NEXT_PUBLIC_GH_USER}/${env.NEXT_PUBLIC_GH_USER}`;
+  const res = await fetch(`https://raw.githubusercontent.com/${repo}/master/README.md`);
+  const source = await res.text();
+  const mdxSource = await serialize(source, { mdxOptions: { format: "md", rehypePlugins: [rehypeRaw] } });
+  return { props: { mdxSource } }
 }
 ```
 
-But these images take forever to load! What do I do?!?!
+Then, by utilizing `MDXRemote` and `@tailwindcss/typography`, I can render the markdown content with support for dark mode:
+
+```tsx
+function About({
+  mdxSource
+}: InferGetStaticPropsType<typeof getStaticProps>) {
+  return <div suppressHydrationWarning className="prose dark:prose-invert prose-img:inline prose-img:m-0">
+    <MDXRemote {...mdxSource} />
+  </div>
+}
+```
+
+But the badge icon images take forever to load! What do I do?!?!
 
 ![about page loads so slowly](/blog/2024-07-15-piggyback-gh-camo/slow_load.gif)
+
+This happens because the images are being served directly from source, which presumably has no CDN to catch potential cache hits. When you view a `README.md` on GitHub, it uses an image reverse proxy with an image caching layer to make it so snappy.
+
+So the solution is to implement image caching. But how?
 
 Ah right, silly me. I'm using Next.js, which means I should be able to take advantage of the `next/image` package for image optimization/caching right?
 

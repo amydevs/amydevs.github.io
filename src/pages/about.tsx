@@ -9,8 +9,8 @@ import * as he from 'he';
 const getStaticProps: GetStaticProps<{
   mdxSource: MDXRemoteSerializeResult;
 }> = async () => {
-  const repo = `${env.NEXT_PUBLIC_GH_USER}/${env.NEXT_PUBLIC_GH_USER}`
-  const res = await fetch(`https://raw.githubusercontent.com/${repo}/master/README.md`)
+  const repo = `${env.NEXT_PUBLIC_GH_USER}/${env.NEXT_PUBLIC_GH_USER}`;
+  const res = await fetch(`https://raw.githubusercontent.com/${repo}/master/README.md`);
   let source = await res.text();
 
   for (const match of source.matchAll(/(?:<img.*?src=['"](.+?)['"])|(?:!\[.*?\]\((.+?)\))/gi)) {
@@ -33,7 +33,7 @@ const getStaticProps: GetStaticProps<{
     source = source.replaceAll(realUrl, camoUrl);
   }
 
-  const mdxSource = await serialize(source, { mdxOptions: { format: "md", rehypePlugins: [rehypeRaw] } })
+  const mdxSource = await serialize(source, { mdxOptions: { format: "md", rehypePlugins: [rehypeRaw] } });
   return { props: { mdxSource } }
 };
 
