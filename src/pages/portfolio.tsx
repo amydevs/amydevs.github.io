@@ -24,7 +24,7 @@ function Portfolio() {
   return <main className="auto-limit-w grid grid-cols-1 md:grid-cols-2 gap-3 py-3">
     {
       projectCards.map((card, i) =>
-        <GlowCard key={i} mousePos={mousePos}>
+        <GlowCard className="h-72 flex flex-col hover:shadow-xl" key={i} mousePos={mousePos}>
           <CardHeader>
             <CardTitle>{card.title}</CardTitle>
           </CardHeader>

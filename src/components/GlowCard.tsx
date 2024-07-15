@@ -17,7 +17,7 @@ const GlowCard = React.forwardRef<
   return <Card
     ref={cardRef}
     className={cn(`
-          h-72 flex flex-col hover:shadow-xl transition-all relative overflow-hidden z-10
+          transition-all relative overflow-hidden z-10
           after:content-[''] after:absolute
           after:transition-[height,width] after:duration-700 after:ease-out
           after:bg-[radial-gradient(hsl(var(--primary)/10%),#3984ff00_70%)]
