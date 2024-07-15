@@ -13,7 +13,7 @@ const getStaticProps: GetStaticProps<{
   const res = await fetch(`https://raw.githubusercontent.com/${repo}/master/README.md`)
   let source = await res.text();
 
-  for (const match of source.matchAll(/(?:<img.*?src=['"](.+?)['"])|(?:\[.*?\]\((.+?)\))/gi)) {
+  for (const match of source.matchAll(/(?:<img.*?src=['"](.+?)['"])|(?:!\[.*?\]\((.+?)\))/gi)) {
     let unescapedUrl = match.at(1) ?? match.at(2);
     if (unescapedUrl == null) {
       continue;

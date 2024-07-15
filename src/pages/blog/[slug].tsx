@@ -15,7 +15,7 @@ const getStaticProps: GetStaticProps<{ post: Post }, { slug: string }> = async (
 }
 
 function BlogPost({ post }: InferGetStaticPropsType<typeof getStaticProps>) {
-  return <main className="auto-limit-w flex flex-col">
+  return <main className="auto-limit-w flex flex-col items-center">
     <div className="pt-32 pb-24 md:text-center">
         <div className="font-bold text-primary mb-4">
             { post.frontmatter.topic ?? "Miscellaneous" }
@@ -24,7 +24,9 @@ function BlogPost({ post }: InferGetStaticPropsType<typeof getStaticProps>) {
         {post.frontmatter.title}
         </h1>
     </div>
-    <MDXRemote {...post} />
+    <div className="prose dark:prose-invert prose-a:text-primary">
+      <MDXRemote {...post} />
+    </div>
   </main>;
 }
 export default BlogPost;

@@ -21,7 +21,10 @@ async function getPostBySlug(slug: string): Promise<Post> {
   const fullPath = (await glob(path.join(postsDirectory, `${realSlug}.{md,mdx}`)))[0]!;
   const fileContents = fs.readFileSync(fullPath, "utf8");
   const serializedContents = await serialize(fileContents, {
-    parseFrontmatter: true
+    parseFrontmatter: true,
+    mdxOptions: {
+      format: fullPath.endsWith("x") ? "mdx" : "md",
+    }
   });
   const post: Post = {
     ...serializedContents,
