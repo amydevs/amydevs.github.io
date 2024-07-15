@@ -2,11 +2,13 @@ import * as z from 'zod';
 
 const postFrontmatter = z.object({
   title: z.string(),
-  topic: z.string().optional(),
+  description: z.string(),
+  preview: z.string().optional(),
+  topic: z.string().default('Miscellaneous'),
   date: z.string().datetime(),
   lastModified: z.string().datetime().optional(),
-  description: z.string(),
-  draft: z.boolean().optional(),
+  draft: z.boolean().default(false),
+  keywords: z.string().array().default([]),
 });
 
 export {

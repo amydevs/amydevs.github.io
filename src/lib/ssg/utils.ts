@@ -40,7 +40,7 @@ async function getAllPosts(options?: Parameters<typeof serialize>[1]): Promise<P
   const slugs = await getPostFilenames();
   const posts: Post[] = await Promise.all(slugs.map((slug) => getPostBySlug(slug, options)));
   const sortedPosts = posts
-    .sort((post1, post2) => (new Date(post1.frontmatter.created) > new Date(post2.frontmatter.created) ? -1 : 1));
+    .sort((post1, post2) => (new Date(post1.frontmatter.date) > new Date(post2.frontmatter.date) ? -1 : 1));
   return sortedPosts;
 }
 

@@ -37,7 +37,7 @@ function BlogHome({ posts }: InferGetStaticPropsType<typeof getStaticProps>) {
             <CardHeader>
               <CardTitle>{post.frontmatter.title}</CardTitle>
               <CardDescription>
-                Created On {new Date(post.frontmatter.created).toDateString()}
+                Created On {new Date(post.frontmatter.date).toDateString()}
               </CardDescription>
             </CardHeader>
             <CardContent>

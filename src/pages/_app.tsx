@@ -10,6 +10,7 @@ import routes from "~/cfg/routes";
 import Header from "~/components/Header";
 import ScrollProvider from "~/contexts/ScrollProvider";
 import Footer from "~/components/Footer";
+import { env } from "~/env";
 
 const MyApp: AppType = ({ Component, pageProps }) => {
   const router = useRouter();
@@ -26,23 +27,23 @@ const MyApp: AppType = ({ Component, pageProps }) => {
   });
 
   const title = "Amy" + (currentRoute ? " - " + currentRoute.name : "");
-  const image_src = `https://github.com/${process.env.GH_USERNAME}.png`;
+  const image_src = `https://github.com/${env.NEXT_PUBLIC_GH_USER}.png`;
   const description = "Software Development and Music Production";
   
   return (
     <>
       <Head>
-        <title>{title}</title>
-        <meta property="og:title" content={title} />
-        <meta property="og:type" content="website" />
+        <title key="title">{title}</title>
+        <meta key="og:title" property="og:title" content={title} />
+        <meta key="og:type"property="og:type" content="website" />
           
-        <meta name="description" content={description} />
-        <meta property="og:description" content={description} />
-        <meta name="twitter:description" content={description} />
+        <meta key="description" name="description" content={description} />
+        <meta key="og:description" property="og:description" content={description} />
+        <meta key="twitter:description" name="twitter:description" content={description} />
 
-        <link rel="image_src" href={image_src} />
-        <meta property="og:image" content={image_src} />
-        <meta name="twitter:image" content={image_src} />
+        <link key="image_src" rel="image_src" href={image_src} />
+        <meta key="og:image" property="og:image" content={image_src} />
+        <meta key="twitter:image" name="twitter:image" content={image_src} />
 
         <link rel="icon" href="/favicon-16x16.png" sizes="16x16" type="image/png" />
         <link rel="icon" href="/favicon-32x32.png" sizes="32x32" type="image/png" />
