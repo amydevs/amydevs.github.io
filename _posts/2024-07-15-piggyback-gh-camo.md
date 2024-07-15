@@ -15,6 +15,12 @@ For some context, the about page is statically generated from my [GitHub profile
 
 ![readme profile](./2024-07-15-piggyback-gh-camo/about.png)
 
+```ts
+export async function getStaticProps() {
+    
+}
+```
+
 But these images take forever to load! What do I do?!?!
 
 ![about page loads so slowly!](./2024-07-15-piggyback-gh-camo/slow_load.gif)

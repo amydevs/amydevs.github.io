@@ -1,7 +1,10 @@
 import type { Post } from "~/types";
-import { type GetStaticPaths, type GetStaticProps, type InferGetStaticPropsType } from "next";
+import type { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from "next";
+import type { Options as RehypePrettyCodeOptions } from 'rehype-pretty-code';
 import { getPostBySlug, getPostSlugs } from '~/lib/ssg/utils';
 import { MDXRemote } from "next-mdx-remote";
+import rehypePrettyCode from 'rehype-pretty-code'
+import { cn } from "~/lib/utils"
 
 const getStaticPaths: GetStaticPaths<{ slug: string }> = async () => {
   const paths = (await getPostSlugs()).map((slug) => ({ params: { slug }}));
@@ -10,7 +13,16 @@ const getStaticPaths: GetStaticPaths<{ slug: string }> = async () => {
 
 const getStaticProps: GetStaticProps<{ post: Post }, { slug: string }> = async ({ params }) => {
   const { slug } = params!;
-  const post = await getPostBySlug(slug);
+  const post = await getPostBySlug(slug, {
+    mdxOptions: {
+      rehypePlugins: [[rehypePrettyCode, {
+        theme: {
+          dark: "github-dark-dimmed",
+          light: "github-light",
+        },
+      } satisfies RehypePrettyCodeOptions]]
+    }
+  });
   return { props: { post } };
 }
 
@@ -24,7 +36,7 @@ function BlogPost({ post }: InferGetStaticPropsType<typeof getStaticProps>) {
         {post.frontmatter.title}
         </h1>
     </div>
-    <div className="prose dark:prose-invert prose-a:text-primary">
+    <div className={cn("prose dark:prose-invert prose-a:text-primary")}>
       <MDXRemote {...post} />
     </div>
   </main>;
