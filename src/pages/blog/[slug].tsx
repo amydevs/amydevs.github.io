@@ -64,7 +64,7 @@ function BlogPost({ post }: InferGetStaticPropsType<typeof getStaticProps>) {
             {post.frontmatter.title}
           </h1>
         </div>
-        <div className={cn("prose dark:prose-invert prose-a:text-primary")}>
+        <div className={cn("prose dark:prose-invert prose-a:text-primary w-full")}>
           <MDXRemote {...post} />
         </div>
       </main>
