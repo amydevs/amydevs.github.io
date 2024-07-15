@@ -15,10 +15,14 @@ import { env } from "~/env";
 const MyApp: AppType = ({ Component, pageProps }) => {
   const router = useRouter();
   let currentRoute: Route | undefined;
-  const newRoutes = routes.map((e) => { 
+  const newRoutes = routes.map((e) => {
+    let current = e.pathname === router.pathname;
+    if (e.currentPathnameRegex) {
+      current = new RegExp(e.currentPathnameRegex).test(router.pathname);
+    }
     const route = {
       ...e,
-      current: e.href === router.pathname
+      current,
     };
     if (route.current) {
       currentRoute = route;
@@ -50,6 +54,8 @@ const MyApp: AppType = ({ Component, pageProps }) => {
 
         <link rel="icon" href="/favicon-16x16.png" sizes="16x16" type="image/png" />
         <link rel="icon" href="/favicon-32x32.png" sizes="32x32" type="image/png" />
+
+        <link key="sitemap" rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml" />
       </Head>
       <ThemeProvider
         attribute="class"

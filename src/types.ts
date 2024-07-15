@@ -4,7 +4,8 @@ import type * as z from 'zod';
 
 type Route = {
     name: string;
-    href: string;
+    pathname: string;
+    currentPathnameRegex?: RegExp;
     current?: boolean;
 }
 

@@ -71,6 +71,11 @@ jobs:
         env:
           npm_lifecycle_event: export
           NEXT_PUBLIC_GH_USER: ${{ github.actor }}
+      - name: Build Sitemap
+        run: ${{ steps.detect-package-manager.outputs.runner }} next-sitemap
+        env:
+          npm_lifecycle_event: export
+          SITE_URL: https://amydev.me
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:

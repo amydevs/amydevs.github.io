@@ -3,19 +3,24 @@ import { type Route } from "~/types"
 const routes: Route[] = [
   {
     name: "Home",
-    href: "/",
+    pathname: "/",
   },
   {
     name: "Portfolio",
-    href: "/portfolio",
+    pathname: "/portfolio",
   },
   {
     name: "About",
-    href: "/about",
+    pathname: "/about",
+  },
+  {
+    name: "Blog",
+    pathname: "/blog",
+    currentPathnameRegex: /\/blog\/.*/,
   },
   {
     name: "Radio",
-    href: "/radio",
+    pathname: "/radio",
   }
 ];
 
