@@ -5,7 +5,6 @@ date: 2024-07-15T14:12:07.317Z
 lastModified: 2024-07-15T14:13:30.874Z
 description: |
     I don't wanna pay for a CDN just to serve the badge images on my about page on this website. But if my about page is statically generated from my GitHub profile readme, then why not just piggyback off of their Camo CDN cache?
-draft: true
 type: post
 keywords:
     - github
@@ -66,5 +65,65 @@ Well I've been wanting to switch over to using Cloudflare nameservers for a long
 
 So I logged into my dashboard, went over to NameCheap, and pointed my nameservers to CloudFlare, and...
 
-
 ## Piggybacking Off GitHub's Own CDN
+
+I'm not broke but I really don't wanna pay $5 a month for my silly little website. Remember how GitHub has its own image caching layer for its profile badges? Well, why not just piggyback off of that?
+
+So lets add some more functionality to `getStaticProps`:
+
+```tsx
+export async function getStaticProps() {
+  const repo = `${env.NEXT_PUBLIC_GH_USER}/${env.NEXT_PUBLIC_GH_USER}`;
+  const res = await fetch(`https://raw.githubusercontent.com/${repo}/master/README.md`);
+  let source = await res.text();
+
+  for (const match of source.matchAll(/(?:<img.*?src=['"](.+?)['"])|(?:!\[.*?\]\((.+?)\))/gi)) {
+    let unescapedUrl = match.at(1) ?? match.at(2);
+    if (unescapedUrl == null) {
+      continue;
+    }
+    unescapedUrl = unescapedUrl.trim();
+    source = source.replaceAll(unescapedUrl, he.decode(unescapedUrl));
+  }
+
+  const mdxSource = await serialize(source, { mdxOptions: { format: "md", rehypePlugins: [rehypeRaw] } });
+  return { props: { mdxSource } }
+}
+```
+
+What we're doing here is simply looking for all the `<img />` / `![...](...)` markdown image blocks within our source. We then `he` to decode all the HTML entities in each URL and replace the original URL with it. This step might seem insignificant, but it will be important later.
+
+Now we can just get the HTML page of the rendered markdown on GitHub, and extract the Camo CDN URLs from the image tags and replace the original URLs with them.
+
+```tsx
+export async function getStaticProps() {
+  const repo = `${env.NEXT_PUBLIC_GH_USER}/${env.NEXT_PUBLIC_GH_USER}`;
+  const res = await fetch(`https://raw.githubusercontent.com/${repo}/master/README.md`);
+  let source = await res.text();
+
+  for (const match of source.matchAll(/(?:<img.*?src=['"](.+?)['"])|(?:!\[.*?\]\((.+?)\))/gi)) {
+    let unescapedUrl = match.at(1) ?? match.at(2);
+    if (unescapedUrl == null) {
+      continue;
+    }
+    unescapedUrl = unescapedUrl.trim();
+    source = source.replaceAll(unescapedUrl, he.decode(unescapedUrl));
+  }
+
+  const profileRes = await fetch(`https://github.com/${repo}`);
+  const profile = await profileRes.text();
+  for (const match of profile.matchAll(/src="(.*?)".*?data-canonical-src="(.*?)"/g)) {
+    if (match[1] == null || match[2] == null) {
+      continue;
+    }
+    const camoUrl = he.decode(match[1].trim());
+    const realUrl = he.decode(match[2].trim());
+    source = source.replaceAll(realUrl, camoUrl);
+  }
+
+  const mdxSource = await serialize(source, { mdxOptions: { format: "md", rehypePlugins: [rehypeRaw] } });
+  return { props: { mdxSource } }
+}
+```
+
+The regex here simply matches the `src` and `data-canonical-src` attributes of the `<img />` tags on the GitHub profile page. We can do this because GitHub will expand all image blocks to include both the original URL and the Camo CDN URL. Notice that `he.decode` is necessary here, because GitHub may encode characters in the original image URL with HTML entities.
