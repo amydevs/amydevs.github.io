@@ -1,14 +1,13 @@
+import "~/styles/globals.css";
+import type { AppType } from "next/app";
+import type { Route } from "~/types";
 import { GeistSans } from "geist/font/sans";
-import { type AppType } from "next/app";
 import { useRouter } from "next/router";
+import { ThemeProvider } from "next-themes";
+import { cn } from "~/lib/utils";
+import Head from "next/head";
 import routes from "~/cfg/routes";
 import Header from "~/components/Header";
-import { cn } from "~/lib/utils";
-import { ThemeProvider } from "next-themes";
-
-import "~/styles/globals.css";
-import { type Route } from "~/types";
-import Head from "next/head";
 import ScrollProvider from "~/contexts/ScrollProvider";
 import Footer from "~/components/Footer";
 

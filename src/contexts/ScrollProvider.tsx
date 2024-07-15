@@ -1,4 +1,4 @@
-import React from "react";
+import * as React from "react";
 
 const ScrollContext = React.createContext<[number, number]>([0, 0]);
 

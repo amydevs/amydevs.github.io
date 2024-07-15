@@ -1,4 +1,6 @@
 import type { LucideIcon } from "lucide-react";
+import type { postFrontmatter } from '~/schemas';
+import type * as z from 'zod';
 
 type Route = {
     name: string;
@@ -16,7 +18,21 @@ type ProjectCardData = {
     }>
 };
 
+type Author = {
+    name: string;
+    picture: string;
+}
+
+type Post = {
+    slug: string;
+    frontmatter: z.infer<typeof postFrontmatter>;
+    scope: Record<string, unknown>;
+    compiledSource: string;
+}
+
 export type {
   Route,
-  ProjectCardData
+  ProjectCardData,
+  Author,
+  Post,
 }
