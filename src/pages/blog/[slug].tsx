@@ -6,6 +6,7 @@ import { MDXRemote } from "next-mdx-remote";
 import rehypePrettyCode from 'rehype-pretty-code'
 import { cn } from "~/lib/utils"
 import Head from "next/head";
+import { env } from "~/env";
 
 const getStaticPaths: GetStaticPaths<{ slug: string }> = async () => {
   const paths = (await getPostSlugs()).map((slug) => ({ params: { slug }}));
@@ -49,6 +50,10 @@ function BlogPost({ post }: InferGetStaticPropsType<typeof getStaticProps>) {
             </> 
           )
         }
+
+        <meta key="keywords" name="keywords" content={post.frontmatter.keywords.join(", ")} />
+        <meta key="author" name="author" content={env.NEXT_PUBLIC_GH_USER} />
+        <meta key="category" name="category" content={post.frontmatter.topic} />
       </Head>
       <main className="auto-limit-w max-w-5xl flex flex-col items-center">
         <div className="pt-32 pb-24 md:text-center">

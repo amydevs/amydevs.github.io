@@ -45,6 +45,9 @@ const MyApp: AppType = ({ Component, pageProps }) => {
         <meta key="og:image" property="og:image" content={image_src} />
         <meta key="twitter:image" name="twitter:image" content={image_src} />
 
+        <meta key="content-language" http-equiv="content-language" content="en-us" />
+        <meta key="og:locale" property="og:locale" content="en_US" />
+
         <link rel="icon" href="/favicon-16x16.png" sizes="16x16" type="image/png" />
         <link rel="icon" href="/favicon-32x32.png" sizes="32x32" type="image/png" />
       </Head>
