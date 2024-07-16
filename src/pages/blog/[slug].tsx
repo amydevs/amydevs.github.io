@@ -53,18 +53,18 @@ function BlogPost({ post }: InferGetStaticPropsType<typeof getStaticProps>) {
 
         <meta key="keywords" name="keywords" content={post.frontmatter.keywords.join(", ")} />
         <meta key="author" name="author" content={env.NEXT_PUBLIC_GH_USER} />
-        <meta key="category" name="category" content={post.frontmatter.topic} />
+        <meta key="category" name="category" content={post.frontmatter.category} />
       </Head>
       <main className="auto-limit-w max-w-5xl flex flex-col items-center">
         <div className="pt-32 pb-24 md:text-center">
           <div className="font-bold text-primary mb-4">
-            { post.frontmatter.topic }
+            { post.frontmatter.category }
           </div>
           <h1 className="font-extrabold text-4xl">
             {post.frontmatter.title}
           </h1>
         </div>
-        <div className={cn("prose dark:prose-invert prose-a:text-primary w-full")}>
+        <div suppressHydrationWarning className={cn("prose dark:prose-invert prose-a:text-primary w-full")}>
           <MDXRemote {...post} />
         </div>
       </main>

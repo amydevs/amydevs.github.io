@@ -41,8 +41,8 @@
           "type": "draft"
         },
         {
-          "title": "Topic",
-          "name": "topic",
+          "title": "Category",
+          "name": "category",
           "type": "categories"
         }
       ]
