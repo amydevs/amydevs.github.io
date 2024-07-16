@@ -32,26 +32,28 @@ function BlogHome({ posts }: InferGetStaticPropsType<typeof getStaticProps>) {
     
   return <main className="auto-limit-w grid grid-cols-1 md:grid-cols-2 gap-3 pt-3">
     {
-      posts.map((post, i) => 
-        <Link key={i} href={`/blog/${post.slug}`}>
-          <GlowCard className="h-72 flex flex-col hover:shadow-xl" mousePos={mousePos}>
-            <CardHeader>
-              <CardTitle>{post.frontmatter.title}</CardTitle>
-              <CardDescription>
-                Created On {new Date(post.frontmatter.date).toDateString()}
-              </CardDescription>
-            </CardHeader>
-            <CardContent className="flex-1 overflow-y-auto">
-              <div className="h-full w-full overflow-y-auto">
-                {post.frontmatter.description}
-              </div>
-            </CardContent>
-            <CardFooter className="flex gap-3">
-              <Button className="px-0" variant="link">Read More</Button>
-            </CardFooter>
-          </GlowCard>
-        </Link>
-      )
+      posts
+        .filter((post) => !post.frontmatter.draft)
+        .map((post, i) => 
+          <Link key={i} href={`/blog/${post.slug}`}>
+            <GlowCard className="h-72 flex flex-col hover:shadow-xl" mousePos={mousePos}>
+              <CardHeader>
+                <CardTitle>{post.frontmatter.title}</CardTitle>
+                <CardDescription>
+                  Created On {new Date(post.frontmatter.date).toDateString()}
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="flex-1 overflow-y-auto">
+                <div className="h-full w-full overflow-y-auto">
+                  {post.frontmatter.description}
+                </div>
+              </CardContent>
+              <CardFooter className="flex gap-3">
+                <Button className="px-0" variant="link">Read More</Button>
+              </CardFooter>
+            </GlowCard>
+          </Link>
+        )
     }
   </main>;
 }
