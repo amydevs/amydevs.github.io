@@ -10,13 +10,13 @@ const routes: Route[] = [
     pathname: "/portfolio",
   },
   {
-    name: "About",
-    pathname: "/about",
-  },
-  {
     name: "Blog",
     pathname: "/blog",
     currentPathnameRegex: /\/blog(?:\/.*)?/,
+  },
+  {
+    name: "About",
+    pathname: "/about",
   },
   {
     name: "Radio",
