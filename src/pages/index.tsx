@@ -1,4 +1,4 @@
-import type { GetStaticProps, InferGetStaticPropsType } from "next/types";
+import type { InferGetStaticPropsType } from "next/types";
 import { Cloud, Clouds, PerspectiveCamera } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 import { ArrowDown, AudioLines, Github, Music } from "lucide-react";
