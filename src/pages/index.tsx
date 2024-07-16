@@ -1,5 +1,5 @@
 import type { GetStaticProps, InferGetStaticPropsType } from "next/types";
-import { Cloud, PerspectiveCamera } from "@react-three/drei";
+import { Cloud, Clouds, PerspectiveCamera } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 import { ArrowDown, AudioLines, Github, Music } from "lucide-react";
 import Image from "next/image";
@@ -13,9 +13,7 @@ import * as plaiceholder from 'plaiceholder';
 
 const pfpSrc = `https://github.com/${env.NEXT_PUBLIC_GH_USER}.png`;
 
-const getStaticProps: GetStaticProps<{
-  blurDataURL?: string;
-}> = async ({}) => {
+const getStaticProps = async ({}) => {
   if (env.NODE_ENV !== 'production') {
     return { props: {} };
   }
@@ -69,7 +67,9 @@ function Home({ blurDataURL }: InferGetStaticPropsType<typeof getStaticProps>) {
                 <spotLight position={[0, 40, 2]} angle={0.5} decay={1} distance={45} penumbra={1} intensity={2000} />
                 <spotLight position={[-19, 0, -8]} color="red" angle={0.25} decay={0.75} distance={185} penumbra={-1} intensity={400} />
               </PerspectiveCamera>
-              <Cloud seed={10} color={cloudColor} speed={0.5} growth={0} smallestVolume={0.7} volume={25} opacity={0.4} bounds={[10, 1, 1]} />
+              <Clouds texture="/three/cloud.png">
+                <Cloud seed={10} color={cloudColor} speed={0.5} growth={0} smallestVolume={0.7} volume={25} opacity={0.4} bounds={[10, 1, 1]} />
+              </Clouds>
             </Canvas>
           </div>
           <div className="auto-limit-w flex items-center justify-center gap-3">
