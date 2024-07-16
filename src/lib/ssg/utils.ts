@@ -9,16 +9,21 @@ const postsDirectory = path.join(process.cwd(), "_posts");
 
 
 async function getPostFilenames(): Promise<string[]> {
-  return fs.promises.readdir(postsDirectory);
+  const paths = await glob("**/*.mdx", { cwd: postsDirectory });
+  return paths.map((path) => path.replaceAll("\\", "/"));
 }
 
 async function getPostSlugs(): Promise<string[]> {
-  return (await getPostFilenames()).map((filename) => filename.replace(/\.mdx?$/, ""));
+  return (await getPostFilenames()).map((filename) => filename.toLowerCase().replace(/\.mdx?$/, ""));
 }
 
 async function getPostBySlug(slug: string, options?: Parameters<typeof serialize>[1]): Promise<Post> {
   const realSlug = slug.replace(/\.mdx?$/, "");
-  const fullPath = (await glob(path.join(postsDirectory, `${realSlug}.{md,mdx}`)))[0]!;
+  const fullPaths = await glob(path.join(postsDirectory, `${realSlug}.{md,mdx}`), {
+    nocase: true,
+  })
+  const fullPath = fullPaths[0]!;
+  const dirName = path.dirname(fullPath);
   const fileContents = fs.readFileSync(fullPath, "utf8");
   const serializedContents = await serialize(fileContents, {
     ...options,
@@ -31,13 +36,16 @@ async function getPostBySlug(slug: string, options?: Parameters<typeof serialize
   const post: Post = {
     ...serializedContents,
     slug: realSlug,
-    frontmatter: postFrontmatter.parse(serializedContents.frontmatter),
+    frontmatter: postFrontmatter.parse({
+      ...serializedContents.frontmatter,
+      category: serializedContents.frontmatter.category ?? dirName,
+    }),
   };
   return post;
 }
   
 async function getAllPosts(options?: Parameters<typeof serialize>[1]): Promise<Post[]>  {
-  const slugs = await getPostFilenames();
+  const slugs = await getPostSlugs();
   const posts: Post[] = await Promise.all(slugs.map((slug) => getPostBySlug(slug, options)));
   const sortedPosts = posts
     .sort((post1, post2) => (new Date(post1.frontmatter.date) > new Date(post2.frontmatter.date) ? -1 : 1));

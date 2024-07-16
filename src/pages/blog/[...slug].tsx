@@ -8,14 +8,14 @@ import { cn } from "~/lib/utils"
 import Head from "next/head";
 import { env } from "~/env";
 
-const getStaticPaths: GetStaticPaths<{ slug: string }> = async () => {
-  const paths = (await getPostSlugs()).map((slug) => ({ params: { slug }}));
+const getStaticPaths: GetStaticPaths<{ slug: string[] }> = async () => {
+  const paths = (await getPostSlugs()).map((slug) => ({ params: { slug: slug.split("/") }}));
   return { paths, fallback: false };
 }
 
-const getStaticProps: GetStaticProps<{ post: Post }, { slug: string }> = async ({ params }) => {
+const getStaticProps: GetStaticProps<{ post: Post }, { slug: string[] }> = async ({ params }) => {
   const { slug } = params!;
-  const post = await getPostBySlug(slug, {
+  const post = await getPostBySlug(slug.join("/"), {
     mdxOptions: {
       rehypePlugins: [[rehypePrettyCode, {
         theme: {

@@ -43,7 +43,9 @@
         {
           "title": "Category",
           "name": "category",
-          "type": "categories"
+          "type": "categories",
+          "single": true,
+          "singleValueAsString": true
         }
       ]
     }
@@ -55,7 +57,7 @@
   "frontMatter.content.pageFolders": [
     {
       "title": "_posts",
-      "path": "[[workspace]]/_posts"
+      "path": "[[workspace]]/_posts/**/*.*"
     }
   ]
 }
