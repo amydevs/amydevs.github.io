@@ -28,8 +28,6 @@ const getStaticProps: GetStaticProps<{
 
 function Home({ blurDataURL }: InferGetStaticPropsType<typeof getStaticProps>) {
   const theme = useTheme();
-  const magicHeight = 932;
-  const [windowHeight, setWindowHeight] = React.useState(magicHeight);
   const imageRef = React.useRef<HTMLImageElement>(null);
   const [imageLoaded, setImageLoaded] = React.useState(true);
 
@@ -43,15 +41,6 @@ function Home({ blurDataURL }: InferGetStaticPropsType<typeof getStaticProps>) {
     // linter doesn't get that the it should be a dep, as I'm using DOM apis in this effect.
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [theme.resolvedTheme]);
-
-  React.useEffect(() => {
-    const resizeHandler = () => {
-      setWindowHeight(window.innerHeight);
-    }
-    window.addEventListener('resize', resizeHandler, { passive: true });
-    resizeHandler();
-    return window.removeEventListener('resize', resizeHandler)
-  }, []);
 
   React.useEffect(() => {
     setImageLoaded(imageRef.current?.complete ?? false);
@@ -73,10 +62,10 @@ function Home({ blurDataURL }: InferGetStaticPropsType<typeof getStaticProps>) {
           </Button>
         </section>
         <section id="socials" className="h-screen relative flex pt-20">
-          <div className="absolute -top-96 left-0 right-0 bottom-0 -z-10 transition-all">
+          <div className="absolute -top-1/2 left-0 right-0 bottom-0 -z-10 transition-all">
             <Canvas dpr={0.25}>
               <ambientLight intensity={Math.PI / 2} />
-              <PerspectiveCamera makeDefault position={[0, 4.75 + Math.min((magicHeight - windowHeight) / magicHeight, 0) * 1.2, 7]} fov={90}>
+              <PerspectiveCamera makeDefault position={[0, 5.25, 7.5]} fov={90}>
                 <spotLight position={[0, 40, 2]} angle={0.5} decay={1} distance={45} penumbra={1} intensity={2000} />
                 <spotLight position={[-19, 0, -8]} color="red" angle={0.25} decay={0.75} distance={185} penumbra={-1} intensity={400} />
               </PerspectiveCamera>
