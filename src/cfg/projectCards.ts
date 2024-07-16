@@ -18,15 +18,15 @@ const projectCards: ProjectCardData[] = [
     description: "Former developer and translator for the SpinShare desktop client built with Vue.js and Electron.",
     actions: [
       {
+        text: "GitHub",
+        href: "https://github.com/SpinShare/client",
+        icon: Github
+      },
+      {
         text: "Download",
         href: "https://spinsha.re/client",
         icon: Download
       },
-      {
-        text: "GitHub",
-        href: "https://github.com/SpinShare/client",
-        icon: Github
-      }
     ]
   },
   {
