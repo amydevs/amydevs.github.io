@@ -14,16 +14,16 @@ const Footer = React.forwardRef<
         <Cat className="text-primary" width={32} height={32} />
         <p className="text-center leading-loose md:text-left">
           Built by{" "}
-          <Link className="underline text-primary" href={`https://github.com/${env.NEXT_PUBLIC_GH_USER}`}>
+          <Link className="underline text-primary font-medium" href={`https://github.com/${env.NEXT_PUBLIC_GH_USER}`}>
             { env.NEXT_PUBLIC_GH_USER }
           </Link>{" "}
           with {" "}
-          <Link className="underline text-primary" href={"https://nextjs.org/"}>
+          <Link className="underline text-primary font-medium" href={"https://nextjs.org/"}>
             next.js
           </Link>
           .
           The source code is available on{" "}
-          <Link className="underline text-primary" href={`https://github.com/${env.NEXT_PUBLIC_GH_USER}/${env.NEXT_PUBLIC_GH_USER}.github.io`}>
+          <Link className="underline text-primary font-medium" href={`https://github.com/${env.NEXT_PUBLIC_GH_USER}/${env.NEXT_PUBLIC_GH_USER}.github.io`}>
             GitHub
           </Link>
           .
