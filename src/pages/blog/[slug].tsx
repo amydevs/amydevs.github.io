@@ -67,6 +67,16 @@ function BlogPost({ post }: InferGetStaticPropsType<typeof getStaticProps>) {
         <div suppressHydrationWarning className={cn("prose dark:prose-invert prose-a:text-primary w-full")}>
           <MDXRemote {...post} />
         </div>
+        <div className="prose dark:prose-invert w-full mt-5 italic">
+          <p>
+            First Created{" "}
+            <span className="font-medium">{new Date(post.frontmatter.date).toDateString()}</span>
+          </p>
+          <p>
+            Last Updated{" "}
+            <span className="font-medium">{new Date(post.frontmatter.lastModified ?? post.frontmatter.date).toDateString()}</span>
+          </p>
+        </div>
       </main>
     </>
   );
