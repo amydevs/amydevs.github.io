@@ -32,7 +32,13 @@ const MobileNavbar = React.forwardRef<
       <ThemeSwitch>
         {
           (theme) => (
-            <button onClick={() => theme.setTheme(theme.resolvedTheme == "dark" ? "light" : "dark")} className="text-left hover:text-primary">
+            <button
+              onClick={() => theme.setTheme(theme.resolvedTheme == "dark" ? "light" : "dark")}
+              className="text-left hover:text-primary"
+              title="Toggle Theme"
+              role="switch"
+              aria-checked={theme.resolvedTheme == "dark"}
+            >
               {
                 theme.resolvedTheme == "dark" ? "Light" : "Dark"
               }

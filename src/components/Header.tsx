@@ -40,9 +40,14 @@ const Header = React.forwardRef<
 
     <MobileNavbar routes={routes} className={cn("md:hidden -z-10 max-h-screen", !mobileEnable && "-top-full transition-all")} />
     <div className="md:hidden ml-auto">
-      <button      
+      <button
         className={cn("transition-all w-9 h-9 flex justify-center items-center -translate-y-1", mobileEnable && "rotate-90 text-primary")}
         onClick={() => setMobileEnable(!mobileEnable)}
+        title="Toggle Nav Menu"
+        aria-controls="menu"
+        aria-expanded={mobileEnable}
+        role="switch"
+        aria-checked={mobileEnable}
       >
         <Menu height={24} width={24} />
       </button>
@@ -63,7 +68,15 @@ const Header = React.forwardRef<
       <ThemeSwitch>
         {
           (theme) => (
-            <Button onClick={() => theme.setTheme(theme.resolvedTheme == "dark" ? "light" : "dark")} className="-translate-y-1 hover:text-primary" variant="ghost" size="icon">
+            <Button
+              onClick={() => theme.setTheme(theme.resolvedTheme == "dark" ? "light" : "dark")}
+              className="-translate-y-1 hover:text-primary"
+              variant="ghost"
+              size="icon"
+              title="Toggle Theme"
+              role="switch"
+              aria-checked={theme.resolvedTheme == "dark"}
+            >
               {
                 theme.resolvedTheme == "dark" ? <Sun height={24} width={24} /> : <Moon height={24} width={24} />
               }
