@@ -25,10 +25,9 @@ type Author = {
 }
 
 type Post = {
+    code: string;
     slug: string;
     frontmatter: z.infer<typeof postFrontmatter>;
-    scope: Record<string, unknown>;
-    compiledSource: string;
 }
 
 export type {

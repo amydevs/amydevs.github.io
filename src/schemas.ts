@@ -5,8 +5,8 @@ const postFrontmatter = z.object({
   description: z.string(),
   preview: z.string().optional(),
   category: z.string().default('Miscellaneous'),
-  date: z.string().datetime(),
-  lastModified: z.string().datetime().optional(),
+  date: z.date().transform((date) => date.toISOString()),
+  lastModified: z.date().transform((date) => date.toISOString()),
   draft: z.boolean().default(false),
   keywords: z.string().array().default([]),
 });

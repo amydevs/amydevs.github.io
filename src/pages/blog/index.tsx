@@ -10,7 +10,7 @@ import { getAllPosts } from "~/lib/ssg/utils";
 async function getStaticProps() {
   const posts = (await getAllPosts()).map((post) => ({
     ...post,
-    compiledSource: null,
+    code: null,
   }));
   return { props: { posts } };
 }

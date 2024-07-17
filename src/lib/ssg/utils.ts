@@ -1,12 +1,18 @@
 import type { Post } from '~/types';
 import * as fs from 'fs';
 import * as path from 'path';
-import { serialize } from 'next-mdx-remote/serialize';
 import { glob } from 'glob';
 import { postFrontmatter } from '~/schemas';
+import { bundleMDX } from "mdx-bundler";
+
+type MDXBundlerOptions = Omit<
+  Parameters<typeof bundleMDX>[0],
+  "source" |
+  "file" |
+  "cwd"
+>;
 
 const postsDirectory = path.join(process.cwd(), "_posts");
-
 
 async function getPostFilenames(): Promise<string[]> {
   return fs.promises.readdir(postsDirectory);
@@ -16,27 +22,24 @@ async function getPostSlugs(): Promise<string[]> {
   return (await getPostFilenames()).map((filename) => filename.replace(/\.mdx?$/, ""));
 }
 
-async function getPostBySlug(slug: string, options?: Parameters<typeof serialize>[1]): Promise<Post> {
+async function getPostBySlug(slug: string, options?: MDXBundlerOptions): Promise<Post> {
   const realSlug = slug.replace(/\.mdx?$/, "");
   const fullPath = (await glob(path.join(postsDirectory, `${realSlug}.{md,mdx}`)))[0]!;
-  const fileContents = fs.readFileSync(fullPath, "utf8");
-  const serializedContents = await serialize(fileContents, {
-    ...options,
-    parseFrontmatter: true,
-    mdxOptions: {
-      format: fullPath.endsWith("x") ? "mdx" : "md",
-      ...options?.mdxOptions
-    },
+  // eslint-disable-next-line  @typescript-eslint/no-unsafe-argument
+  const mdx = await bundleMDX({
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    ...options as any,
+    file: path.resolve(fullPath),
   });
   const post: Post = {
-    ...serializedContents,
+    code: mdx.code,
     slug: realSlug,
-    frontmatter: postFrontmatter.parse(serializedContents.frontmatter),
+    frontmatter: postFrontmatter.parse(mdx.frontmatter),
   };
   return post;
 }
   
-async function getAllPosts(options?: Parameters<typeof serialize>[1]): Promise<Post[]>  {
+async function getAllPosts(options?: MDXBundlerOptions): Promise<Post[]>  {
   const slugs = await getPostFilenames();
   const posts: Post[] = await Promise.all(slugs.map((slug) => getPostBySlug(slug, options)));
   const sortedPosts = posts

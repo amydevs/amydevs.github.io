@@ -1,7 +1,9 @@
+import type { Options as MDXOptions } from '@mdx-js/esbuild'
 import type { GetStaticPathsResult, InferGetStaticPropsType } from "next";
 import type { Options as RehypePrettyCodeOptions } from 'rehype-pretty-code';
+import * as React from "react";
 import { getPostBySlug, getPostSlugs } from '~/lib/ssg/utils';
-import { MDXRemote } from "next-mdx-remote";
+import { getMDXComponent } from "mdx-bundler/client";
 import rehypePrettyCode from 'rehype-pretty-code'
 import { cn } from "~/lib/utils"
 import Head from "next/head";
@@ -17,20 +19,27 @@ async function getStaticPaths(): Promise<GetStaticPathsResult<Params>> {
 async function getStaticProps({ params }: { params: Params }) {
   const { slug } = params;
   const post = await getPostBySlug(slug, {
-    mdxOptions: {
-      rehypePlugins: [[rehypePrettyCode, {
-        theme: {
-          dark: "github-dark-dimmed",
-          light: "github-light",
-        },
-      } satisfies RehypePrettyCodeOptions]]
-    }
+    mdxOptions: (options: MDXOptions) => {
+      options.rehypePlugins = [
+        ...(options.rehypePlugins ?? []),
+        [
+          rehypePrettyCode,
+          {
+            theme: {
+              dark: "github-dark-dimmed",
+              light: "github-light",
+            },
+          } satisfies RehypePrettyCodeOptions
+        ]
+      ];
+      return options;
+    },
   });
   return { props: { post } };
 }
 
 function BlogPost({ post }: InferGetStaticPropsType<typeof getStaticProps>) {
-  
+  const Component = React.useMemo(() => getMDXComponent(post.code), [post.code]);
   return (
     <>
       <Head>
@@ -66,7 +75,7 @@ function BlogPost({ post }: InferGetStaticPropsType<typeof getStaticProps>) {
           </h1>
         </div>
         <div suppressHydrationWarning className={cn("prose dark:prose-invert prose-a:text-primary w-full")}>
-          <MDXRemote {...post} />
+          <Component />
         </div>
         <div className="prose dark:prose-invert w-full mt-5 italic">
           <p>
