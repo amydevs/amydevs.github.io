@@ -11,20 +11,16 @@ import { env } from '~/env';
 import { useTheme } from "next-themes";
 import * as plaiceholder from 'plaiceholder';
 
-const pfpSrc = `https://github.com/${env.NEXT_PUBLIC_GH_USER}.png`;
 
 async function getStaticProps() {
-  if (env.NODE_ENV !== 'production') {
-    return { props: {} };
-  }
-  const buffer = await fetch(pfpSrc).then(async (res) =>
-    Buffer.from(await res.arrayBuffer())
-  );
-  const { base64 } = await plaiceholder.getPlaiceholder(buffer, { size: 10 });
-  return { props: { blurDataURL: base64 } };
+  const originalPfpSrc = `https://github.com/${env.NEXT_PUBLIC_GH_USER}.png`;
+  const res = await fetch(originalPfpSrc);
+  const buffer = await res.arrayBuffer();
+  const { base64 } = await plaiceholder.getPlaiceholder(Buffer.from(buffer), { size: 10 });
+  return { props: { pfpSrc: res.url, pfpBlurDataURL: base64 } };
 }
 
-function Home({ blurDataURL }: InferGetStaticPropsType<typeof getStaticProps>) {
+function Home({ pfpSrc, pfpBlurDataURL }: InferGetStaticPropsType<typeof getStaticProps>) {
   const theme = useTheme();
   const imageRef = React.useRef<HTMLImageElement>(null);
   const [imageLoaded, setImageLoaded] = React.useState(true);
@@ -48,7 +44,7 @@ function Home({ blurDataURL }: InferGetStaticPropsType<typeof getStaticProps>) {
     <>
       <main className="flex-1">
         <section className="flex flex-col justify-around items-center text-center gap-8 min-h-[calc(100vh-5rem)] auto-limit-w">
-          <Image ref={imageRef} className={cn("rounded-full transition-all blur-none", !imageLoaded && "blur-sm")} width={460} height={460} placeholder={blurDataURL == null ? "empty" : "blur"} blurDataURL={blurDataURL} src={pfpSrc} alt="PFP" onLoad={() => setImageLoaded(true)} />
+          <Image ref={imageRef} className={cn("rounded-full transition-all blur-none", !imageLoaded && "blur-sm")} width={460} height={460} placeholder="blur" blurDataURL={pfpBlurDataURL} src={pfpSrc} alt="PFP" onLoad={() => setImageLoaded(true)} />
           <div>
             <span className="text-2xl font-medium">Hi, I&apos;m <span className="text-primary">Amy</span>.</span> <br />
             <span className="text-xl">I&apos;m a software engineer and computer science student based in Australia.</span><br />
