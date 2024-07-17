@@ -19,7 +19,7 @@ When I was first remaking my personal site (the one you're on right now), I deci
 
 For some context, the about page is statically generated from my [GitHub profile `README.md`](https://github.com/amydevs) for the sake of my laziness. I use little GitHub profile badges that kind of look like this:
 
-![readme profile](/blog/2024-07-15-piggyback-gh-camo/about.png)
+![readme profile](/blog/piggyback-gh-camo/about.png)
 
 To do this, I use a `getStaticProps` function to fetch my GitHub profile `README.md` and serialize it using `next-mdx-remote`:
 
@@ -47,7 +47,7 @@ function About({
 
 But the badge icon images take forever to load! What do I do?!?!
 
-![about page loads so slowly](/blog/2024-07-15-piggyback-gh-camo/slow_load.gif)
+![about page loads so slowly](/blog/piggyback-gh-camo/slow_load.gif)
 
 This happens because the images are being served directly from source, which presumably has no CDN to catch potential cache hits. When you view a `README.md` on GitHub, it uses an image reverse proxy with an image caching layer to make it so snappy.
 
@@ -65,7 +65,7 @@ Well I've been wanting to switch over to using Cloudflare nameservers for a long
 
 So I logged into my dashboard, went over to NameCheap, and pointed my nameservers to CloudFlare, and...
 
-![i'm not paying 5 dollars a month just for my silly little site lol](/blog/2024-07-15-piggyback-gh-camo/cost.png)
+![i'm not paying 5 dollars a month just for my silly little site lol](/blog/piggyback-gh-camo/cost.png)
 
 ## Piggybacking Off GitHub's Own CDN
 
