@@ -13,7 +13,7 @@ import * as plaiceholder from 'plaiceholder';
 
 const pfpSrc = `https://github.com/${env.NEXT_PUBLIC_GH_USER}.png`;
 
-const getStaticProps = async ({}) => {
+async function getStaticProps() {
   if (env.NODE_ENV !== 'production') {
     return { props: {} };
   }

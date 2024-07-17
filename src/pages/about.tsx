@@ -1,14 +1,11 @@
-import type { GetStaticProps, InferGetStaticPropsType } from "next";
-import type { MDXRemoteSerializeResult } from 'next-mdx-remote'
+import type { InferGetStaticPropsType } from "next";
 import { serialize } from 'next-mdx-remote/serialize'
 import { MDXRemote,  } from 'next-mdx-remote'
 import { env } from "~/env";
 import rehypeRaw from 'rehype-raw';
 import * as he from 'he';
 
-const getStaticProps: GetStaticProps<{
-  mdxSource: MDXRemoteSerializeResult;
-}> = async () => {
+async function getStaticProps() {
   const repo = `${env.NEXT_PUBLIC_GH_USER}/${env.NEXT_PUBLIC_GH_USER}`;
   const res = await fetch(`https://raw.githubusercontent.com/${repo}/master/README.md`);
   let source = await res.text();

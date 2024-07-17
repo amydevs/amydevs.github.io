@@ -7,7 +7,7 @@ import { CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from 
 import { useScroll } from "~/contexts/ScrollProvider";
 import { getAllPosts } from "~/lib/ssg/utils";
 
-const getStaticProps = async () => {
+async function getStaticProps() {
   const posts = (await getAllPosts()).map((post) => ({
     ...post,
     compiledSource: null,

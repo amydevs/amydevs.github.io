@@ -1,5 +1,4 @@
-import type { Post } from "~/types";
-import type { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from "next";
+import type { GetStaticPathsResult, InferGetStaticPropsType } from "next";
 import type { Options as RehypePrettyCodeOptions } from 'rehype-pretty-code';
 import { getPostBySlug, getPostSlugs } from '~/lib/ssg/utils';
 import { MDXRemote } from "next-mdx-remote";
@@ -8,13 +7,15 @@ import { cn } from "~/lib/utils"
 import Head from "next/head";
 import { env } from "~/env";
 
-const getStaticPaths: GetStaticPaths<{ slug: string }> = async () => {
+type Params = { slug: string };
+
+async function getStaticPaths(): Promise<GetStaticPathsResult<Params>> {
   const paths = (await getPostSlugs()).map((slug) => ({ params: { slug }}));
   return { paths, fallback: false };
 }
 
-const getStaticProps: GetStaticProps<{ post: Post }, { slug: string }> = async ({ params }) => {
-  const { slug } = params!;
+async function getStaticProps({ params }: { params: Params }) {
+  const { slug } = params;
   const post = await getPostBySlug(slug, {
     mdxOptions: {
       rehypePlugins: [[rehypePrettyCode, {
