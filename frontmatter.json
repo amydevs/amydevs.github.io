@@ -1,5 +1,7 @@
 {
   "$schema": "https://frontmatter.codes/frontmatter.schema.json",
+  "frontMatter.templates.prefix": "",
+  "frontMatter.content.defaultFileType": "mdx",
   "frontMatter.taxonomy.contentTypes": [
     {
       "name": "post",
