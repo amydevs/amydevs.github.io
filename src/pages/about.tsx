@@ -1,6 +1,6 @@
 import type { InferGetStaticPropsType } from "next";
 import { serialize } from 'next-mdx-remote/serialize'
-import { MDXRemote,  } from 'next-mdx-remote'
+import { MDXRemote } from 'next-mdx-remote'
 import { env } from "~/env";
 import rehypeRaw from 'rehype-raw';
 import * as he from 'he';
