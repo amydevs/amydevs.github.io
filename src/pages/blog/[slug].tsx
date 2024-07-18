@@ -55,7 +55,7 @@ function BlogPost({ post }: InferGetStaticPropsType<typeof getStaticProps>) {
       },
       "genre": post.frontmatter.category,
       "dateCreated": new Date(post.frontmatter.date).toISOString(),
-      "dateUpdated": new Date(lastModified).toISOString(),
+      "dateModified": new Date(lastModified).toISOString(),
       "description": post.frontmatter.description,
       "url": new URL(router.asPath, env.NEXT_PUBLIC_SITE_URL).toString(),
       "inLanguage ": "en-US",
@@ -89,7 +89,7 @@ function BlogPost({ post }: InferGetStaticPropsType<typeof getStaticProps>) {
         <meta key="author" name="author" content={env.NEXT_PUBLIC_GH_USER} />
         <meta key="category" name="category" content={post.frontmatter.category} />
 
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd.current }} />
+        <script key="json-ld" type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd.current }} />
       </Head>
       <main className="auto-limit-w max-w-5xl flex flex-col items-center">
         <div className="pt-32 pb-24 md:text-center">
