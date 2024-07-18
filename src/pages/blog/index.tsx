@@ -5,11 +5,11 @@ import GlowCard from "~/components/GlowCard";
 import { Button } from "~/components/ui/button";
 import { CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "~/components/ui/card";
 import { useScroll } from "~/contexts/ScrollProvider";
-import { getAllPosts } from "~/lib/ssg/utils";
+import { getAllPostMetadata } from "~/lib/ssg/utils";
 import { localeDateTimeStyle } from "~/lib/utils";
 
 async function getStaticProps() {
-  const posts = (await getAllPosts()).map((post) => ({
+  const posts = (await getAllPostMetadata()).map((post) => ({
     ...post,
     code: null,
   }));
@@ -34,17 +34,17 @@ function BlogHome({ posts }: InferGetStaticPropsType<typeof getStaticProps>) {
   return <main className="auto-limit-w grid grid-cols-1 md:grid-cols-2 gap-3 pt-3">
     {
       posts
-        .filter((post) => !post.frontmatter.draft)
-        .map((post, i) => 
-          <Link key={i} href={`/blog/${post.slug}`}>
+        .filter((meta) => !meta.draft)
+        .map((meta, i) => 
+          <Link key={i} href={`/blog/${meta.slug}`}>
             <GlowCard className="h-72 flex flex-col hover:shadow-xl" mousePos={mousePos}>
               <CardHeader>
-                <CardTitle>{post.frontmatter.title}</CardTitle>
+                <CardTitle>{meta.title}</CardTitle>
                 <CardDescription>
                   Created On{" "}
                   <React.Suspense
                     fallback={
-                      new Date(post.frontmatter.date)
+                      new Date(meta.date)
                         .toLocaleDateString(
                           "en-US",
                           { timeZone: "UTC", ...localeDateTimeStyle }
@@ -53,7 +53,7 @@ function BlogHome({ posts }: InferGetStaticPropsType<typeof getStaticProps>) {
                     }
                   >
                     {
-                      new Date(post.frontmatter.date)
+                      new Date(meta.date)
                         .toLocaleDateString('en-US', localeDateTimeStyle)
                         .replaceAll(",", "")
                     }
@@ -62,7 +62,7 @@ function BlogHome({ posts }: InferGetStaticPropsType<typeof getStaticProps>) {
               </CardHeader>
               <CardContent className="flex-1 overflow-y-auto">
                 <div className="h-full w-full overflow-y-auto">
-                  {post.frontmatter.description}
+                  {meta.description}
                 </div>
               </CardContent>
               <CardFooter className="flex gap-3">

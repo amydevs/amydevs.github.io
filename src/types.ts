@@ -24,15 +24,19 @@ type Author = {
     picture: string;
 }
 
+type PostMetadata = z.infer<typeof postFrontmatter> & {
+    slug: string;
+}
+
 type Post = {
     code: string;
-    slug: string;
-    frontmatter: z.infer<typeof postFrontmatter>;
+    meta: PostMetadata;
 }
 
 export type {
   Route,
   ProjectCardData,
   Author,
+  PostMetadata,
   Post,
 }

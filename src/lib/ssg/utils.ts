@@ -1,6 +1,7 @@
-import type { Post } from '~/types';
+import type { Post, PostMetadata } from '~/types';
 import * as fs from 'fs';
 import * as path from 'path';
+import grayMatter from 'gray-matter';
 import { glob } from 'glob';
 import { postFrontmatter } from '~/schemas';
 import { bundleMDX } from "mdx-bundler";
@@ -23,9 +24,8 @@ async function getPostSlugs(): Promise<string[]> {
 }
 
 async function getPostBySlug(slug: string, options?: MDXBundlerOptions): Promise<Post> {
-  const realSlug = slug.replace(/\.mdx?$/, "");
   const fullPaths = await glob(
-    path.join(postsDirectory, `${realSlug}.{md,mdx}`),
+    path.join(postsDirectory, `${slug}.{md,mdx}`),
     { absolute: true },
   );
   const fullPath = fullPaths[0]!;
@@ -37,8 +37,10 @@ async function getPostBySlug(slug: string, options?: MDXBundlerOptions): Promise
   });
   const post: Post = {
     code: mdx.code,
-    slug: realSlug,
-    frontmatter: postFrontmatter.parse(mdx.frontmatter),
+    meta: {
+      ...postFrontmatter.parse(mdx.frontmatter),
+      slug,
+    }
   };
   return post;
 }
@@ -47,7 +49,29 @@ async function getAllPosts(options?: MDXBundlerOptions): Promise<Post[]>  {
   const slugs = await getPostFilenames();
   const posts: Post[] = await Promise.all(slugs.map((slug) => getPostBySlug(slug, options)));
   const sortedPosts = posts
-    .sort((post1, post2) => (new Date(post1.frontmatter.date) > new Date(post2.frontmatter.date) ? -1 : 1));
+    .sort((post1, post2) => (new Date(post1.meta.date) > new Date(post2.meta.date) ? -1 : 1));
+  return sortedPosts;
+}
+
+async function getPostMetadataBySlug(slug: string): Promise<PostMetadata> {
+  const fullPaths = await glob(
+    path.join(postsDirectory, `${slug}.{md,mdx}`),
+    { absolute: false }
+  );
+  const fullPath = fullPaths[0]!;
+  console.log(fullPath);
+  const contents = await fs.promises.readFile(fullPath);
+  return {
+    ...postFrontmatter.parse(grayMatter(contents).data),
+    slug,
+  }
+}
+
+async function getAllPostMetadata(): Promise<PostMetadata[]> {
+  const slugs = await getPostSlugs();
+  const metadata: PostMetadata[] = await Promise.all(slugs.map((slug) => getPostMetadataBySlug(slug)));
+  const sortedPosts = metadata
+    .sort((post1, post2) => (new Date(post1.date) > new Date(post2.date) ? -1 : 1));
   return sortedPosts;
 }
 
@@ -55,5 +79,7 @@ export {
   getPostFilenames,
   getPostSlugs,
   getPostBySlug,
-  getAllPosts
+  getAllPosts,
+  getPostMetadataBySlug,
+  getAllPostMetadata,
 }

@@ -42,62 +42,62 @@ async function getStaticProps({ params }: { params: Params }) {
 function BlogPost({ post }: InferGetStaticPropsType<typeof getStaticProps>) {
   const router = useRouter();
   const Component = React.useMemo(() => getMDXComponent(post.code), [post.code]);
-  const lastModified = post.frontmatter.lastModified ?? post.frontmatter.date;
+  const lastModified = post.meta.lastModified ?? post.meta.date;
 
   const jsonLd = React.useRef(
     JSON.stringify({
       "@context": "https://schema.org/",
       "@type": "BlogPosting",
-      "headline": post.frontmatter.title,
+      "headline": post.meta.title,
       "author": {
         "@type": "Person",
         "name": env.NEXT_PUBLIC_GH_USER
       },
-      "genre": post.frontmatter.category,
-      "dateCreated": new Date(post.frontmatter.date).toISOString(),
+      "genre": post.meta.category,
+      "dateCreated": new Date(post.meta.date).toISOString(),
       "dateModified": new Date(lastModified).toISOString(),
-      "description": post.frontmatter.description,
+      "description": post.meta.description,
       "url": new URL(router.asPath, env.NEXT_PUBLIC_SITE_URL).toString(),
       "inLanguage ": "en-US",
-      "image": post.frontmatter.preview,
-      "keywords": post.frontmatter.keywords,
+      "image": post.meta.preview,
+      "keywords": post.meta.keywords,
     })
   );
 
   return (
     <>
       <Head>
-        <title key="title">{post.frontmatter.title}</title>
-        <meta key="og:title" property="og:title" content={post.frontmatter.title} />
+        <title key="title">{post.meta.title}</title>
+        <meta key="og:title" property="og:title" content={post.meta.title} />
         <meta key="og:type"property="og:type" content="website" />
           
-        <meta key="description" name="description" content={post.frontmatter.description} />
-        <meta key="og:description" property="og:description" content={post.frontmatter.description} />
-        <meta key="twitter:description" name="twitter:description" content={post.frontmatter.description} />
+        <meta key="description" name="description" content={post.meta.description} />
+        <meta key="og:description" property="og:description" content={post.meta.description} />
+        <meta key="twitter:description" name="twitter:description" content={post.meta.description} />
 
         {
-          post.frontmatter.preview != null && (
+          post.meta.preview != null && (
             <>
-              <link key="image_src" rel="image_src" href={post.frontmatter.preview} />
-              <meta key="og:image" property="og:image" content={post.frontmatter.preview} />
-              <meta key="twitter:image" name="twitter:image" content={post.frontmatter.preview} />
+              <link key="image_src" rel="image_src" href={post.meta.preview} />
+              <meta key="og:image" property="og:image" content={post.meta.preview} />
+              <meta key="twitter:image" name="twitter:image" content={post.meta.preview} />
             </> 
           )
         }
 
-        <meta key="keywords" name="keywords" content={post.frontmatter.keywords.join(", ")} />
+        <meta key="keywords" name="keywords" content={post.meta.keywords.join(", ")} />
         <meta key="author" name="author" content={env.NEXT_PUBLIC_GH_USER} />
-        <meta key="category" name="category" content={post.frontmatter.category} />
+        <meta key="category" name="category" content={post.meta.category} />
 
         <script key="json-ld" type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd.current }} />
       </Head>
       <main className="auto-limit-w max-w-5xl flex flex-col items-center">
         <div className="pt-32 pb-24 md:text-center">
           <div className="font-bold text-primary mb-4">
-            { post.frontmatter.category }
+            { post.meta.category }
           </div>
           <h1 className="font-extrabold text-4xl">
-            {post.frontmatter.title}
+            {post.meta.title}
           </h1>
         </div>
         <article suppressHydrationWarning className={cn("prose dark:prose-invert prose-a:text-primary w-full")}>
@@ -108,11 +108,11 @@ function BlogPost({ post }: InferGetStaticPropsType<typeof getStaticProps>) {
             Created{" "}
             <time
               className="font-medium"
-              dateTime={new Date(post.frontmatter.date).toISOString()}
+              dateTime={new Date(post.meta.date).toISOString()}
             >
               <React.Suspense
                 fallback={
-                  new Date(post.frontmatter.date)
+                  new Date(post.meta.date)
                     .toLocaleDateString(
                       "en-US",
                       { timeZone: "UTC", ...localeDateTimeStyle }
@@ -121,7 +121,7 @@ function BlogPost({ post }: InferGetStaticPropsType<typeof getStaticProps>) {
                 }
               >
                 {
-                  new Date(post.frontmatter.date)
+                  new Date(post.meta.date)
                     .toLocaleDateString('en-US', localeDateTimeStyle)
                     .replaceAll(",", "")
                 }
