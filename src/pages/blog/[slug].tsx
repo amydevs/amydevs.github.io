@@ -8,6 +8,7 @@ import rehypePrettyCode from 'rehype-pretty-code'
 import { cn, localeDateTimeStyle } from "~/lib/utils"
 import Head from "next/head";
 import { env } from "~/env";
+import { useRouter } from 'next/router';
 
 type Params = { slug: string };
 
@@ -39,8 +40,29 @@ async function getStaticProps({ params }: { params: Params }) {
 }
 
 function BlogPost({ post }: InferGetStaticPropsType<typeof getStaticProps>) {
+  const router = useRouter();
   const Component = React.useMemo(() => getMDXComponent(post.code), [post.code]);
   const lastModified = post.frontmatter.lastModified ?? post.frontmatter.date;
+
+  let jsonLd = React.useRef(
+    JSON.stringify({
+      "@context": "https://schema.org/",
+      "@type": "BlogPosting",
+      "headline": post.frontmatter.title,
+      "author": {
+        "@type": "Person",
+        "name": env.NEXT_PUBLIC_GH_USER
+      },
+      "genre": post.frontmatter.category,
+      "dateCreated": new Date(post.frontmatter.date).toISOString(),
+      "dateUpdated": new Date(lastModified).toISOString(),
+      "description": post.frontmatter.description,
+      "url": new URL(router.asPath, env.NEXT_PUBLIC_SITE_URL).toString(),
+      "inLanguage ": "en-US",
+      "image": post.frontmatter.preview,
+      "keywords": post.frontmatter.keywords,
+    })
+  );
 
   return (
     <>
@@ -66,6 +88,8 @@ function BlogPost({ post }: InferGetStaticPropsType<typeof getStaticProps>) {
         <meta key="keywords" name="keywords" content={post.frontmatter.keywords.join(", ")} />
         <meta key="author" name="author" content={env.NEXT_PUBLIC_GH_USER} />
         <meta key="category" name="category" content={post.frontmatter.category} />
+
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd.current }} />
       </Head>
       <main className="auto-limit-w max-w-5xl flex flex-col items-center">
         <div className="pt-32 pb-24 md:text-center">
