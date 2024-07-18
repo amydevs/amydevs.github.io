@@ -33,8 +33,9 @@ const MyApp: AppType = ({ Component, pageProps }) => {
   const title = "Amy" + (currentRoute ? " - " + currentRoute.name : "");
   const image_src = `https://github.com/${env.NEXT_PUBLIC_GH_USER}.png`;
   const description = "Software Development and Music Production";
-  const canonicalUrl = new URL(router.asPath, env.NEXT_PUBLIC_SITE_URL).toString();
-  
+  const canonicalUrl = router.asPath === "/" ?
+    env.NEXT_PUBLIC_SITE_URL :
+    new URL(router.asPath, env.NEXT_PUBLIC_SITE_URL).toString();
   return (
     <>
       <Head>
