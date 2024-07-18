@@ -44,7 +44,7 @@ function BlogPost({ post }: InferGetStaticPropsType<typeof getStaticProps>) {
   const Component = React.useMemo(() => getMDXComponent(post.code), [post.code]);
   const lastModified = post.frontmatter.lastModified ?? post.frontmatter.date;
 
-  let jsonLd = React.useRef(
+  const jsonLd = React.useRef(
     JSON.stringify({
       "@context": "https://schema.org/",
       "@type": "BlogPosting",
