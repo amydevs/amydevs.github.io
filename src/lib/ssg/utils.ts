@@ -1,7 +1,6 @@
 import type { Post } from '~/types';
 import * as fs from 'fs';
 import * as path from 'path';
-import * as url from 'url';
 import { glob } from 'glob';
 import { postFrontmatter } from '~/schemas';
 import { bundleMDX } from "mdx-bundler";
