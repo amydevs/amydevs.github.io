@@ -9,46 +9,51 @@ const ThemeSwitch = dynamic(() => import("./ThemeSwitch"), { ssr: false });
 const MobileNavbar = React.forwardRef<
   HTMLDivElement,
   React.HTMLAttributes<HTMLDivElement> & {
-    routes: Array<Route>
-  }
->(({ routes, className, ...props }, ref) => (
-  <div
-    ref={ref}
-    className={cn('fixed inset-0 top-20 bg-background auto-limit-w', className)}
-    {...props}
-  >
-    <nav className="flex flex-col gap-6">
-      {
-        routes.map((route, i) => 
-          <Link
-            className={cn("hover:text-primary transition-all", route.current && 'text-primary')}
-            href={route.pathname}
-            key={i}
-          >
-            {route.name}
-          </Link>
-        )
+    routes: Array<Route>,
+    onThemeChange?: (theme: string) => void
       }
-      <ThemeSwitch>
-        {
-          (theme) => (
-            <button
-              onClick={() => theme.setTheme(theme.resolvedTheme == "dark" ? "light" : "dark")}
-              className="text-left hover:text-primary"
-              title="Toggle Theme"
-              role="switch"
-              aria-checked={theme.resolvedTheme == "dark"}
-            >
+      >(({ routes, className, onThemeChange, ...props }, ref) => (
+        <div
+          ref={ref}
+          className={cn('bg-background', className)}
+          {...props}
+        >
+          <nav className="flex flex-col gap-6">
+            {
+              routes.map((route, i) => 
+                <Link
+                  className={cn("hover:text-primary transition-all", route.current && 'text-primary')}
+                  href={route.pathname}
+                  key={i}
+                >
+                  {route.name}
+                </Link>
+              )
+            }
+            <ThemeSwitch>
               {
-                theme.resolvedTheme == "dark" ? "Light" : "Dark"
+                (theme) => (
+                  <button
+                    onClick={() => {
+                      const newTheme = theme.resolvedTheme == "dark" ? "light" : "dark";
+                      theme.setTheme(newTheme);
+                      onThemeChange?.(newTheme);
+                    }}
+                    className="text-left hover:text-primary"
+                    title="Toggle Theme"
+                    role="switch"
+                    aria-checked={theme.resolvedTheme == "dark"}
+                  >
+                    {
+                      theme.resolvedTheme == "dark" ? "Light" : "Dark"
+                    }
+                  </button>
+                )
               }
-            </button>
-          )
-        }
-      </ThemeSwitch>
-    </nav>
-  </div>
-))
+            </ThemeSwitch>
+          </nav>
+        </div>
+      ))
 MobileNavbar.displayName = "MobileNavbar"
 
 export default MobileNavbar;
