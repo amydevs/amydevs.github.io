@@ -1,6 +1,7 @@
 import type { Post } from '~/types';
 import * as fs from 'fs';
 import * as path from 'path';
+import * as url from 'url';
 import { glob } from 'glob';
 import { postFrontmatter } from '~/schemas';
 import { bundleMDX } from "mdx-bundler";
@@ -24,12 +25,16 @@ async function getPostSlugs(): Promise<string[]> {
 
 async function getPostBySlug(slug: string, options?: MDXBundlerOptions): Promise<Post> {
   const realSlug = slug.replace(/\.mdx?$/, "");
-  const fullPath = (await glob(path.join(postsDirectory, `${realSlug}.{md,mdx}`)))[0]!;
+  const fullPaths = await glob(
+    path.join(postsDirectory, `${realSlug}.{md,mdx}`),
+    { absolute: true },
+  );
+  const fullPath = fullPaths[0]!;
   // eslint-disable-next-line  @typescript-eslint/no-unsafe-argument
   const mdx = await bundleMDX({
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     ...options as any,
-    file: path.resolve(fullPath),
+    file: fullPath,
   });
   const post: Post = {
     code: mdx.code,
