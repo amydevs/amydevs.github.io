@@ -5,7 +5,7 @@ import * as React from "react";
 import { getPostBySlug, getPostSlugs } from '~/lib/ssg/utils';
 import { getMDXComponent } from "mdx-bundler/client";
 import rehypePrettyCode from 'rehype-pretty-code'
-import { cn } from "~/lib/utils"
+import { cn, localeDateTimeStyle } from "~/lib/utils"
 import Head from "next/head";
 import { env } from "~/env";
 
@@ -40,6 +40,8 @@ async function getStaticProps({ params }: { params: Params }) {
 
 function BlogPost({ post }: InferGetStaticPropsType<typeof getStaticProps>) {
   const Component = React.useMemo(() => getMDXComponent(post.code), [post.code]);
+  const lastModified = post.frontmatter.lastModified ?? post.frontmatter.date;
+
   return (
     <>
       <Head>
@@ -79,12 +81,52 @@ function BlogPost({ post }: InferGetStaticPropsType<typeof getStaticProps>) {
         </article>
         <div className="prose dark:prose-invert w-full mt-5 italic">
           <p>
-            First Created{" "}
-            <span className="font-medium">{new Date(post.frontmatter.date).toDateString()}</span>
+            Created{" "}
+            <time
+              className="font-medium"
+              dateTime={new Date(post.frontmatter.date).toISOString()}
+            >
+              <React.Suspense
+                fallback={
+                  new Date(post.frontmatter.date)
+                    .toLocaleDateString(
+                      "en-US",
+                      { timeZone: "UTC", ...localeDateTimeStyle }
+                    )
+                    .replaceAll(",", "")
+                }
+              >
+                {
+                  new Date(post.frontmatter.date)
+                    .toLocaleDateString('en-US', localeDateTimeStyle)
+                    .replaceAll(",", "")
+                }
+              </React.Suspense>
+            </time>
           </p>
           <p>
-            Last Updated{" "}
-            <span className="font-medium">{new Date(post.frontmatter.lastModified ?? post.frontmatter.date).toDateString()}</span>
+            Updated{" "}
+            <time
+              className="font-medium"
+              dateTime={new Date(lastModified).toISOString()}
+            >
+              <React.Suspense
+                fallback={
+                  new Date(lastModified)
+                    .toLocaleDateString(
+                      "en-US",
+                      { timeZone: "UTC", ...localeDateTimeStyle }
+                    )
+                    .replaceAll(",", "")
+                }
+              >
+                {
+                  new Date(lastModified)
+                    .toLocaleDateString('en-US', localeDateTimeStyle)
+                    .replaceAll(",", "")
+                }
+              </React.Suspense>
+            </time>
           </p>
         </div>
       </main>

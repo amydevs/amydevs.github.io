@@ -16,7 +16,15 @@ function hslToHex(h: number, s: number, l: number) {
   return `#${f(0)}${f(8)}${f(4)}`;
 }
 
+const localeDateTimeStyle = {
+  weekday: "short",
+  month: "short",
+  day: "numeric",
+  year: "numeric"
+} as const;
+
 export {
   cn,
   hslToHex,
+  localeDateTimeStyle,
 }

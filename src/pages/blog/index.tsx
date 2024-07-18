@@ -6,6 +6,7 @@ import { Button } from "~/components/ui/button";
 import { CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "~/components/ui/card";
 import { useScroll } from "~/contexts/ScrollProvider";
 import { getAllPosts } from "~/lib/ssg/utils";
+import { localeDateTimeStyle } from "~/lib/utils";
 
 async function getStaticProps() {
   const posts = (await getAllPosts()).map((post) => ({
@@ -40,7 +41,23 @@ function BlogHome({ posts }: InferGetStaticPropsType<typeof getStaticProps>) {
               <CardHeader>
                 <CardTitle>{post.frontmatter.title}</CardTitle>
                 <CardDescription>
-                  Created On {new Date(post.frontmatter.date).toDateString()}
+                  Created On{" "}
+                  <React.Suspense
+                    fallback={
+                      new Date(post.frontmatter.date)
+                        .toLocaleDateString(
+                          "en-US",
+                          { timeZone: "UTC", ...localeDateTimeStyle }
+                        )
+                        .replaceAll(",", "")
+                    }
+                  >
+                    {
+                      new Date(post.frontmatter.date)
+                        .toLocaleDateString('en-US', localeDateTimeStyle)
+                        .replaceAll(",", "")
+                    }
+                  </React.Suspense>
                 </CardDescription>
               </CardHeader>
               <CardContent className="flex-1 overflow-y-auto">
