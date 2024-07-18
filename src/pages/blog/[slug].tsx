@@ -74,9 +74,9 @@ function BlogPost({ post }: InferGetStaticPropsType<typeof getStaticProps>) {
             {post.frontmatter.title}
           </h1>
         </div>
-        <div suppressHydrationWarning className={cn("prose dark:prose-invert prose-a:text-primary w-full")}>
+        <article suppressHydrationWarning className={cn("prose dark:prose-invert prose-a:text-primary w-full")}>
           <Component />
-        </div>
+        </article>
         <div className="prose dark:prose-invert w-full mt-5 italic">
           <p>
             First Created{" "}

@@ -33,6 +33,7 @@ const MyApp: AppType = ({ Component, pageProps }) => {
   const title = "Amy" + (currentRoute ? " - " + currentRoute.name : "");
   const image_src = `https://github.com/${env.NEXT_PUBLIC_GH_USER}.png`;
   const description = "Software Development and Music Production";
+  const canonicalUrl = new URL(router.asPath, env.NEXT_PUBLIC_SITE_URL).toString();
   
   return (
     <>
@@ -55,6 +56,7 @@ const MyApp: AppType = ({ Component, pageProps }) => {
         <link rel="icon" href="/favicon-16x16.png" sizes="16x16" type="image/png" />
         <link rel="icon" href="/favicon-32x32.png" sizes="32x32" type="image/png" />
 
+        <link key="canonical" rel="canonical" href={canonicalUrl} />
         <link key="sitemap" rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml" />
       </Head>
       <ThemeProvider
