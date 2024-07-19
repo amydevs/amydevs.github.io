@@ -4,15 +4,15 @@ category: React
 date: 2024-07-15T14:12:07.317Z
 lastModified: 2024-07-16T05:17:18.871Z
 description: |
-    I don't wanna pay for a CDN just to serve the badge images on my about page on this website. But if my about page is statically generated from my GitHub profile readme, then why not just piggyback off of their Camo CDN cache?
+  I don't wanna pay for a CDN just to serve the badge images on my about page on this website. But if my about page is statically generated from my GitHub profile readme, then why not just piggyback off of their Camo CDN cache?
 type: post
 keywords:
-    - github
-    - cdn
-    - cache
-    - image
-    - optimization
-    - ssg
+  - github
+  - cdn
+  - cache
+  - image
+  - optimization
+  - ssg
 ---
 
 When I was first remaking my personal site (the one you're on right now), I decided I wanted to solve one of the major annoyances I've had with my [about page](https://amydev.me/about).
@@ -26,22 +26,29 @@ To do this, I use a `getStaticProps` function to fetch my GitHub profile `README
 ```tsx
 export async function getStaticProps() {
   const repo = `${env.NEXT_PUBLIC_GH_USER}/${env.NEXT_PUBLIC_GH_USER}`;
-  const res = await fetch(`https://raw.githubusercontent.com/${repo}/master/README.md`);
+  const res = await fetch(
+    `https://raw.githubusercontent.com/${repo}/master/README.md`,
+  );
   const source = await res.text();
-  const mdxSource = await serialize(source, { mdxOptions: { format: "md", rehypePlugins: [rehypeRaw] } });
-  return { props: { mdxSource } }
+  const mdxSource = await serialize(source, {
+    mdxOptions: { format: "md", rehypePlugins: [rehypeRaw] },
+  });
+  return { props: { mdxSource } };
 }
 ```
 
 Then, by utilizing `MDXRemote` and `@tailwindcss/typography`, I can render the markdown content with support for dark mode:
 
 ```tsx
-function About({
-  mdxSource
-}: InferGetStaticPropsType<typeof getStaticProps>) {
-  return <div suppressHydrationWarning className="prose dark:prose-invert prose-img:inline prose-img:m-0">
-    <MDXRemote {...mdxSource} />
-  </div>
+function About({ mdxSource }: InferGetStaticPropsType<typeof getStaticProps>) {
+  return (
+    <div
+      suppressHydrationWarning
+      className="prose dark:prose-invert prose-img:m-0 prose-img:inline"
+    >
+      <MDXRemote {...mdxSource} />
+    </div>
+  );
 }
 ```
 
@@ -76,10 +83,14 @@ So lets add some more functionality to `getStaticProps`:
 ```tsx
 export async function getStaticProps() {
   const repo = `${env.NEXT_PUBLIC_GH_USER}/${env.NEXT_PUBLIC_GH_USER}`;
-  const res = await fetch(`https://raw.githubusercontent.com/${repo}/master/README.md`);
+  const res = await fetch(
+    `https://raw.githubusercontent.com/${repo}/master/README.md`,
+  );
   let source = await res.text();
 
-  for (const match of source.matchAll(/(?:<img.*?src=['"](.+?)['"])|(?:!\[.*?\]\((.+?)\))/gi)) {
+  for (const match of source.matchAll(
+    /(?:<img.*?src=['"](.+?)['"])|(?:!\[.*?\]\((.+?)\))/gi,
+  )) {
     let unescapedUrl = match.at(1) ?? match.at(2);
     if (unescapedUrl == null) {
       continue;
@@ -88,8 +99,10 @@ export async function getStaticProps() {
     source = source.replaceAll(unescapedUrl, he.decode(unescapedUrl));
   }
 
-  const mdxSource = await serialize(source, { mdxOptions: { format: "md", rehypePlugins: [rehypeRaw] } });
-  return { props: { mdxSource } }
+  const mdxSource = await serialize(source, {
+    mdxOptions: { format: "md", rehypePlugins: [rehypeRaw] },
+  });
+  return { props: { mdxSource } };
 }
 ```
 
@@ -100,10 +113,14 @@ Now we can just get the HTML page of the rendered markdown on GitHub, and extrac
 ```tsx
 export async function getStaticProps() {
   const repo = `${env.NEXT_PUBLIC_GH_USER}/${env.NEXT_PUBLIC_GH_USER}`;
-  const res = await fetch(`https://raw.githubusercontent.com/${repo}/master/README.md`);
+  const res = await fetch(
+    `https://raw.githubusercontent.com/${repo}/master/README.md`,
+  );
   let source = await res.text();
 
-  for (const match of source.matchAll(/(?:<img.*?src=['"](.+?)['"])|(?:!\[.*?\]\((.+?)\))/gi)) {
+  for (const match of source.matchAll(
+    /(?:<img.*?src=['"](.+?)['"])|(?:!\[.*?\]\((.+?)\))/gi,
+  )) {
     let unescapedUrl = match.at(1) ?? match.at(2);
     if (unescapedUrl == null) {
       continue;
@@ -114,7 +131,9 @@ export async function getStaticProps() {
 
   const profileRes = await fetch(`https://github.com/${repo}`);
   const profile = await profileRes.text();
-  for (const match of profile.matchAll(/src="(.*?)".*?data-canonical-src="(.*?)"/g)) {
+  for (const match of profile.matchAll(
+    /src="(.*?)".*?data-canonical-src="(.*?)"/g,
+  )) {
     if (match[1] == null || match[2] == null) {
       continue;
     }
@@ -123,8 +142,10 @@ export async function getStaticProps() {
     source = source.replaceAll(realUrl, camoUrl);
   }
 
-  const mdxSource = await serialize(source, { mdxOptions: { format: "md", rehypePlugins: [rehypeRaw] } });
-  return { props: { mdxSource } }
+  const mdxSource = await serialize(source, {
+    mdxOptions: { format: "md", rehypePlugins: [rehypeRaw] },
+  });
+  return { props: { mdxSource } };
 }
 ```
 

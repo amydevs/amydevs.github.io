@@ -1,16 +1,16 @@
-import type { Config } from "tailwindcss"
-import plugin from 'tailwindcss/plugin';
+import type { Config } from "tailwindcss";
+import plugin from "tailwindcss/plugin";
 
 const config = {
   darkMode: ["class"],
   safelist: ["dark"],
   content: [
-    './pages/**/*.{ts,tsx}',
-    './components/**/*.{ts,tsx}',
-    './app/**/*.{ts,tsx}',
-    './src/**/*.{ts,tsx}',
-    './_posts/**/*.{md,mdx}',
-	],
+    "./pages/**/*.{ts,tsx}",
+    "./components/**/*.{ts,tsx}",
+    "./app/**/*.{ts,tsx}",
+    "./src/**/*.{ts,tsx}",
+    "./_posts/**/*.{md,mdx}",
+  ],
   prefix: "",
   theme: {
     container: {
@@ -79,22 +79,16 @@ const config = {
   },
   plugins: [
     require("tailwindcss-animate"),
-    require('@tailwindcss/typography'),
-    plugin(({matchVariant}) => {
-      matchVariant(
-        'scroll-x',
-        (value) => {
-          return ['html:not([scrollX]) &', `html[scrollX="${value}"] &`]
-        }
-      )
-      matchVariant(
-        'scroll-y',
-        (value) => {
-          return ['html:not([scrollY]) &', `html[scrollY="${value}"] &`]
-        }
-      )
+    require("@tailwindcss/typography"),
+    plugin(({ matchVariant }) => {
+      matchVariant("scroll-x", (value) => {
+        return ["html:not([scrollX]) &", `html[scrollX="${value}"] &`];
+      });
+      matchVariant("scroll-y", (value) => {
+        return ["html:not([scrollY]) &", `html[scrollY="${value}"] &`];
+      });
     }),
   ],
-} satisfies Config
+} satisfies Config;
 
-export default config
+export default config;
