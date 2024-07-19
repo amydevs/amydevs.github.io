@@ -4,7 +4,7 @@ import type { Route } from "~/types";
 import { GeistSans } from "geist/font/sans";
 import { useRouter } from "next/router";
 import { ThemeProvider } from "next-themes";
-import { cn } from "~/lib/utils";
+import { cn, filterUrlParams } from "~/lib/utils";
 import Head from "next/head";
 import routes from "~/cfg/routes";
 import Header from "~/components/Header";
@@ -33,7 +33,7 @@ const MyApp: AppType = ({ Component, pageProps }) => {
   const title = "Amy" + (currentRoute ? " - " + currentRoute.name : "");
   const image_src = `https://github.com/${env.NEXT_PUBLIC_GH_USER}.png`;
   const description = "Software Development and Music Production";
-  const asPath = router.asPath.split("?", 2)[0]!;
+  const asPath = filterUrlParams(router.asPath);
   const canonicalUrl = asPath === "/" ?
     env.NEXT_PUBLIC_SITE_URL :
     new URL(asPath, env.NEXT_PUBLIC_SITE_URL).toString();

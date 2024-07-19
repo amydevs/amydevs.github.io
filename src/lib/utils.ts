@@ -16,6 +16,12 @@ function hslToHex(h: number, s: number, l: number) {
   return `#${f(0)}${f(8)}${f(4)}`;
 }
 
+function filterUrlParams(url: string): string {
+  return url
+    .split("?", 2)[0]!
+    .split("#", 2)[0]!;
+}
+
 const localeDateTimeStyle = {
   weekday: "short",
   month: "short",
@@ -26,5 +32,6 @@ const localeDateTimeStyle = {
 export {
   cn,
   hslToHex,
+  filterUrlParams,
   localeDateTimeStyle,
 }

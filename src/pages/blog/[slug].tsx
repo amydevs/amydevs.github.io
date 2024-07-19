@@ -5,7 +5,7 @@ import * as React from "react";
 import { getPostBySlug, getPostSlugs } from '~/lib/ssg/utils';
 import { getMDXComponent } from "mdx-bundler/client";
 import rehypePrettyCode from 'rehype-pretty-code'
-import { cn, localeDateTimeStyle } from "~/lib/utils"
+import { cn, filterUrlParams, localeDateTimeStyle } from "~/lib/utils"
 import Head from "next/head";
 import { env } from "~/env";
 import { useRouter } from 'next/router';
@@ -57,7 +57,7 @@ function BlogPost({ post }: InferGetStaticPropsType<typeof getStaticProps>) {
       "dateCreated": new Date(post.meta.date).toISOString(),
       "dateModified": new Date(lastModified).toISOString(),
       "description": post.meta.description,
-      "url": new URL(router.asPath.split("?", 2)[0]!, env.NEXT_PUBLIC_SITE_URL).toString(),
+      "url": new URL(filterUrlParams(router.asPath), env.NEXT_PUBLIC_SITE_URL).toString(),
       "inLanguage ": "en-US",
       "image": post.meta.preview,
       "keywords": post.meta.keywords,
