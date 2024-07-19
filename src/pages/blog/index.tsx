@@ -1,6 +1,7 @@
 import { type InferGetStaticPropsType } from "next";
 import Head from "next/head";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import * as React from "react";
 import GlowCard from "~/components/GlowCard";
 import { Button } from "~/components/ui/button";
@@ -8,7 +9,7 @@ import { CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from 
 import { useScroll } from "~/contexts/ScrollProvider";
 import { env } from "~/env";
 import { getAllPostMetadata } from "~/lib/ssg/utils";
-import { localeDateTimeStyle } from "~/lib/utils";
+import { filterUrlParams, localeDateTimeStyle } from "~/lib/utils";
 
 async function getStaticProps() {
   const posts = (await getAllPostMetadata()).map((post) => ({
@@ -19,6 +20,8 @@ async function getStaticProps() {
 }
 
 function BlogHome({ posts }: InferGetStaticPropsType<typeof getStaticProps>) {
+  const router = useRouter();
+  const asPath = filterUrlParams(router.asPath);
   const [mousePos, setMousePos] = React.useState<[number, number]>([-999999, -999999]);
   // for some reason this gets rid of issues with scrolling
   useScroll();
@@ -40,7 +43,7 @@ function BlogHome({ posts }: InferGetStaticPropsType<typeof getStaticProps>) {
         rel="alternate"
         type="application/rss+xml"
         title="Amy's Blog"
-        href={new URL(`/blog/rss.xml`, env.NEXT_PUBLIC_SITE_URL).toString()}
+        href={new URL(`/${asPath}/rss.xml`, env.NEXT_PUBLIC_SITE_URL).toString()}
       />
     </Head>
     <main className="auto-limit-w grid grid-cols-1 md:grid-cols-2 gap-3 pt-3">
@@ -48,7 +51,7 @@ function BlogHome({ posts }: InferGetStaticPropsType<typeof getStaticProps>) {
         posts
           .filter((meta) => !meta.draft)
           .map((meta, i) => 
-            <Link key={i} href={`/blog/${meta.slug}`}>
+            <Link key={i} href={`/${asPath}/${meta.slug}`}>
               <GlowCard className="h-72 flex flex-col hover:shadow-xl" mousePos={mousePos}>
                 <CardHeader>
                   <CardTitle>{meta.title}</CardTitle>
