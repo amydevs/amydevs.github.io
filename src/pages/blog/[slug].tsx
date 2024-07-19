@@ -57,7 +57,7 @@ function BlogPost({ post }: InferGetStaticPropsType<typeof getStaticProps>) {
       "dateCreated": new Date(post.meta.date).toISOString(),
       "dateModified": new Date(lastModified).toISOString(),
       "description": post.meta.description,
-      "url": new URL(router.asPath, env.NEXT_PUBLIC_SITE_URL).toString(),
+      "url": new URL(router.asPath.split("?", 2)[0]!, env.NEXT_PUBLIC_SITE_URL).toString(),
       "inLanguage ": "en-US",
       "image": post.meta.preview,
       "keywords": post.meta.keywords,
