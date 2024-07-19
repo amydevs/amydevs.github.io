@@ -13,13 +13,6 @@ const config = {
   ],
   ignorePatterns: ["src/components/ui/"],
   rules: {
-    // Indent with 2 spaces
-    indent: ["error", 2],
-    // Indent JSX with 2 spaces
-    "react/jsx-indent": ["error", 2],
-    // Indent props with 2 spaces
-    "react/jsx-indent-props": ["error", 2],
-
     "@typescript-eslint/array-type": "off",
     "@typescript-eslint/consistent-type-definitions": ["warn", "type"],
     "@typescript-eslint/consistent-type-imports": [
