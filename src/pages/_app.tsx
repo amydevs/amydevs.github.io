@@ -16,9 +16,10 @@ const MyApp: AppType = ({ Component, pageProps }) => {
   const router = useRouter();
   let currentRoute: Route | undefined;
   const newRoutes = routes.map((e) => {
-    let current = e.pathname === router.pathname;
-    if (e.currentPathnameRegex) {
-      current = new RegExp(e.currentPathnameRegex).test(router.pathname);
+    const asPath = filterUrlParams(router.asPath);
+    let current = e.path === asPath;
+    if (e.currentPathRegex) {
+      current = new RegExp(e.currentPathRegex).test(asPath);
     }
     const route = {
       ...e,

@@ -79,7 +79,7 @@ const Header = React.forwardRef<
               "transition-all hover:text-primary",
               route.current && "text-primary",
             )}
-            href={route.pathname}
+            href={route.path}
             key={i}
           >
             {route.name}
