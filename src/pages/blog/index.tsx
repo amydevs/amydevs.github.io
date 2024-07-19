@@ -51,7 +51,7 @@ function BlogHome({ posts }: InferGetStaticPropsType<typeof getStaticProps>) {
         posts
           .filter((meta) => !meta.draft)
           .map((meta, i) => 
-            <Link key={i} href={`/${asPath}/${meta.slug}`}>
+            <Link key={i} href={`${asPath}/${meta.slug}`}>
               <GlowCard className="h-72 flex flex-col hover:shadow-xl" mousePos={mousePos}>
                 <CardHeader>
                   <CardTitle>{meta.title}</CardTitle>
