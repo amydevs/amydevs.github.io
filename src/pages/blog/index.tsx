@@ -43,7 +43,7 @@ function BlogHome({ posts }: InferGetStaticPropsType<typeof getStaticProps>) {
         rel="alternate"
         type="application/rss+xml"
         title="Amy's Blog"
-        href={new URL(`/${asPath}/rss.xml`, env.NEXT_PUBLIC_SITE_URL).toString()}
+        href={new URL(`${asPath}/rss.xml`, env.NEXT_PUBLIC_SITE_URL).toString()}
       />
     </Head>
     <main className="auto-limit-w grid grid-cols-1 md:grid-cols-2 gap-3 pt-3">
