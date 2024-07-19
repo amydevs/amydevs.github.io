@@ -5,7 +5,13 @@ import { useRouter } from "next/router";
 import * as React from "react";
 import GlowCard from "~/components/GlowCard";
 import { Button } from "~/components/ui/button";
-import { CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "~/components/ui/card";
+import {
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "~/components/ui/card";
 import { useScroll } from "~/contexts/ScrollProvider";
 import { env } from "~/env";
 import { getAllPostMetadata } from "~/lib/ssg/utils";
@@ -22,56 +28,60 @@ async function getStaticProps() {
 function BlogHome({ posts }: InferGetStaticPropsType<typeof getStaticProps>) {
   const router = useRouter();
   const asPath = filterUrlParams(router.asPath);
-  const [mousePos, setMousePos] = React.useState<[number, number]>([-999999, -999999]);
+  const [mousePos, setMousePos] = React.useState<[number, number]>([
+    -999999, -999999,
+  ]);
   // for some reason this gets rid of issues with scrolling
   useScroll();
-    
+
   React.useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
       setMousePos([e.clientX, e.clientY]);
-    }
-    window.addEventListener('mousemove', handleMouseMove, { passive: true });
+    };
+    window.addEventListener("mousemove", handleMouseMove, { passive: true });
     return () => {
-      window.removeEventListener('mousemove', handleMouseMove);
-    }
+      window.removeEventListener("mousemove", handleMouseMove);
+    };
   }, []);
-    
-  return <>
-    <Head>
-      <link
-        key="rss"
-        rel="alternate"
-        type="application/rss+xml"
-        title="Amy's Blog"
-        href={new URL(`${asPath}/rss.xml`, env.NEXT_PUBLIC_SITE_URL).toString()}
-      />
-    </Head>
-    <main className="auto-limit-w grid grid-cols-1 md:grid-cols-2 gap-3 pt-3">
-      {
-        posts
+
+  return (
+    <>
+      <Head>
+        <link
+          key="rss"
+          rel="alternate"
+          type="application/rss+xml"
+          title="Amy's Blog"
+          href={new URL(
+            `${asPath}/rss.xml`,
+            env.NEXT_PUBLIC_SITE_URL,
+          ).toString()}
+        />
+      </Head>
+      <main className="auto-limit-w grid grid-cols-1 gap-3 pt-3 md:grid-cols-2">
+        {posts
           .filter((meta) => !meta.draft)
-          .map((meta, i) => 
+          .map((meta, i) => (
             <Link key={i} href={`${asPath}/${meta.slug}`}>
-              <GlowCard className="h-72 flex flex-col hover:shadow-xl" mousePos={mousePos}>
+              <GlowCard
+                className="flex h-72 flex-col hover:shadow-xl"
+                mousePos={mousePos}
+              >
                 <CardHeader>
                   <CardTitle>{meta.title}</CardTitle>
                   <CardDescription>
                     Created On{" "}
                     <React.Suspense
-                      fallback={
-                        new Date(meta.date)
-                          .toLocaleDateString(
-                            "en-US",
-                            { timeZone: "UTC", ...localeDateTimeStyle }
-                          )
-                          .replaceAll(",", "")
-                      }
+                      fallback={new Date(meta.date)
+                        .toLocaleDateString("en-US", {
+                          timeZone: "UTC",
+                          ...localeDateTimeStyle,
+                        })
+                        .replaceAll(",", "")}
                     >
-                      {
-                        new Date(meta.date)
-                          .toLocaleDateString('en-US', localeDateTimeStyle)
-                          .replaceAll(",", "")
-                      }
+                      {new Date(meta.date)
+                        .toLocaleDateString("en-US", localeDateTimeStyle)
+                        .replaceAll(",", "")}
                     </React.Suspense>
                   </CardDescription>
                 </CardHeader>
@@ -81,18 +91,18 @@ function BlogHome({ posts }: InferGetStaticPropsType<typeof getStaticProps>) {
                   </div>
                 </CardContent>
                 <CardFooter className="flex gap-3">
-                  <Button className="px-0" variant="link">Read More</Button>
+                  <Button className="px-0" variant="link">
+                    Read More
+                  </Button>
                 </CardFooter>
               </GlowCard>
             </Link>
-          )
-      }
-    </main>
-  </>;
+          ))}
+      </main>
+    </>
+  );
 }
 
 export default BlogHome;
 
-export {
-  getStaticProps
-}
+export { getStaticProps };

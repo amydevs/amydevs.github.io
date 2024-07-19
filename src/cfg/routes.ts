@@ -1,4 +1,4 @@
-import { type Route } from "~/types"
+import { type Route } from "~/types";
 
 const routes: Route[] = [
   {
@@ -21,7 +21,7 @@ const routes: Route[] = [
   {
     name: "Radio",
     pathname: "/radio",
-  }
+  },
 ];
 
 export default routes;

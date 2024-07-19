@@ -4,46 +4,49 @@ import { type ProjectCardData } from "~/types";
 const projectCards: ProjectCardData[] = [
   {
     title: "Polykey-CLI",
-    description: "A CLI secrets management system that facilitates zero-trust workflows.",
+    description:
+      "A CLI secrets management system that facilitates zero-trust workflows.",
     actions: [
       {
         text: "GitHub",
         href: "https://github.com/MatrixAI/Polykey-cli",
-        icon: Github
-      }
-    ]
+        icon: Github,
+      },
+    ],
   },
   {
     title: "SpinShare Client",
-    description: "Former developer and translator for the SpinShare desktop client built with Vue.js and Electron.",
+    description:
+      "Former developer and translator for the SpinShare desktop client built with Vue.js and Electron.",
     actions: [
       {
         text: "GitHub",
         href: "https://github.com/SpinShare/client",
-        icon: Github
+        icon: Github,
       },
       {
         text: "Download",
         href: "https://spinsha.re/client",
-        icon: Download
+        icon: Download,
       },
-    ]
+    ],
   },
   {
     title: "Exalta Launcher",
-    description: "A third-party open-source launcher built in Rust for Realm of the Mad God Exalted.",
+    description:
+      "A third-party open-source launcher built in Rust for Realm of the Mad God Exalted.",
     actions: [
       {
         text: "GitHub",
         href: "https://github.com/amydevs/exalta-launcher",
-        icon: Github
+        icon: Github,
       },
       {
         text: "Download",
         href: "https://github.com/amydevs/exalta-launcher/releases/latest",
-        icon: Download
+        icon: Download,
       },
-    ]
+    ],
   },
   {
     title: "Chip-8 Emulator",
@@ -52,140 +55,150 @@ const projectCards: ProjectCardData[] = [
       {
         text: "GitHub",
         href: "https://github.com/amydevs/chip-8-emu-rs",
-        icon: Github
+        icon: Github,
       },
       {
         text: "Download",
         href: "https://github.com/amydevs/chip-8-emu-rs/releases/latest",
-        icon: Download
+        icon: Download,
       },
-    ]
+    ],
   },
   {
     title: "js-ws",
-    description: "A Node.js WebSocket wrapper library that provides a multiplexed WebStreams API.",
+    description:
+      "A Node.js WebSocket wrapper library that provides a multiplexed WebStreams API.",
     actions: [
       {
         text: "GitHub",
         href: "https://github.com/MatrixAI/js-ws",
-        icon: Github
-      }
-    ]
+        icon: Github,
+      },
+    ],
   },
   {
     title: "js-mdns",
-    description: "A Node.js mDNS responder implementation written in Typescript.",
+    description:
+      "A Node.js mDNS responder implementation written in Typescript.",
     actions: [
       {
         text: "GitHub",
         href: "https://github.com/MatrixAI/js-mdns",
-        icon: Github
-      }
-    ]
+        icon: Github,
+      },
+    ],
   },
   {
     title: "YirrgayConnect",
-    description: "A Twitter-like social media platform focused on interactive multimedia and community-driven content moderation built using Next.js, Postgres, and Tailwind. Created as a Engineers Without Borders project for university.",
+    description:
+      "A Twitter-like social media platform focused on interactive multimedia and community-driven content moderation built using Next.js, Postgres, and Tailwind. Created as a Engineers Without Borders project for university.",
     actions: [
       {
         text: "GitHub",
         href: "https://github.com/amydevs/yirrgay-connect",
-        icon: Github
+        icon: Github,
       },
       {
         text: "Demo",
         href: "https://yirrgayconnect.vercel.app",
-        icon: Globe
-      }
-    ]
+        icon: Globe,
+      },
+    ],
   },
   {
     title: "SRXDCustomLeaderboard",
-    description: "A third-party open-source private leaderboard client and server built with Next.js and React for SRXD.",
+    description:
+      "A third-party open-source private leaderboard client and server built with Next.js and React for SRXD.",
     actions: [
       {
         text: "GitHub (Server)",
         href: "https://github.com/SRXDModdingGroup/SRXDCustomLeaderboardServer",
-        icon: Github
+        icon: Github,
       },
       {
         text: "GitHub (Client)",
         href: "https://github.com/SRXDModdingGroup/SRXDCustomLeaderboard",
-        icon: Github
-      }
-    ]
+        icon: Github,
+      },
+    ],
   },
   {
     title: "MaebeeTV Website Rewrite",
-    description: "The landing page for MaebeeTV rewritten in Next.js and React extended with team management features.",
+    description:
+      "The landing page for MaebeeTV rewritten in Next.js and React extended with team management features.",
     actions: [
       {
         text: "GitHub",
-        href: 'https://github.com/amydevs/maebeetv',
-        icon: Github
+        href: "https://github.com/amydevs/maebeetv",
+        icon: Github,
       },
       {
         text: "Website",
-        href: 'https://maebeetv.vercel.app',
-        icon: Globe
-      }
-    ]
+        href: "https://maebeetv.vercel.app",
+        icon: Globe,
+      },
+    ],
   },
   {
     title: "rxgithub",
-    description: "A Rust Actix Web App to embed GitHub code snippets, images, gifs, videos, gists, & more on Discord, Slack, Telegram, Twitter, etc.",
+    description:
+      "A Rust Actix Web App to embed GitHub code snippets, images, gifs, videos, gists, & more on Discord, Slack, Telegram, Twitter, etc.",
     actions: [
       {
         text: "GitHub",
-        href: 'https://github.com/amydevs/rxgithub',
-        icon: Github
-      }
-    ]
+        href: "https://github.com/amydevs/rxgithub",
+        icon: Github,
+      },
+    ],
   },
   {
     title: "SRXDBepInExInstaller",
-    description: "A installer for the modding framework BepInEx for the game Spin Rhythm XD written in Python and Tkinter.",
+    description:
+      "A installer for the modding framework BepInEx for the game Spin Rhythm XD written in Python and Tkinter.",
     actions: [
       {
         text: "GitHub",
-        href: 'https://github.com/SRXDModdingGroup/SRXDBepInExInstaller',
-        icon: Github
-      }
-    ]
+        href: "https://github.com/SRXDModdingGroup/SRXDBepInExInstaller",
+        icon: Github,
+      },
+    ],
   },
   {
     title: "Simple Australian Tax Calculator",
-    description: "A simple tax calculator for the Australian taxation system. Built with Laravel and PHP.",
+    description:
+      "A simple tax calculator for the Australian taxation system. Built with Laravel and PHP.",
     actions: [
       {
         text: "GitHub",
-        href: 'https://github.com/amydevs/TaxCalculatorLaravel',
-        icon: Github
-      }
-    ]
+        href: "https://github.com/amydevs/TaxCalculatorLaravel",
+        icon: Github,
+      },
+    ],
   },
   {
     title: "TapeSync",
-    description: "A modification for the productivity and organization application Tape, to enable synchronization of items between different systems using existing sync services.",
+    description:
+      "A modification for the productivity and organization application Tape, to enable synchronization of items between different systems using existing sync services.",
     actions: [
       {
         text: "GitHub",
-        href: 'https://github.com/amydevs/TapeSync',
-        icon: Github
-      }
-    ]
+        href: "https://github.com/amydevs/TapeSync",
+        icon: Github,
+      },
+    ],
   },
   {
     title: "TapeMobile",
-    description: "A modification for the productivity and organization application Tape, that ports it to mobile devices and the PWA platform.",
+    description:
+      "A modification for the productivity and organization application Tape, that ports it to mobile devices and the PWA platform.",
     actions: [
       {
         text: "GitHub",
-        href: 'https://github.com/amydevs/TapeMobile',
-        icon: Github
-      }
-    ]
-  }
-]
+        href: "https://github.com/amydevs/TapeMobile",
+        icon: Github,
+      },
+    ],
+  },
+];
 
 export default projectCards;
