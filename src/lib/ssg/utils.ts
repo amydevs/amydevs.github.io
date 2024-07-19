@@ -59,7 +59,6 @@ async function getPostMetadataBySlug(slug: string): Promise<PostMetadata> {
     { absolute: false }
   );
   const fullPath = fullPaths[0]!;
-  console.log(fullPath);
   const contents = await fs.promises.readFile(fullPath);
   return {
     ...postFrontmatter.parse(grayMatter(contents).data),

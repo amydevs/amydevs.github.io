@@ -6,7 +6,7 @@
   "scripts": {
     "next": "next",
     "build": "next build",
-    "postbuild": "next-sitemap",
+    "postbuild": "next-sitemap && tsx ./scripts/generate-rss.ts",
     "dev": "next dev",
     "lint": "next lint",
     "start": "next start"
@@ -43,6 +43,7 @@
     "@types/node": "^20.14.10",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
+    "@types/rss": "^0.0.32",
     "@types/three": "^0.166.0",
     "@typescript-eslint/eslint-plugin": "^7.1.1",
     "@typescript-eslint/parser": "^7.1.1",
@@ -58,8 +59,10 @@
     "prettier": "^3.3.2",
     "prettier-plugin-tailwindcss": "^0.6.5",
     "rehype-pretty-code": "^0.13.2",
+    "rss": "^1.2.2",
     "shiki": "^1.10.3",
     "tailwindcss": "^3.4.3",
+    "tsx": "^4.16.2",
     "typescript": "^5.5.3"
   },
   "ct3aMetadata": {
