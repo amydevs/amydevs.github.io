@@ -10,6 +10,7 @@ import { cn, hslToHex } from "~/lib/utils";
 import { env } from "~/env";
 import { useTheme } from "next-themes";
 import * as plaiceholder from "plaiceholder";
+import { firstName } from "~/cfg/consts";
 
 async function getStaticProps() {
   const originalPfpSrc = `https://github.com/${env.NEXT_PUBLIC_GH_USER}.png`;
@@ -54,7 +55,10 @@ function Home({
   return (
     <>
       <main className="flex-1">
-        <section className="auto-limit-w flex min-h-[calc(100vh-5rem)] flex-col items-center justify-around gap-8 text-center">
+        <section
+          className="auto-limit-w flex min-h-[calc(100vh-5rem)] flex-col items-center justify-around
+            gap-8 text-center"
+        >
           <Image
             ref={imageRef}
             className={cn(
@@ -71,7 +75,7 @@ function Home({
           />
           <div>
             <span className="text-2xl font-medium">
-              Hi, I&apos;m <span className="text-primary">Amy</span>.
+              Hi, I&apos;m <span className="text-primary">{firstName}</span>.
             </span>{" "}
             <br />
             <span className="text-xl">

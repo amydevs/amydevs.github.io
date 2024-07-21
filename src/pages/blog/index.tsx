@@ -3,6 +3,7 @@ import Head from "next/head";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import * as React from "react";
+import { fullName } from "~/cfg/consts";
 import GlowCard from "~/components/GlowCard";
 import { Button } from "~/components/ui/button";
 import {
@@ -51,7 +52,7 @@ function BlogHome({ posts }: InferGetStaticPropsType<typeof getStaticProps>) {
           key="rss"
           rel="alternate"
           type="application/rss+xml"
-          title="Amy's Blog"
+          title={`${fullName}'s Blog`}
           href={new URL(
             `${asPath}/rss.xml`,
             env.NEXT_PUBLIC_SITE_URL,

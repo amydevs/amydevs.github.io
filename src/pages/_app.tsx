@@ -11,6 +11,7 @@ import Header from "~/components/Header";
 import ScrollProvider from "~/contexts/ScrollProvider";
 import Footer from "~/components/Footer";
 import { env } from "~/env";
+import { firstName } from "~/cfg/consts";
 
 const MyApp: AppType = ({ Component, pageProps }) => {
   const router = useRouter();
@@ -31,7 +32,7 @@ const MyApp: AppType = ({ Component, pageProps }) => {
     return route;
   });
 
-  const title = "Amy" + (currentRoute ? " - " + currentRoute.name : "");
+  const title = firstName + (currentRoute ? " - " + currentRoute.name : "");
   const image_src = `https://github.com/${env.NEXT_PUBLIC_GH_USER}.png`;
   const description = "Software Development and Music Production";
   const asPath = filterUrlParams(router.asPath);

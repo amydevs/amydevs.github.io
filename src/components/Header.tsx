@@ -7,6 +7,7 @@ import { Menu, Moon, Sun } from "lucide-react";
 import { Button } from "./ui/button";
 import { useRouter } from "next/router";
 import dynamic from "next/dynamic";
+import { firstName } from "~/cfg/consts";
 
 const ThemeSwitch = dynamic(() => import("./ThemeSwitch"), { ssr: false });
 
@@ -40,7 +41,8 @@ const Header = React.forwardRef<
     >
       <div>
         <Link className="transition-all hover:text-primary" href="/">
-          Amy<span className="text-primary">!</span>
+          {firstName}
+          <span className="text-primary">!</span>
         </Link>
       </div>
 
