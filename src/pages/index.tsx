@@ -56,8 +56,8 @@ function Home({
     <>
       <main className="flex-1">
         <section
-          className="auto-limit-w flex min-h-[calc(100vh-5rem)] flex-col items-center justify-around
-            gap-8 text-center"
+          className="auto-limit-w flex min-h-[calc(100vh-5rem)] flex-col
+            items-center justify-around gap-8 text-center"
         >
           <Image
             ref={imageRef}
@@ -95,7 +95,10 @@ function Home({
           </Button>
         </section>
         <section id="socials" className="relative flex h-screen pt-20">
-          <div className="absolute -top-1/2 bottom-0 left-0 right-0 -z-10 transition-all">
+          <div
+            className="absolute -top-1/2 bottom-0 left-0 right-0 -z-10
+              transition-all"
+          >
             <Canvas dpr={0.25}>
               <ambientLight intensity={Math.PI / 2} />
               <PerspectiveCamera makeDefault position={[0, 5.25, 7.5]} fov={90}>

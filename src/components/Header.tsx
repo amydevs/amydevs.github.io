@@ -53,14 +53,16 @@ const Header = React.forwardRef<
           setMobileEnable(false);
         }}
         className={cn(
-          "auto-limit-w fixed inset-0 top-20 -z-10 max-h-screen transition-all md:hidden",
+          `auto-limit-w fixed inset-0 top-20 -z-10 max-h-screen transition-all
+          md:hidden`,
           !mobileEnable && "-top-full",
         )}
       />
       <div className="ml-auto md:hidden">
         <button
           className={cn(
-            "flex h-9 w-9 -translate-y-1 items-center justify-center transition-all",
+            `flex h-9 w-9 -translate-y-1 items-center justify-center
+            transition-all`,
             mobileEnable && "rotate-90 text-primary",
           )}
           onClick={() => setMobileEnable(!mobileEnable)}

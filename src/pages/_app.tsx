@@ -107,7 +107,8 @@ const MyApp: AppType = ({ Component, pageProps }) => {
               <Header
                 suppressHydrationWarning
                 routes={newRoutes}
-                className="auto-limit-w shadow-lg transition-all scroll-y-[0]:shadow-none xl:rounded-b-lg"
+                className="auto-limit-w shadow-lg transition-all
+                  scroll-y-[0]:shadow-none xl:rounded-b-lg"
               />
             </header>
             <Component {...pageProps} />

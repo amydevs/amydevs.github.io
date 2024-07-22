@@ -15,7 +15,10 @@ const Radio = () => {
     <div className="auto-limit-w flex min-h-[calc(100vh-5rem)] py-3">
       <div className="flex flex-1 overflow-hidden">
         {!loaded && (
-          <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+          <div
+            className="absolute left-1/2 top-1/2 -translate-x-1/2
+              -translate-y-1/2"
+          >
             <LoaderCircle className="animate-spin text-primary" />
           </div>
         )}
