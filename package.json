@@ -9,7 +9,6 @@
     "postbuild": "next-sitemap && tsx ./scripts/generate-rss.ts",
     "dev": "next dev",
     "lint": "next lint",
-    "prettier": "prettier",
     "start": "next start"
   },
   "dependencies": {

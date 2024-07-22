@@ -1,8 +1,8 @@
 /** @type {import('prettier').Config & import('prettier-plugin-tailwindcss').PluginOptions} */
 const config = {
   plugins: [
+    "prettier-plugin-classnames",
     "prettier-plugin-tailwindcss",
-    "prettier-plugin-classnames"
   ],
   semi: true,
   trailingComma: "all",
