@@ -29,7 +29,7 @@ function Portfolio() {
   }, []);
 
   return (
-    <main className="auto-limit-w grid grid-cols-1 gap-3 pb-8 md:grid-cols-2">
+    <main className="auto-limit-w grid grid-cols-1 gap-3 pt-1 md:grid-cols-2">
       {projectCards.map((card, i) => (
         <GlowCard
           className="flex h-72 flex-col hover:shadow-xl"

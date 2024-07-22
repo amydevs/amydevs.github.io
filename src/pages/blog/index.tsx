@@ -59,7 +59,7 @@ function BlogHome({ posts }: InferGetStaticPropsType<typeof getStaticProps>) {
           ).toString()}
         />
       </Head>
-      <main className="auto-limit-w grid grid-cols-1 gap-3 pb-8 md:grid-cols-2">
+      <main className="auto-limit-w grid grid-cols-1 gap-3 pt-1 md:grid-cols-2">
         {posts
           .filter((meta) => !meta.draft)
           .map((meta, i) => (
