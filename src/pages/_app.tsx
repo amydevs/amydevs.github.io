@@ -32,7 +32,7 @@ const MyApp: AppType = ({ Component, pageProps }) => {
     return route;
   });
 
-  const title = ( currentRoute == null ? '' : currentRoute.name ) + fullName;
+  const title = ( currentRoute == null ? '' : `${currentRoute.name} -` ) + fullName;
   const image_src = `https://github.com/${env.NEXT_PUBLIC_GH_USER}.png`;
   const description = "Software Development and Music Production";
   const asPath = filterUrlParams(router.asPath);
