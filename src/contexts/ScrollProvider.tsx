@@ -7,9 +7,11 @@ function ScrollProvider({ children }: { children: JSX.Element }) {
     0, 0,
   ]);
   const handleScroll = () => {
-    document.documentElement.setAttribute("scrollX", `${window.scrollX}`);
-    document.documentElement.setAttribute("scrollY", `${window.scrollY}`);
-    setScrollPosition([window.scrollX, window.scrollY]);
+    window.requestAnimationFrame(() => {
+      document.documentElement.setAttribute("scrollX", `${window.scrollX}`);
+      document.documentElement.setAttribute("scrollY", `${window.scrollY}`);
+      setScrollPosition([window.scrollX, window.scrollY]);
+    });
   };
 
   React.useEffect(() => {
