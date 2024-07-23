@@ -6,12 +6,19 @@ function ScrollProvider({ children }: { children: JSX.Element }) {
   const [scrollPosition, setScrollPosition] = React.useState<[number, number]>([
     0, 0,
   ]);
+  const scrollProm = React.useRef(Promise.resolve());
   const handleScroll = () => {
-    window.requestAnimationFrame(() => {
-      document.documentElement.setAttribute("scrollX", `${window.scrollX}`);
-      document.documentElement.setAttribute("scrollY", `${window.scrollY}`);
-      setScrollPosition([window.scrollX, window.scrollY]);
+    const oldScrollProm = scrollProm.current;
+    scrollProm.current = new Promise(async (resolve) => {
+      await oldScrollProm;
+      window.requestAnimationFrame(() => {
+        document.documentElement.setAttribute("scrollX", `${window.scrollX}`);
+        document.documentElement.setAttribute("scrollY", `${window.scrollY}`);
+        setScrollPosition([window.scrollX, window.scrollY]);
+        setTimeout(resolve, 40);
+      });
     });
+    
   };
 
   React.useEffect(() => {
