@@ -15,7 +15,7 @@ function ScrollProvider({ children }: { children: JSX.Element }) {
         document.documentElement.setAttribute("scrollX", `${window.scrollX}`);
         document.documentElement.setAttribute("scrollY", `${window.scrollY}`);
         setScrollPosition([window.scrollX, window.scrollY]);
-        setTimeout(resolve, 40);
+        setTimeout(resolve, 10);
       });
     });
     
