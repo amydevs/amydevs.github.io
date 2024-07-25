@@ -13,7 +13,11 @@ const MobileNavbar = React.forwardRef<
     onThemeChange?: (theme: string) => void;
   }
 >(({ routes, className, onThemeChange, ...props }, ref) => (
-  <div ref={ref} className={cn("bg-background", className)} {...props}>
+  <div
+    ref={ref}
+    className={cn("bg-background text-lg font-medium", className)}
+    {...props}
+  >
     <nav className="flex flex-col gap-6">
       {routes.map((route, i) => (
         <Link

@@ -30,22 +30,82 @@ const Header = React.forwardRef<
   }, [router.events]);
 
   return (
-    <div
-      ref={ref}
-      className={cn(
-        "z-50 flex h-20 bg-background py-6 text-lg font-medium",
-        className,
-        mobileEnable && "shadow-none",
-      )}
-      {...props}
-    >
-      <div>
-        <Link className="transition-all hover:text-primary" href="/">
-          {firstName}
-          <span className="text-primary">!</span>
-        </Link>
-      </div>
+    <>
+      <div
+        ref={ref}
+        className={cn(
+          `z-50 flex h-20 dark:bg-[hsl(var(--background)/50%)]
+          bg-[hsl(var(--background)/75%)] backdrop-blur-lg py-6 text-lg
+          font-medium transition-all`,
+          className,
+          mobileEnable && "shadow-none bg-background dark:bg-background",
+        )}
+        {...props}
+      >
+        <div>
+          <Link className="transition-all hover:text-primary" href="/">
+            {firstName}
+            <span className="text-primary">!</span>
+          </Link>
+        </div>
 
+        <div className="ml-auto md:hidden">
+          <button
+            className={cn(
+              `flex h-9 w-9 -translate-y-1 items-center justify-center
+              transition-all`,
+              mobileEnable && "rotate-90 text-primary",
+            )}
+            onClick={() => setMobileEnable(!mobileEnable)}
+            title="Toggle Nav Menu"
+            aria-controls="menu"
+            aria-expanded={mobileEnable}
+            role="switch"
+            aria-checked={mobileEnable}
+          >
+            <Menu height={24} width={24} />
+          </button>
+        </div>
+
+        <nav className="ml-auto hidden gap-6 md:flex">
+          {routes.map((route, i) => (
+            <Link
+              className={cn(
+                "transition-all hover:text-primary",
+                route.current && "text-primary",
+              )}
+              href={route.path}
+              key={i}
+            >
+              {route.name}
+            </Link>
+          ))}
+          <ThemeSwitch>
+            {(theme) => (
+              <Button
+                onClick={() => {
+                  const newTheme =
+                    theme.resolvedTheme == "dark" ? "light" : "dark";
+                  theme.setTheme(newTheme);
+                  onThemeChange?.(newTheme);
+                }}
+                className="-translate-y-1 hover:text-primary"
+                variant="ghost"
+                size="icon"
+                title="Toggle Theme"
+                role="switch"
+                aria-checked={theme.resolvedTheme == "dark"}
+              >
+                {theme.resolvedTheme == "dark" ? (
+                  <Sun height={24} width={24} />
+                ) : (
+                  <Moon height={24} width={24} />
+                )}
+              </Button>
+            )}
+          </ThemeSwitch>
+        </nav>
+      </div>
       <MobileNavbar
         routes={routes}
         onThemeChange={(theme) => {
@@ -58,63 +118,7 @@ const Header = React.forwardRef<
           !mobileEnable && "-top-full",
         )}
       />
-      <div className="ml-auto md:hidden">
-        <button
-          className={cn(
-            `flex h-9 w-9 -translate-y-1 items-center justify-center
-            transition-all`,
-            mobileEnable && "rotate-90 text-primary",
-          )}
-          onClick={() => setMobileEnable(!mobileEnable)}
-          title="Toggle Nav Menu"
-          aria-controls="menu"
-          aria-expanded={mobileEnable}
-          role="switch"
-          aria-checked={mobileEnable}
-        >
-          <Menu height={24} width={24} />
-        </button>
-      </div>
-
-      <nav className="ml-auto hidden gap-6 md:flex">
-        {routes.map((route, i) => (
-          <Link
-            className={cn(
-              "transition-all hover:text-primary",
-              route.current && "text-primary",
-            )}
-            href={route.path}
-            key={i}
-          >
-            {route.name}
-          </Link>
-        ))}
-        <ThemeSwitch>
-          {(theme) => (
-            <Button
-              onClick={() => {
-                const newTheme =
-                  theme.resolvedTheme == "dark" ? "light" : "dark";
-                theme.setTheme(newTheme);
-                onThemeChange?.(newTheme);
-              }}
-              className="-translate-y-1 hover:text-primary"
-              variant="ghost"
-              size="icon"
-              title="Toggle Theme"
-              role="switch"
-              aria-checked={theme.resolvedTheme == "dark"}
-            >
-              {theme.resolvedTheme == "dark" ? (
-                <Sun height={24} width={24} />
-              ) : (
-                <Moon height={24} width={24} />
-              )}
-            </Button>
-          )}
-        </ThemeSwitch>
-      </nav>
-    </div>
+    </>
   );
 });
 Header.displayName = "Header";
