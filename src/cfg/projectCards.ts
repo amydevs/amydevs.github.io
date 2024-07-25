@@ -123,23 +123,6 @@ const projectCards: ProjectCardData[] = [
     ],
   },
   {
-    title: "MaebeeTV Website Rewrite",
-    description:
-      "The landing page for MaebeeTV rewritten in Next.js and React extended with team management features.",
-    actions: [
-      {
-        text: "GitHub",
-        href: "https://github.com/amydevs/maebeetv",
-        icon: Github,
-      },
-      {
-        text: "Website",
-        href: "https://maebeetv.vercel.app",
-        icon: Globe,
-      },
-    ],
-  },
-  {
     title: "rxgithub",
     description:
       "A Rust Actix Web App to embed GitHub code snippets, images, gifs, videos, gists, & more on Discord, Slack, Telegram, Twitter, etc.",
@@ -172,6 +155,11 @@ const projectCards: ProjectCardData[] = [
         text: "GitHub",
         href: "https://github.com/amydevs/TaxCalculatorLaravel",
         icon: Github,
+      },
+      {
+        text: "Website",
+        href: "https://autaxcalc.fly.dev",
+        icon: Globe,
       },
     ],
   },
