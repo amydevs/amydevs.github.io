@@ -92,6 +92,12 @@ const MyApp: AppType = ({ Component, pageProps }) => {
           title="Sitemap"
           href="/sitemap.xml"
         />
+
+        <script
+          defer
+          src="https://cloud.umami.is/script.js"
+          data-website-id="284ee374-aefc-4370-b87b-32be38d1a755"
+        />
       </Head>
       <ThemeProvider
         attribute="class"
