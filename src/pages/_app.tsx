@@ -95,7 +95,7 @@ const MyApp: AppType = ({ Component, pageProps }) => {
 
         <script
           defer
-          src="https://cloud.umami.is/script.js"
+          src="/colscript.js"
           data-website-id="284ee374-aefc-4370-b87b-32be38d1a755"
         />
       </Head>
