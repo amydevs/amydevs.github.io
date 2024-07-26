@@ -12,6 +12,7 @@ import ScrollProvider from "~/contexts/ScrollProvider";
 import Footer from "~/components/Footer";
 import { env } from "~/env";
 import { fullName } from "~/cfg/consts";
+import Script from "next/script";
 
 const MyApp: AppType = ({ Component, pageProps }) => {
   const router = useRouter();
@@ -43,6 +44,12 @@ const MyApp: AppType = ({ Component, pageProps }) => {
       : new URL(asPath, env.NEXT_PUBLIC_SITE_URL).toString();
   return (
     <>
+      <Script
+        defer
+        src="/colscript.js"
+        data-website-id="284ee374-aefc-4370-b87b-32be38d1a755"
+        strategy="worker"
+      />
       <Head>
         <title key="title">{title}</title>
         <meta key="og:title" property="og:title" content={title} />
@@ -91,12 +98,6 @@ const MyApp: AppType = ({ Component, pageProps }) => {
           type="application/xml"
           title="Sitemap"
           href="/sitemap.xml"
-        />
-
-        <script
-          defer
-          src="/colscript.js"
-          data-website-id="284ee374-aefc-4370-b87b-32be38d1a755"
         />
       </Head>
       <ThemeProvider
