@@ -49,7 +49,23 @@ const projectCards: ProjectCardData[] = [
     ],
   },
   {
-    title: "Chip-8 Emulator",
+    title: "Chip-8 Emulator (WebAssembly)",
+    description: "A React Wrapper around a Chip-8 Emulator Written in Rust.",
+    actions: [
+      {
+        text: "GitHub",
+        href: "https://github.com/amydevs/chip-8-emu-wasm",
+        icon: Github,
+      },
+      {
+        text: "Demo",
+        href: "https://amydev.me/chip-8-emu-wasm",
+        icon: Globe,
+      },
+    ],
+  },
+  {
+    title: "Chip-8 Emulator (Rust)",
     description: "A Chip-8 Interpreting Emulator Written in Rust.",
     actions: [
       {
@@ -102,23 +118,6 @@ const projectCards: ProjectCardData[] = [
         text: "Demo",
         href: "https://yirrgayconnect.vercel.app",
         icon: Globe,
-      },
-    ],
-  },
-  {
-    title: "SRXDCustomLeaderboard",
-    description:
-      "A third-party open-source private leaderboard client and server built with Next.js and React for SRXD.",
-    actions: [
-      {
-        text: "GitHub (Server)",
-        href: "https://github.com/SRXDModdingGroup/SRXDCustomLeaderboardServer",
-        icon: Github,
-      },
-      {
-        text: "GitHub (Client)",
-        href: "https://github.com/SRXDModdingGroup/SRXDCustomLeaderboard",
-        icon: Github,
       },
     ],
   },
