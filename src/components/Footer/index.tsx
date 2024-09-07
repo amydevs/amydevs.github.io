@@ -23,7 +23,7 @@ const Footer = React.forwardRef<
         className="flex flex-col items-center gap-4 px-8 md:flex-row md:gap-2
           md:px-0"
       >
-        <Image {...amyPicture} alt="Art of Amy" height={32} width={32} />
+        <Image {...amyPicture} alt="Art of Amy" height={44} width={44} />
         <p className="text-center leading-loose md:text-left">
           Built by{" "}
           <Link
