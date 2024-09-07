@@ -64,10 +64,14 @@
     "prettier-plugin-tailwindcss": "^0.6.5",
     "rehype-pretty-code": "^0.13.2",
     "rss": "^1.2.2",
+    "sharp": "^0.33.5",
     "shiki": "^1.10.3",
     "tailwindcss": "^3.4.3",
     "tsx": "^4.16.2",
     "typescript": "^5.5.3"
+  },
+  "optionalDependencies": {
+    "@esbuild/win32-x64": "^0.23.1"
   },
   "ct3aMetadata": {
     "initVersion": "7.36.1"
