@@ -2,7 +2,8 @@ import * as React from "react";
 import { cn } from "~/lib/utils";
 import Link from "next/link";
 import { env } from "~/env";
-import { Cat } from "lucide-react";
+import amyPicture from "./amy.png";
+import Image from "next/image";
 
 const Footer = React.forwardRef<
   HTMLDivElement,
@@ -22,7 +23,7 @@ const Footer = React.forwardRef<
         className="flex flex-col items-center gap-4 px-8 md:flex-row md:gap-2
           md:px-0"
       >
-        <Cat className="text-primary" width={32} height={32} />
+        <Image {...amyPicture} alt="Art of Amy" height={32} width={32} />
         <p className="text-center leading-loose md:text-left">
           Built by{" "}
           <Link
