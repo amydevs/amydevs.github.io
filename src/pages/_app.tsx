@@ -44,12 +44,12 @@ const MyApp: AppType = ({ Component, pageProps }) => {
       : new URL(asPath, env.NEXT_PUBLIC_SITE_URL).toString();
   return (
     <>
-      <Script
+      {/* <Script
         defer
         src="/colscript.js"
         data-website-id="284ee374-aefc-4370-b87b-32be38d1a755"
         strategy="worker"
-      />
+      /> */}
       <Head>
         <title key="title">{title}</title>
         <meta key="og:title" property="og:title" content={title} />
