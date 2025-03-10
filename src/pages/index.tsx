@@ -1,7 +1,7 @@
 import type { InferGetStaticPropsType } from "next/types";
 import { Cloud, Clouds, PerspectiveCamera } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
-import { ArrowDown, AudioLines, Github, Music } from "lucide-react";
+import { ArrowDown, AudioLines, Github, Music, User } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import * as React from "react";
@@ -135,6 +135,12 @@ function Home({
             </Canvas>
           </div>
           <div className="auto-limit-w flex items-center justify-center gap-3">
+            <Button asChild>
+              <Link href={`https://en.pronouns.page/@amydev.me`}>
+                <User className="mr-1" />
+                Pronouns
+              </Link>
+            </Button>
             <Button asChild>
               <Link href={`https://github.com/${env.NEXT_PUBLIC_GH_USER}`}>
                 <Github className="mr-1" />
