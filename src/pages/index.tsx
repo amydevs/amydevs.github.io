@@ -134,31 +134,33 @@ function Home({
               </Clouds>
             </Canvas>
           </div>
-          <div className="auto-limit-w flex items-center justify-center gap-3">
-            <Button asChild>
-              <Link href={`https://en.pronouns.page/@amydev.me`}>
-                <User className="mr-1" />
-                Pronouns
-              </Link>
-            </Button>
-            <Button asChild>
-              <Link href={`https://github.com/${env.NEXT_PUBLIC_GH_USER}`}>
-                <Github className="mr-1" />
-                GitHub
-              </Link>
-            </Button>
-            <Button asChild>
-              <Link href="https://open.spotify.com/artist/15HdoPMP89EsIfIvN1coko?si=pyuDsYIpRcu2AHDYVYIn-Q">
-                <Music className="mr-1" />
-                Spotify
-              </Link>
-            </Button>
-            <Button asChild>
-              <Link href="https://soundcloud.com/owotter">
-                <AudioLines className="mr-1" />
-                SoundCloud
-              </Link>
-            </Button>
+          <div className="auto-limit-w flex items-center justify-center">
+            <div className="flex justify-center gap-3 flex-wrap">
+              <Button asChild>
+                <Link href={`https://en.pronouns.page/@amydev.me`}>
+                  <User className="mr-1" />
+                  Pronouns
+                </Link>
+              </Button>
+              <Button asChild>
+                <Link href={`https://github.com/${env.NEXT_PUBLIC_GH_USER}`}>
+                  <Github className="mr-1" />
+                  GitHub
+                </Link>
+              </Button>
+              <Button asChild>
+                <Link href="https://open.spotify.com/artist/15HdoPMP89EsIfIvN1coko?si=pyuDsYIpRcu2AHDYVYIn-Q">
+                  <Music className="mr-1" />
+                  Spotify
+                </Link>
+              </Button>
+              <Button asChild>
+                <Link href="https://soundcloud.com/owotter">
+                  <AudioLines className="mr-1" />
+                  SoundCloud
+                </Link>
+              </Button>
+            </div>
           </div>
         </section>
       </main>
