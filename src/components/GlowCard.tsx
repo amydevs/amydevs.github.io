@@ -21,7 +21,7 @@ const GlowCard = React.forwardRef<
         `relative z-10 overflow-hidden transition-all after:absolute
         after:left-[var(--x)] after:top-[var(--y)] after:-z-10 after:h-[100rem]
         after:w-[100rem] after:-translate-x-1/2 after:-translate-y-1/2
-        after:bg-[radial-gradient(hsl(var(--primary)/10%),#3984ff00_70%)]
+        after:bg-[radial-gradient(hsl(var(--foreground)/3%),#3984ff00_60%)]
         after:transition-[height,width] after:duration-700 after:ease-out
         after:content-['']
         dark:after:bg-[radial-gradient(hsl(var(--primary)/30%),#3984ff00_70%)]`,
