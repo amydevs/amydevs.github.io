@@ -139,14 +139,14 @@
   pre[data-theme*=" "],
   code[data-theme*=" "],
   code[data-theme*=" "] span {
-    color: var(--shiki-light);
-    background-color: var(--shiki-light-bg);
+    color: var(--shiki-light) !important;
+    background-color: var(--shiki-light-bg) !important;
   }
 
   .dark pre[data-theme*=" "],
   .dark code[data-theme*=" "],
   .dark code[data-theme*=" "] span {
-    color: var(--shiki-dark);
-    background-color: var(--shiki-dark-bg);
+    color: var(--shiki-dark) !important;
+    background-color: var(--shiki-dark-bg) !important;
   }
 }
