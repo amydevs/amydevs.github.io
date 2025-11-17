@@ -2,7 +2,7 @@ import type { Options as MDXOptions } from "@mdx-js/esbuild";
 import type { GetStaticPathsResult, InferGetStaticPropsType } from "next";
 import type { Options as RehypePrettyCodeOptions } from "rehype-pretty-code";
 import * as React from "react";
-import { getPostBySlug, getPostSlugs } from "~/lib/ssg/utils";
+import { getAllPostMetadata, getPostBySlug } from "~/lib/ssg/utils";
 import { getMDXComponent } from "mdx-bundler/client";
 import rehypePrettyCode from "rehype-pretty-code";
 import { cn, filterUrlParams, localeDateTimeStyle } from "~/lib/utils";
@@ -13,7 +13,7 @@ import { useRouter } from "next/router";
 type Params = { slug: string };
 
 async function getStaticPaths(): Promise<GetStaticPathsResult<Params>> {
-  const paths = (await getPostSlugs()).map((slug) => ({ params: { slug } }));
+  const paths = (await getAllPostMetadata()).map(({ slug }) => ({ params: { slug } }));
   return { paths, fallback: false };
 }
 
@@ -39,6 +39,8 @@ async function getStaticProps({ params }: { params: Params }) {
   return { props: { post } };
 }
 
+// TODO: Fix this
+/* eslint-disable react-hooks/static-components */
 function BlogPost({ post }: InferGetStaticPropsType<typeof getStaticProps>) {
   const router = useRouter();
   const Component = React.useMemo(
@@ -47,28 +49,26 @@ function BlogPost({ post }: InferGetStaticPropsType<typeof getStaticProps>) {
   );
   const lastModified = post.meta.lastModified ?? post.meta.date;
 
-  const jsonLd = React.useRef(
-    JSON.stringify({
-      "@context": "https://schema.org/",
-      "@type": "BlogPosting",
-      headline: post.meta.title,
-      author: {
-        "@type": "Person",
-        name: env.NEXT_PUBLIC_GH_USER,
-      },
-      genre: post.meta.category,
-      dateCreated: new Date(post.meta.date).toISOString(),
-      dateModified: new Date(lastModified).toISOString(),
-      description: post.meta.description,
-      url: new URL(
-        filterUrlParams(router.asPath),
-        env.NEXT_PUBLIC_SITE_URL,
-      ).toString(),
-      "inLanguage ": "en-US",
-      image: post.meta.preview,
-      keywords: post.meta.keywords,
-    }),
-  );
+  const [jsonLd] = React.useState(() => JSON.stringify({
+    "@context": "https://schema.org/",
+    "@type": "BlogPosting",
+    headline: post.meta.title,
+    author: {
+      "@type": "Person",
+      name: env.NEXT_PUBLIC_GH_USER,
+    },
+    genre: post.meta.category,
+    dateCreated: new Date(post.meta.date).toISOString(),
+    dateModified: new Date(lastModified).toISOString(),
+    description: post.meta.description,
+    url: new URL(
+      filterUrlParams(router.asPath),
+      env.NEXT_PUBLIC_SITE_URL,
+    ).toString(),
+    "inLanguage ": "en-US",
+    image: post.meta.preview,
+    keywords: post.meta.keywords,
+  }));
 
   return (
     <>
@@ -120,7 +120,7 @@ function BlogPost({ post }: InferGetStaticPropsType<typeof getStaticProps>) {
         <script
           key="json-ld"
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: jsonLd.current }}
+          dangerouslySetInnerHTML={{ __html: jsonLd }}
         />
       </Head>
       <main className="auto-limit-w flex max-w-5xl flex-col items-center">

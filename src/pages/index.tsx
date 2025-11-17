@@ -6,9 +6,10 @@ import Image from "next/image";
 import Link from "next/link";
 import * as React from "react";
 import { Button } from "~/components/ui/button";
-import { cn, hslToHex } from "~/lib/utils";
+import { cn } from "~/lib/utils";
 import { env } from "~/env";
 import { useTheme } from "next-themes";
+import chroma from "chroma-js";
 import * as plaiceholder from "plaiceholder";
 import { firstName } from "~/cfg/consts";
 
@@ -37,13 +38,11 @@ function Home({
     if (typeof window === "undefined" || !("getComputedStyle" in window)) {
       return "#000000";
     }
-    const hslColor = window
+    const color = window
       .getComputedStyle(document.body)
       .getPropertyValue("--primary");
-    const [h, s, l] = hslColor
-      .split(" ")
-      .map((e) => Number(e.replace("%", "")));
-    return hslToHex(h!, s!, l!);
+    const computedColor = chroma(color);
+    return computedColor.hex();
     // linter doesn't get that the it should be a dep, as I'm using DOM apis in this effect.
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [theme.resolvedTheme]);

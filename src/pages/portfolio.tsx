@@ -8,23 +8,20 @@ import {
   CardHeader,
   CardTitle,
 } from "~/components/ui/card";
-import { useScroll } from "~/contexts/ScrollProvider";
 import GlowCard from "~/components/GlowCard";
 
 function Portfolio() {
   const [mousePos, setMousePos] = React.useState<[number, number]>([
     -999999, -999999,
   ]);
-  // for some reason this gets rid of issues with scrolling
-  useScroll();
 
   React.useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
+    const mouseEventCb = (e: MouseEvent) => {
       setMousePos([e.clientX, e.clientY]);
     };
-    window.addEventListener("mousemove", handleMouseMove, { passive: true });
+    window.addEventListener("mousemove", mouseEventCb, { passive: true });
     return () => {
-      window.removeEventListener("mousemove", handleMouseMove);
+      window.removeEventListener("mousemove", mouseEventCb);
     };
   }, []);
 

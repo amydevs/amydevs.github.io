@@ -13,7 +13,6 @@ import {
   CardHeader,
   CardTitle,
 } from "~/components/ui/card";
-import { useScroll } from "~/contexts/ScrollProvider";
 import { env } from "~/env";
 import { getAllPostMetadata } from "~/lib/ssg/utils";
 import { filterUrlParams, localeDateTimeStyle } from "~/lib/utils";
@@ -32,9 +31,7 @@ function BlogHome({ posts }: InferGetStaticPropsType<typeof getStaticProps>) {
   const [mousePos, setMousePos] = React.useState<[number, number]>([
     -999999, -999999,
   ]);
-  // for some reason this gets rid of issues with scrolling
-  useScroll();
-
+  
   React.useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
       setMousePos([e.clientX, e.clientY]);

@@ -38,8 +38,6 @@ const rss = new Rss(
   })),
 );
 
-console.log(new URL(`${blogSlug}/hi`, env.NEXT_PUBLIC_SITE_URL).toString());
-
 await fs.promises.writeFile(
   path.join(baseDir, "out", blogSlug, "rss.xml"),
   rss.xml({ indent: true }),

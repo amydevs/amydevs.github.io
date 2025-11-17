@@ -3,7 +3,7 @@ import { useTheme } from "next-themes";
 function ThemeSwitch({
   children,
 }: {
-  children: (theme: ReturnType<typeof useTheme>) => JSX.Element;
+  children: (theme: ReturnType<typeof useTheme>) => React.ReactNode;
 }) {
   const theme = useTheme();
   const childrenExec = children(theme);
