@@ -31,7 +31,7 @@ function BlogHome({ posts }: InferGetStaticPropsType<typeof getStaticProps>) {
   const [mousePos, setMousePos] = React.useState<[number, number]>([
     -999999, -999999,
   ]);
-  
+
   React.useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
       setMousePos([e.clientX, e.clientY]);

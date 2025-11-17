@@ -13,7 +13,9 @@ import { useRouter } from "next/router";
 type Params = { slug: string };
 
 async function getStaticPaths(): Promise<GetStaticPathsResult<Params>> {
-  const paths = (await getAllPostMetadata()).map(({ slug }) => ({ params: { slug } }));
+  const paths = (await getAllPostMetadata()).map(({ slug }) => ({
+    params: { slug },
+  }));
   return { paths, fallback: false };
 }
 
@@ -49,26 +51,28 @@ function BlogPost({ post }: InferGetStaticPropsType<typeof getStaticProps>) {
   );
   const lastModified = post.meta.lastModified ?? post.meta.date;
 
-  const [jsonLd] = React.useState(() => JSON.stringify({
-    "@context": "https://schema.org/",
-    "@type": "BlogPosting",
-    headline: post.meta.title,
-    author: {
-      "@type": "Person",
-      name: env.NEXT_PUBLIC_GH_USER,
-    },
-    genre: post.meta.category,
-    dateCreated: new Date(post.meta.date).toISOString(),
-    dateModified: new Date(lastModified).toISOString(),
-    description: post.meta.description,
-    url: new URL(
-      filterUrlParams(router.asPath),
-      env.NEXT_PUBLIC_SITE_URL,
-    ).toString(),
-    "inLanguage ": "en-US",
-    image: post.meta.preview,
-    keywords: post.meta.keywords,
-  }));
+  const [jsonLd] = React.useState(() =>
+    JSON.stringify({
+      "@context": "https://schema.org/",
+      "@type": "BlogPosting",
+      headline: post.meta.title,
+      author: {
+        "@type": "Person",
+        name: env.NEXT_PUBLIC_GH_USER,
+      },
+      genre: post.meta.category,
+      dateCreated: new Date(post.meta.date).toISOString(),
+      dateModified: new Date(lastModified).toISOString(),
+      description: post.meta.description,
+      url: new URL(
+        filterUrlParams(router.asPath),
+        env.NEXT_PUBLIC_SITE_URL,
+      ).toString(),
+      "inLanguage ": "en-US",
+      image: post.meta.preview,
+      keywords: post.meta.keywords,
+    }),
+  );
 
   return (
     <>

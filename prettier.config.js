@@ -7,7 +7,7 @@ const config = {
   printWidth: 80,
   tabWidth: 2,
   customFunctions: ["cn"],
-  endingPosition: "absolute-with-indent",
+  endingPosition: "absolute",
 };
 
 export default config;

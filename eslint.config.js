@@ -1,17 +1,19 @@
-import tseslint from 'typescript-eslint';
-import nextVitals from 'eslint-config-next/core-web-vitals'
+import tseslint from "typescript-eslint";
+import nextVitals from "eslint-config-next/core-web-vitals";
+import eslintPluginPrettierRecommended from "eslint-plugin-prettier/recommended";
 
 export default tseslint.config(
   {
-    ignores: ['.next']
+    ignores: [".next"],
   },
   ...nextVitals,
+  eslintPluginPrettierRecommended,
   {
-    files: ['**/*.ts', '**/*.tsx'],
+    files: ["**/*.ts", "**/*.tsx"],
     extends: [
       ...tseslint.configs.recommended,
       ...tseslint.configs.recommendedTypeChecked,
-      ...tseslint.configs.stylisticTypeChecked
+      ...tseslint.configs.stylisticTypeChecked,
     ],
     rules: {
       "@typescript-eslint/array-type": "off",
@@ -20,7 +22,10 @@ export default tseslint.config(
         "warn",
         { prefer: "type-imports", fixStyle: "inline-type-imports" },
       ],
-      "@typescript-eslint/no-unused-vars": ["warn", { argsIgnorePattern: "^_" }],
+      "@typescript-eslint/no-unused-vars": [
+        "warn",
+        { argsIgnorePattern: "^_" },
+      ],
       "@typescript-eslint/require-await": "off",
       "@typescript-eslint/no-misused-promises": [
         "error",
@@ -30,12 +35,12 @@ export default tseslint.config(
   },
   {
     linterOptions: {
-      reportUnusedDisableDirectives: true
+      reportUnusedDisableDirectives: true,
     },
     languageOptions: {
       parserOptions: {
-        projectService: true
-      }
-    }
-  }
-)
+        projectService: true,
+      },
+    },
+  },
+);

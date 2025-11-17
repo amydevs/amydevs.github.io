@@ -107,14 +107,15 @@ const MyApp: AppType = ({ Component, pageProps }) => {
         enableSystem
         disableTransitionOnChange
       >
-        <div
-          className={cn("flex min-h-screen flex-col", GeistSans.className)}
-        >
+        <div className={cn("flex min-h-screen flex-col", GeistSans.className)}>
           <header className="sticky top-0 z-50">
             <Header
               suppressHydrationWarning
               routes={newRoutes}
-              className={cn("auto-limit-w shadow-lg transition-all xl:rounded-b-lg", atTop && "shadow-none")}
+              className={cn(
+                "auto-limit-w shadow-lg transition-all xl:rounded-b-lg",
+                atTop && "shadow-none",
+              )}
             />
           </header>
           <Component {...pageProps} />

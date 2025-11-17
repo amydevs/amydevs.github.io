@@ -51,11 +51,7 @@ async function getAllPosts(options?: MDXBundlerOptions): Promise<Post[]> {
   const slugs = await getPostFilenames();
   const posts: Post[] = await Promise.allSettled(
     slugs.map((slug) => getPostBySlug(slug, options)),
-  ).then((e) =>
-    e
-      .filter((p) => p.status === "fulfilled")
-      .map((p) => p.value),
-  );
+  ).then((e) => e.filter((p) => p.status === "fulfilled").map((p) => p.value));
   const sortedPosts = posts.sort((post1, post2) =>
     new Date(post1.meta.date) > new Date(post2.meta.date) ? -1 : 1,
   );
@@ -79,8 +75,7 @@ async function getAllPostMetadata(): Promise<PostMetadata[]> {
   const slugs = await getPostSlugs();
   const metadata = await Promise.allSettled(
     slugs.map((slug) => getPostMetadataBySlug(slug)),
-  )
-    .then((e) => e.filter((p) => p.status === "fulfilled").map((p) => p.value));
+  ).then((e) => e.filter((p) => p.status === "fulfilled").map((p) => p.value));
   const sortedPosts = metadata.sort((post1, post2) =>
     new Date(post1.date) > new Date(post2.date) ? -1 : 1,
   );
