@@ -39,7 +39,7 @@ const Footer = React.forwardRef<
           >
             next.js
           </Link>
-          . The source code is available on{" "}
+          .<br className="md:hidden" /> Source code is available on{" "}
           <Link
             className="font-medium text-primary underline"
             href={`https://github.com/${env.NEXT_PUBLIC_GH_USER}/${env.NEXT_PUBLIC_GH_USER}.github.io`}
