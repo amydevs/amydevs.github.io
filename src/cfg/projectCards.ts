@@ -32,23 +32,6 @@ const projectCards: ProjectCardData[] = [
     ],
   },
   {
-    title: "Exalta Launcher",
-    description:
-      "A third-party open-source launcher built in Rust for Realm of the Mad God Exalted.",
-    actions: [
-      {
-        text: "GitHub",
-        href: "https://github.com/amydevs/exalta-launcher",
-        icon: Github,
-      },
-      {
-        text: "Download",
-        href: "https://github.com/amydevs/exalta-launcher/releases/latest",
-        icon: Download,
-      },
-    ],
-  },
-  {
     title: "Chip-8 Emulator (WebAssembly)",
     description: "A React Wrapper around a Chip-8 Emulator Written in Rust.",
     actions: [
@@ -76,6 +59,34 @@ const projectCards: ProjectCardData[] = [
       {
         text: "Download",
         href: "https://github.com/amydevs/chip-8-emu-rs/releases/latest",
+        icon: Download,
+      },
+    ],
+  },
+  {
+    title: "Twinleaf PTCG Wiki",
+    description: "A community-driven wiki detailing the status of available cards in the Twinleaf online trading card game client built with Next.js, Prisma, and Postgres.",
+    actions: [
+      {
+        text: "Demo",
+        href: "https://twinleaf-gg-wiki.vercel.app/",
+        icon: Globe,
+      },
+    ]
+  },
+  {
+    title: "Exalta Launcher",
+    description:
+      "A third-party open-source launcher built in Rust for Realm of the Mad God Exalted.",
+    actions: [
+      {
+        text: "GitHub",
+        href: "https://github.com/amydevs/exalta-launcher",
+        icon: Github,
+      },
+      {
+        text: "Download",
+        href: "https://github.com/amydevs/exalta-launcher/releases/latest",
         icon: Download,
       },
     ],
