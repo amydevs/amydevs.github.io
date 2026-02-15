@@ -9,9 +9,10 @@ type Route = {
   current?: boolean;
 };
 
-type ProjectCardData = {
+type ProjectCardData<C extends string[] = string[]> = {
   title: string;
   description: string;
+  categories?: C;
   actions: Array<{
     href: string;
     icon: LucideIcon;

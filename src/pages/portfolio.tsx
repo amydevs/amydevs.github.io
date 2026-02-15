@@ -9,6 +9,7 @@ import {
   CardTitle,
 } from "~/components/ui/card";
 import GlowCard from "~/components/GlowCard";
+import { Badge } from "~/components/ui/badge";
 
 function Portfolio() {
   const [mousePos, setMousePos] = React.useState<[number, number]>([
@@ -35,6 +36,11 @@ function Portfolio() {
         >
           <CardHeader>
             <CardTitle>{card.title}</CardTitle>
+            <div className="flex gap-2 -mb-3 mt-2">
+              {
+                card.categories?.map((e) => <Badge>{e}</Badge>)
+              }
+            </div>
           </CardHeader>
           <CardContent className="flex-1 overflow-y-auto">
             <div className="h-full w-full overflow-y-auto">

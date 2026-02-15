@@ -68,7 +68,7 @@ function BlogHome({ posts }: InferGetStaticPropsType<typeof getStaticProps>) {
               >
                 <CardHeader>
                   <CardTitle>{meta.title}</CardTitle>
-                  <CardDescription className="flex flex-col gap-2">
+                  <CardDescription>
                     Created On{" "}
                     <React.Suspense
                       fallback={new Date(meta.date)
@@ -82,12 +82,10 @@ function BlogHome({ posts }: InferGetStaticPropsType<typeof getStaticProps>) {
                         .toLocaleDateString("en-US", localeDateTimeStyle)
                         .replaceAll(",", "")}
                     </React.Suspense>
-                    <div>
-                      <Badge>{meta.category}</Badge>
-                    </div>
                   </CardDescription>
-
-
+                  <div className="-mb-3">
+                    <Badge>{meta.category}</Badge>
+                  </div>
                 </CardHeader>
                 <CardContent className="flex-1 overflow-y-auto">
                   <div className="h-full w-full overflow-y-auto">
