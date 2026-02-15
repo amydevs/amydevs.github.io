@@ -5,6 +5,7 @@ import { useRouter } from "next/router";
 import * as React from "react";
 import { fullName } from "~/cfg/consts";
 import GlowCard from "~/components/GlowCard";
+import { Badge } from "~/components/ui/badge";
 import { Button } from "~/components/ui/button";
 import {
   CardContent,
@@ -67,7 +68,7 @@ function BlogHome({ posts }: InferGetStaticPropsType<typeof getStaticProps>) {
               >
                 <CardHeader>
                   <CardTitle>{meta.title}</CardTitle>
-                  <CardDescription>
+                  <CardDescription className="flex flex-col gap-2">
                     Created On{" "}
                     <React.Suspense
                       fallback={new Date(meta.date)
@@ -81,7 +82,12 @@ function BlogHome({ posts }: InferGetStaticPropsType<typeof getStaticProps>) {
                         .toLocaleDateString("en-US", localeDateTimeStyle)
                         .replaceAll(",", "")}
                     </React.Suspense>
+                    <div>
+                      <Badge>{meta.category}</Badge>
+                    </div>
                   </CardDescription>
+
+
                 </CardHeader>
                 <CardContent className="flex-1 overflow-y-auto">
                   <div className="h-full w-full overflow-y-auto">

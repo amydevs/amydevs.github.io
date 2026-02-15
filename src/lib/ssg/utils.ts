@@ -27,7 +27,10 @@ async function getPostBySlug(
   slug: string,
   options?: MDXBundlerOptions,
 ): Promise<Post> {
-  const fullPaths = await glob(path.join(postsDirectory, `${slug}.{md,mdx}`), {
+  const globPattern = path
+    .join(postsDirectory, `${slug}.{md,mdx}`)
+    .replace(/\\/g, '/');
+  const fullPaths = await glob(globPattern, {
     absolute: true,
   });
   const fullPath = fullPaths[0]!;
