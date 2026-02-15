@@ -59,7 +59,11 @@ async function getAllPosts(options?: MDXBundlerOptions): Promise<Post[]> {
 }
 
 async function getPostMetadataBySlug(slug: string): Promise<PostMetadata> {
-  const fullPaths = await glob(path.join(postsDirectory, `${slug}.{md,mdx}`), {
+  // Windows work around.
+  const globPattern = path
+    .join(postsDirectory, `${slug}.{md,mdx}`)
+    .replace(/\\/g, '/');
+  const fullPaths = await glob(globPattern, {
     absolute: false,
   });
   const fullPath = fullPaths[0]!;
@@ -74,8 +78,16 @@ async function getPostMetadataBySlug(slug: string): Promise<PostMetadata> {
 async function getAllPostMetadata(): Promise<PostMetadata[]> {
   const slugs = await getPostSlugs();
   const metadata = await Promise.allSettled(
-    slugs.map((slug) => getPostMetadataBySlug(slug)),
-  ).then((e) => e.filter((p) => p.status === "fulfilled").map((p) => p.value));
+    slugs.map(async (slug) => {
+      try {
+        return await getPostMetadataBySlug(slug);
+      }
+      catch (e) {
+        console.warn(`Error processing post ${slug}: ${e}`);
+        throw e;
+      }
+    }),
+  ).then((e) => e.filter((p) => p.status === "fulfilled").map((p) => p.value))
   const sortedPosts = metadata.sort((post1, post2) =>
     new Date(post1.date) > new Date(post2.date) ? -1 : 1,
   );
