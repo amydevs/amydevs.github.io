@@ -57,49 +57,51 @@ function BlogHome({ posts }: InferGetStaticPropsType<typeof getStaticProps>) {
           ).toString()}
         />
       </Head>
-      <main className="auto-limit-w grid grid-cols-1 gap-3 pt-1 md:grid-cols-2">
-        {posts
-          .filter((meta) => !meta.draft)
-          .map((meta, i) => (
-            <Link key={i} href={`${asPath}/${meta.slug}`}>
-              <GlowCard
-                className="flex h-72 flex-col hover:shadow-xl"
-                mousePos={mousePos}
-              >
-                <CardHeader>
-                  <CardTitle>{meta.title}</CardTitle>
-                  <CardDescription>
-                    Created On{" "}
-                    <React.Suspense
-                      fallback={new Date(meta.date)
-                        .toLocaleDateString("en-US", {
-                          timeZone: "UTC",
-                          ...localeDateTimeStyle,
-                        })
-                        .replaceAll(",", "")}
-                    >
-                      {new Date(meta.date)
-                        .toLocaleDateString("en-US", localeDateTimeStyle)
-                        .replaceAll(",", "")}
-                    </React.Suspense>
-                  </CardDescription>
-                  <div className="-mb-3">
-                    <Badge>{meta.category}</Badge>
-                  </div>
-                </CardHeader>
-                <CardContent className="flex-1 overflow-y-auto">
-                  <div className="h-full w-full overflow-y-auto">
-                    {meta.description}
-                  </div>
-                </CardContent>
-                <CardFooter className="flex gap-3">
-                  <Button className="px-0" variant="link">
-                    Read More
-                  </Button>
-                </CardFooter>
-              </GlowCard>
-            </Link>
-          ))}
+      <main className="auto-limit-w">
+        <div className=" grid grid-cols-1 gap-3 pt-1 md:grid-cols-2">
+          {posts
+            .filter((meta) => !meta.draft)
+            .map((meta, i) => (
+              <Link key={i} href={`${asPath}/${meta.slug}`}>
+                <GlowCard
+                  className="flex h-72 flex-col hover:shadow-xl"
+                  mousePos={mousePos}
+                >
+                  <CardHeader>
+                    <CardTitle>{meta.title}</CardTitle>
+                    <CardDescription>
+                      Created On{" "}
+                      <React.Suspense
+                        fallback={new Date(meta.date)
+                          .toLocaleDateString("en-US", {
+                            timeZone: "UTC",
+                            ...localeDateTimeStyle,
+                          })
+                          .replaceAll(",", "")}
+                      >
+                        {new Date(meta.date)
+                          .toLocaleDateString("en-US", localeDateTimeStyle)
+                          .replaceAll(",", "")}
+                      </React.Suspense>
+                    </CardDescription>
+                    <div className="-mb-3">
+                      <Badge>{meta.category}</Badge>
+                    </div>
+                  </CardHeader>
+                  <CardContent className="flex-1 overflow-y-auto">
+                    <div className="h-full w-full overflow-y-auto">
+                      {meta.description}
+                    </div>
+                  </CardContent>
+                  <CardFooter className="flex gap-3">
+                    <Button className="px-0" variant="link">
+                      Read More
+                    </Button>
+                  </CardFooter>
+                </GlowCard>
+              </Link>
+            ))}
+        </div>
       </main>
     </>
   );

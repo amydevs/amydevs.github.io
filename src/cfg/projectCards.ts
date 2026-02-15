@@ -229,3 +229,4 @@ const projectCards: ProjectCardData<typeof projectCardCategories[number][]>[] = 
 ];
 
 export default projectCards;
+export { projectCardCategories };
