@@ -77,10 +77,6 @@ jobs:
         run: ${{ steps.detect-package-manager.outputs.runner }} next-sitemap
         env:
           npm_lifecycle_event: export
-      - name: Build RSS
-        run: ${{ steps.detect-package-manager.outputs.runner }} tsx scripts/generate-rss.ts
-        env:
-          npm_lifecycle_event: export
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
