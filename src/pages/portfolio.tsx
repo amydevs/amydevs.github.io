@@ -1,6 +1,10 @@
 import * as React from "react";
 import Link from "next/link";
-import { projectCards, projectCategories, type ProjectCategory } from "~/consts/portfolio";
+import {
+  projectCards,
+  projectCategories,
+  type ProjectCategory,
+} from "~/consts/portfolio";
 import { Button } from "~/components/ui/button";
 import {
   CardContent,
@@ -12,7 +16,9 @@ import GlowCard from "~/components/GlowCard";
 import { Badge } from "~/components/ui/badge";
 
 function Portfolio() {
-  const [activatedCategories, setActivatedCategories] = React.useState(new Set<ProjectCategory>());
+  const [activatedCategories, setActivatedCategories] = React.useState(
+    new Set<ProjectCategory>(),
+  );
 
   const [mousePos, setMousePos] = React.useState<[number, number]>([
     -999999, -999999,
@@ -31,22 +37,28 @@ function Portfolio() {
   return (
     <main className="auto-limit-w space-y-1">
       <div className="flex gap-2 w-full overflow-scroll">
-        {
-          projectCategories.map((e) => <Badge asChild
+        {projectCategories.map((e, i) => (
+          <Badge
+            key={i}
+            asChild
             className="cursor-pointer transition-all"
             variant={activatedCategories.has(e) ? "default" : "outline"}
           >
             <button
               onClick={() => {
                 const newActivatedCategories = new Set(activatedCategories);
-                !newActivatedCategories.has(e) ? newActivatedCategories.add(e) : newActivatedCategories.delete(e);
+                if (newActivatedCategories.has(e)) {
+                  newActivatedCategories.delete(e);
+                } else {
+                  newActivatedCategories.add(e);
+                }
                 setActivatedCategories(newActivatedCategories);
               }}
             >
               {e}
             </button>
-          </Badge>)
-        }
+          </Badge>
+        ))}
       </div>
       <div className="grid grid-cols-1 gap-3 pt-1 md:grid-cols-2">
         {projectCards
@@ -65,9 +77,9 @@ function Portfolio() {
               <CardHeader>
                 <CardTitle>{card.title}</CardTitle>
                 <div className="flex gap-2 -mb-3 mt-2">
-                  {
-                    card.categories?.map((e) => <Badge>{e}</Badge>)
-                  }
+                  {card.categories?.map((e, i) => (
+                    <Badge key={i}>{e}</Badge>
+                  ))}
                 </div>
               </CardHeader>
               <CardContent className="flex-1 overflow-y-auto">

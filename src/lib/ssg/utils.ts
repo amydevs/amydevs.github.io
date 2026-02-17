@@ -29,7 +29,7 @@ async function getPostBySlug(
 ): Promise<Post> {
   const globPattern = path
     .join(postsDirectory, `${slug}.{md,mdx}`)
-    .replace(/\\/g, '/');
+    .replace(/\\/g, "/");
   const fullPaths = await glob(globPattern, {
     absolute: true,
   });
@@ -65,7 +65,7 @@ async function getPostMetadataBySlug(slug: string): Promise<PostMetadata> {
   // Windows work around.
   const globPattern = path
     .join(postsDirectory, `${slug}.{md,mdx}`)
-    .replace(/\\/g, '/');
+    .replace(/\\/g, "/");
   const fullPaths = await glob(globPattern, {
     absolute: false,
   });
@@ -84,13 +84,12 @@ async function getAllPostMetadata(): Promise<PostMetadata[]> {
     slugs.map(async (slug) => {
       try {
         return await getPostMetadataBySlug(slug);
-      }
-      catch (e) {
+      } catch (e) {
         console.warn(`Error processing post ${slug}: ${e}`);
         throw e;
       }
     }),
-  ).then((e) => e.filter((p) => p.status === "fulfilled").map((p) => p.value))
+  ).then((e) => e.filter((p) => p.status === "fulfilled").map((p) => p.value));
   const sortedPosts = metadata.sort((post1, post2) =>
     new Date(post1.date) > new Date(post2.date) ? -1 : 1,
   );

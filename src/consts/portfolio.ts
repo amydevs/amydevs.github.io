@@ -16,7 +16,7 @@ export const projectCategories = [
   "Postgres",
 ] as const;
 
-export type ProjectCategory = typeof projectCategories[number];
+export type ProjectCategory = (typeof projectCategories)[number];
 
 export const projectCards: ProjectCardData<ProjectCategory[]>[] = [
   {
@@ -86,7 +86,8 @@ export const projectCards: ProjectCardData<ProjectCategory[]>[] = [
   },
   {
     title: "Twinleaf PTCG Wiki",
-    description: "A community-driven wiki detailing the status of available cards in the Twinleaf online trading card game client built with Next.js, Prisma, and Postgres.",
+    description:
+      "A community-driven wiki detailing the status of available cards in the Twinleaf online trading card game client built with Next.js, Prisma, and Postgres.",
     categories: ["React", "Next.js"],
     actions: [
       {
@@ -94,7 +95,7 @@ export const projectCards: ProjectCardData<ProjectCategory[]>[] = [
         href: "https://twinleaf-gg-wiki.vercel.app/",
         icon: Globe,
       },
-    ]
+    ],
   },
   {
     title: "Exalta Launcher",
