@@ -1,6 +1,6 @@
 import * as React from "react";
 import Link from "next/link";
-import projectCards, { projectCardCategories } from "~/cfg/projectCards";
+import { projectCards, projectCategories } from "~/consts/portfolio";
 import { Button } from "~/components/ui/button";
 import {
   CardContent,
@@ -12,7 +12,7 @@ import GlowCard from "~/components/GlowCard";
 import { Badge } from "~/components/ui/badge";
 
 function Portfolio() {
-  const [activatedCategories, setActivatedCategories] = React.useState(new Set<typeof projectCardCategories[number]>());
+  const [activatedCategories, setActivatedCategories] = React.useState(new Set<typeof projectCategories[number]>());
 
   const [mousePos, setMousePos] = React.useState<[number, number]>([
     -999999, -999999,
@@ -32,7 +32,7 @@ function Portfolio() {
     <main className="auto-limit-w space-y-1">
       <div className="flex gap-2 w-full overflow-scroll">
         {
-          projectCardCategories.map((e) => <Badge asChild
+          projectCategories.map((e) => <Badge asChild
             className="cursor-pointer transition-all"
             variant={activatedCategories.has(e) ? "default" : "outline"}
           >

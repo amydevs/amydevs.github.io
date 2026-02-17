@@ -3,7 +3,7 @@ import Head from "next/head";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import * as React from "react";
-import { fullName } from "~/cfg/consts";
+import { fullName } from "~/consts/about";
 import GlowCard from "~/components/GlowCard";
 import { Badge } from "~/components/ui/badge";
 import { Button } from "~/components/ui/button";

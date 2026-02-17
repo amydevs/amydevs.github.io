@@ -7,7 +7,7 @@ import { Menu, Moon, Sun } from "lucide-react";
 import { Button } from "./ui/button";
 import { useRouter } from "next/router";
 import dynamic from "next/dynamic";
-import { firstName } from "~/cfg/consts";
+import { firstName } from "~/consts/about";
 
 const ThemeSwitch = dynamic(() => import("./ThemeSwitch"), { ssr: false });
 

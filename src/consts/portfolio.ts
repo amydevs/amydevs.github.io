@@ -1,7 +1,7 @@
 import { Download, Github, Globe } from "lucide-react";
 import { type ProjectCardData } from "~/types";
 
-const projectCardCategories = [
+export const projectCategories = [
   "Node.js",
   "Python",
   "PHP",
@@ -16,7 +16,7 @@ const projectCardCategories = [
   "Postgres",
 ] as const;
 
-const projectCards: ProjectCardData<typeof projectCardCategories[number][]>[] = [
+export const projectCards: ProjectCardData<typeof projectCategories[number][]>[] = [
   {
     title: "Polykey-CLI",
     description:
@@ -227,6 +227,3 @@ const projectCards: ProjectCardData<typeof projectCardCategories[number][]>[] = 
     ],
   },
 ];
-
-export default projectCards;
-export { projectCardCategories };

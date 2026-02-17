@@ -11,7 +11,7 @@ import { env } from "~/env";
 import { useTheme } from "next-themes";
 import chroma from "chroma-js";
 import * as plaiceholder from "plaiceholder";
-import { firstName } from "~/cfg/consts";
+import { firstName } from "~/consts/about";
 
 async function getStaticProps() {
   const originalPfpSrc = `https://github.com/${env.NEXT_PUBLIC_GH_USER}.png`;

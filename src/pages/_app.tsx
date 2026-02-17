@@ -5,11 +5,11 @@ import { useRouter } from "next/router";
 import { ThemeProvider } from "next-themes";
 import { cn, filterUrlParams } from "~/lib/utils";
 import Head from "next/head";
-import routes from "~/cfg/routes";
+import routes from "~/consts/routes";
 import Header from "~/components/Header";
 import Footer from "~/components/Footer";
 import { env } from "~/env";
-import { fullName } from "~/cfg/consts";
+import { fullName } from "~/consts/about";
 import * as React from "react";
 
 const MyApp: AppType = ({ Component, pageProps }) => {
