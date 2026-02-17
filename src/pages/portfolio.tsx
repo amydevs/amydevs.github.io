@@ -1,6 +1,6 @@
 import * as React from "react";
 import Link from "next/link";
-import { projectCards, projectCategories } from "~/consts/portfolio";
+import { projectCards, projectCategories, type ProjectCategory } from "~/consts/portfolio";
 import { Button } from "~/components/ui/button";
 import {
   CardContent,
@@ -12,7 +12,7 @@ import GlowCard from "~/components/GlowCard";
 import { Badge } from "~/components/ui/badge";
 
 function Portfolio() {
-  const [activatedCategories, setActivatedCategories] = React.useState(new Set<typeof projectCategories[number]>());
+  const [activatedCategories, setActivatedCategories] = React.useState(new Set<ProjectCategory>());
 
   const [mousePos, setMousePos] = React.useState<[number, number]>([
     -999999, -999999,

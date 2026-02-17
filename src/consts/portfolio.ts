@@ -16,7 +16,9 @@ export const projectCategories = [
   "Postgres",
 ] as const;
 
-export const projectCards: ProjectCardData<typeof projectCategories[number][]>[] = [
+export type ProjectCategory = typeof projectCategories[number];
+
+export const projectCards: ProjectCardData<ProjectCategory[]>[] = [
   {
     title: "Polykey-CLI",
     description:
