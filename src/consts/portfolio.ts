@@ -2,6 +2,9 @@ import { Download, Github, Globe } from "lucide-react";
 import { type ProjectCardData } from "~/types";
 
 export const projectCategories = [
+  "Web",
+  "Mobile",
+  "Desktop",
   "Node.js",
   "Python",
   "PHP",
@@ -23,7 +26,7 @@ export const projectCards: ProjectCardData<ProjectCategory[]>[] = [
     title: "Polykey-CLI",
     description:
       "A CLI secrets management system that facilitates zero-trust workflows.",
-    categories: ["Node.js"],
+    categories: ["Desktop", "Node.js"],
     actions: [
       {
         text: "GitHub",
@@ -36,7 +39,7 @@ export const projectCards: ProjectCardData<ProjectCategory[]>[] = [
     title: "SpinShare Client",
     description:
       "Former developer and translator for the SpinShare desktop client built with Vue.js and Electron.",
-    categories: ["Vue.js", "Electron"],
+    categories: ["Desktop", "Vue.js", "Electron"],
     actions: [
       {
         text: "GitHub",
@@ -53,7 +56,7 @@ export const projectCards: ProjectCardData<ProjectCategory[]>[] = [
   {
     title: "Chip-8 Emulator (WebAssembly)",
     description: "A React Wrapper around a Chip-8 Emulator Written in Rust.",
-    categories: ["React", "WebAssembly"],
+    categories: ["Web", "React", "WebAssembly"],
     actions: [
       {
         text: "GitHub",
@@ -70,7 +73,7 @@ export const projectCards: ProjectCardData<ProjectCategory[]>[] = [
   {
     title: "Chip-8 Emulator (Rust)",
     description: "A Chip-8 Interpreting Emulator Written in Rust.",
-    categories: ["Rust"],
+    categories: ["Desktop", "Rust"],
     actions: [
       {
         text: "GitHub",
@@ -88,7 +91,7 @@ export const projectCards: ProjectCardData<ProjectCategory[]>[] = [
     title: "Twinleaf PTCG Wiki",
     description:
       "A community-driven wiki detailing the status of available cards in the Twinleaf online trading card game client built with Next.js, Prisma, and Postgres.",
-    categories: ["React", "Next.js"],
+    categories: ["Web", "React", "Next.js"],
     actions: [
       {
         text: "Demo",
@@ -101,7 +104,7 @@ export const projectCards: ProjectCardData<ProjectCategory[]>[] = [
     title: "Exalta Launcher",
     description:
       "A third-party open-source launcher built in Rust for Realm of the Mad God Exalted.",
-    categories: ["Rust"],
+    categories: ["Desktop", "Rust"],
     actions: [
       {
         text: "GitHub",
@@ -119,7 +122,7 @@ export const projectCards: ProjectCardData<ProjectCategory[]>[] = [
     title: "js-ws",
     description:
       "A Node.js WebSocket wrapper library that provides a multiplexed WebStreams API.",
-    categories: ["Node.js"],
+    categories: ["Desktop", "Node.js"],
     actions: [
       {
         text: "GitHub",
@@ -132,7 +135,7 @@ export const projectCards: ProjectCardData<ProjectCategory[]>[] = [
     title: "js-mdns",
     description:
       "A Node.js mDNS responder implementation written in Typescript.",
-    categories: ["Node.js"],
+    categories: ["Desktop", "Node.js"],
     actions: [
       {
         text: "GitHub",
@@ -145,7 +148,7 @@ export const projectCards: ProjectCardData<ProjectCategory[]>[] = [
     title: "YirrgayConnect",
     description:
       "A Twitter-like social media platform focused on interactive multimedia and community-driven content moderation built using Next.js, Postgres, and Tailwind. Created as a Engineers Without Borders project for university.",
-    categories: ["Next.js", "Postgres"],
+    categories: ["Web", "Next.js", "Postgres"],
     actions: [
       {
         text: "GitHub",
@@ -163,7 +166,7 @@ export const projectCards: ProjectCardData<ProjectCategory[]>[] = [
     title: "rxgithub",
     description:
       "A Rust Actix Web App to embed GitHub code snippets, images, gifs, videos, gists, & more on Discord, Slack, Telegram, Twitter, etc.",
-    categories: ["Rust"],
+    categories: ["Web", "Rust"],
     actions: [
       {
         text: "GitHub",
@@ -176,7 +179,7 @@ export const projectCards: ProjectCardData<ProjectCategory[]>[] = [
     title: "SRXDBepInExInstaller",
     description:
       "A installer for the modding framework BepInEx for the game Spin Rhythm XD written in Python and Tkinter.",
-    categories: ["Python"],
+    categories: ["Desktop", "Python"],
     actions: [
       {
         text: "GitHub",
@@ -189,7 +192,7 @@ export const projectCards: ProjectCardData<ProjectCategory[]>[] = [
     title: "Simple Australian Tax Calculator",
     description:
       "A simple tax calculator for the Australian taxation system. Built with Laravel and PHP.",
-    categories: ["Laravel", "PHP"],
+    categories: ["Web", "Laravel", "PHP"],
     actions: [
       {
         text: "GitHub",
@@ -207,7 +210,7 @@ export const projectCards: ProjectCardData<ProjectCategory[]>[] = [
     title: "TapeSync",
     description:
       "A modification for the productivity and organization application Tape, to enable synchronization of items between different systems using existing sync services.",
-    categories: ["Node.js"],
+    categories: ["Desktop", "Node.js"],
     actions: [
       {
         text: "GitHub",
@@ -220,7 +223,7 @@ export const projectCards: ProjectCardData<ProjectCategory[]>[] = [
     title: "TapeMobile",
     description:
       "A modification for the productivity and organization application Tape, that ports it to mobile devices and the PWA platform.",
-    categories: ["Node.js", "Capacitor"],
+    categories: ["Mobile", "Capacitor"],
     actions: [
       {
         text: "GitHub",
