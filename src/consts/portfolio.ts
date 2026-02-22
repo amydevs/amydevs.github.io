@@ -5,6 +5,7 @@ export const projectCategories = [
   "Web",
   "Mobile",
   "Desktop",
+  "Scraping",
   "Node.js",
   "Python",
   "PHP",
@@ -92,6 +93,19 @@ export const projectCards: ProjectCardData<ProjectCategory[]>[] = [
     description:
       "A community-driven wiki detailing the status of available cards in the Twinleaf online trading card game client built with Next.js, Prisma, and Postgres.",
     categories: ["Web", "React", "Next.js"],
+    actions: [
+      {
+        text: "Demo",
+        href: "https://twinleaf-gg-wiki.vercel.app/",
+        icon: Globe,
+      },
+    ],
+  },
+  {
+    title: "Twinleaf Texture Packs",
+    description:
+      "A hosted, community-maintained texture pack of trading card images automatically and periodically scraped from various sources using TypeScript and statically exported and deployed via GitHub Actions.",
+    categories: ["Web", "Scraping", "React", "DevOps"],
     actions: [
       {
         text: "Demo",
