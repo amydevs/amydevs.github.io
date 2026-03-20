@@ -6,6 +6,7 @@ export const projectCategories = [
   "Mobile",
   "Desktop",
   "Scraping",
+  "DevOps",
   "Node.js",
   "Python",
   "PHP",
