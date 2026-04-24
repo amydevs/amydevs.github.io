@@ -7,6 +7,7 @@ export const projectCategories = [
   "Desktop",
   "Scraping",
   "DevOps",
+  "CMS",
   "Node.js",
   "Python",
   "PHP",
@@ -86,6 +87,23 @@ export const projectCards: ProjectCardData<ProjectCategory[]>[] = [
         text: "Download",
         href: "https://github.com/amydevs/chip-8-emu-rs/releases/latest",
         icon: Download,
+      },
+    ],
+  },
+  {
+    title: "TDR Website",
+    description: "Information site and blog for the the weekly TDR dance jam in Sydney and Melbourne built with React-Router v7 framework (SSG), Tailwind CSS, and backed by TinaCMS for content management.",
+    categories: ["Web", "React", "CMS"],
+    actions: [
+      {
+        text: "Website",
+        href: "https://trans.dance",
+        icon: Globe,
+      },
+      {
+        text: "GitHub",
+        href: "https://github.com/TransDanceRevolution/TransDanceRevolution.github.io",
+        icon: Github,
       },
     ],
   },
