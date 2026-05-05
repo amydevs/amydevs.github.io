@@ -8,22 +8,22 @@ const fullName = `${firstName} ${lastName}` as const;
 const socialLinks: LinkWithIcon[] = [
     {
         text: "GitHub",
-        href: "github.amydev.me",
+        href: "https://github.amydev.me",
         icon: Github,
     },
     {
         text: "Spotify",
-        href: "spotify.amydev.me",
+        href: "https://spotify.amydev.me",
         icon: Music,
     },
     {
         text: "SoundCloud",
-        href: "soundcloud.amydev.me",
+        href: "https://soundcloud.amydev.me",
         icon: Music,
     },
     {
         text: "Last.fm",
-        href: "lastfm.amydev.me",
+        href: "https://lastfm.amydev.me",
         icon: Music,
     },
     {
