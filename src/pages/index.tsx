@@ -11,7 +11,7 @@ import { env } from "~/env";
 import { useTheme } from "next-themes";
 import chroma from "chroma-js";
 import * as plaiceholder from "plaiceholder";
-import { firstName } from "~/consts/about";
+import { firstName, socialLinks } from "~/consts/about";
 
 async function getStaticProps() {
   const originalPfpSrc = `https://github.com/${env.NEXT_PUBLIC_GH_USER}.png`;
@@ -135,30 +135,16 @@ function Home({
           </div>
           <div className="auto-limit-w flex items-center justify-center">
             <div className="flex justify-center gap-3 flex-wrap">
-              <Button asChild>
-                <Link href={`https://en.pronouns.page/@amydev.me`}>
-                  <User className="mr-1" />
-                  Pronouns
-                </Link>
-              </Button>
-              <Button asChild>
-                <Link href={`https://github.com/${env.NEXT_PUBLIC_GH_USER}`}>
-                  <Github className="mr-1" />
-                  GitHub
-                </Link>
-              </Button>
-              <Button asChild>
-                <Link href="https://open.spotify.com/artist/15HdoPMP89EsIfIvN1coko?si=pyuDsYIpRcu2AHDYVYIn-Q">
-                  <Music className="mr-1" />
-                  Spotify
-                </Link>
-              </Button>
-              <Button asChild>
-                <Link href="https://soundcloud.com/owotter">
-                  <AudioLines className="mr-1" />
-                  SoundCloud
-                </Link>
-              </Button>
+              {
+                socialLinks.map(({ text, href, icon: Icon, }) => (
+                  <Button key={href} asChild>
+                    <Link href={href}>
+                      <Icon className="mr-1" />
+                      {text}
+                    </Link>
+                  </Button>
+                ))
+              }
             </div>
           </div>
         </section>

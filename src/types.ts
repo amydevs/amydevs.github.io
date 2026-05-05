@@ -9,15 +9,17 @@ type Route = {
   current?: boolean;
 };
 
+type LinkWithIcon = {
+  href: string;
+  icon: LucideIcon;
+  text: string;
+};
+
 type ProjectCardData<C extends string[] = string[]> = {
   title: string;
   description: string;
   categories?: C;
-  actions: Array<{
-    href: string;
-    icon: LucideIcon;
-    text: string;
-  }>;
+  actions: Array<LinkWithIcon>;
 };
 
 type Author = {
@@ -34,4 +36,4 @@ type Post = {
   meta: PostMetadata;
 };
 
-export type { Route, ProjectCardData, Author, PostMetadata, Post };
+export type { Route, LinkWithIcon, ProjectCardData, Author, PostMetadata, Post,  };
