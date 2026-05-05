@@ -22,6 +22,11 @@ const socialLinks: LinkWithIcon[] = [
         icon: Music,
     },
     {
+        text: "Last.fm",
+        href: "lastfm.amydev.me",
+        icon: Music,
+    },
+    {
         text: "Email",
         href: "mailto:ayanamydev@gmail.com",
         icon: Mail,
