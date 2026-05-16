@@ -1,0 +1,34 @@
+---
+title: Bypassing Cloudflare Bot Fight and WAF in GitHub Actions with Warp
+description: ""
+date: 2026-05-16T18:41:18.906Z
+lastModified: 2026-05-16T18:41:18.906Z
+preview: ""
+draft: true
+category: []
+fmContentType: post
+---
+
+I've been working on a site recently that deploys a statically generated React-Router v7 (previously known as Remix v2) web app via GitHub actions with my Payload CMS sitting on Cloudflare workers (following the Cloudflare's official blog article [here](https://blog.cloudflare.com/payload-cms-workers/)). Naturally, my web app needs to call the Payload CMS API at build time in order to statically generate content with some loader that looks similar to this:
+
+```ts
+export async function loader({ params }: Route.LoaderArgs) {
+  const post = await payload
+    .find({ collection: "post", where: { slug: { equals: params.path } } })
+    .then((e) => e.docs[0])
+  return post
+}
+```
+
+## The Problem
+
+The problem arises when I enable the "Bot Fight Mode" that exists in the Cloudflare control panel for my domain routing to the worker hosting my PayloadCMS instance:
+
+![botfight toggle](/blog/bypassing-cloudflare-waf-in-github-actions/botfight.png)
+
+My GitHub action building my React-Router v7 web app is no longer able to access the PayloadCMS' API!
+
+![forbidden](/blog/bypassing-cloudflare-waf-in-github-actions/forbidden.png)
+
+## Naive Solution
+
