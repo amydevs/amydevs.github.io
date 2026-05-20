@@ -29,7 +29,7 @@ export async function GET() {
                 env.NEXT_PUBLIC_SITE_URL,
             ).toString(),
             author: env.NEXT_PUBLIC_GH_USER,
-            categories: [post.category],
+            categories: post.category,
         })),
     );
 
