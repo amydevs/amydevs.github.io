@@ -68,7 +68,7 @@ function BlogHome({ posts }: InferGetStaticPropsType<typeof getStaticProps>) {
           }
           return matchedTags === activatedCategories.size;
         }),
-    [posts],
+    [posts, activatedCategories],
   );
 
   return (
