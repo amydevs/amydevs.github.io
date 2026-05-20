@@ -4,7 +4,7 @@ category: [WebDev, React, Next.js, Docker]
 date: 2025-09-03T05:19:32.217Z
 lastModified: 2025-09-03T05:19:32.737Z
 description: |
-  Fly.io misconfigures defaults for deploying Next.js applications. Here's how you can get around that.
+  Fly.io misconfigures defaults for deploying Next.js applications in standalone mode. Here's how you can get around that.
 type: post
 keywords:
   - nextjs
@@ -14,10 +14,11 @@ keywords:
   - react
   - ssr
   - app router
+  - standalone output
 draft: false
 ---
 
-Whilst working on a project for university (odysseat.fly.dev), I had decided to use Fly.io for my hosting as one of the requirements of our subject was to utilise a CI/CD pipeline for deployment. For setting this up, I vaguely followed the [official blog article](https://fly.io/docs/js/frameworks/nextjs/) for doing so. However, there are a few hiccups along the way with how Fly configures Next.js by default, especially in regards to App router and SSR. So I'll detail my steps for setting up and deploying a Next.js app on Fly.io as so:
+Whilst working on a project for university (odysseat.fly.dev), I had decided to use Fly.io for my hosting as one of the requirements of our subject was to utilise a CI/CD pipeline for deployment. For setting this up, I vaguely followed the [official blog article](https://fly.io/docs/js/frameworks/nextjs/) for doing so. However, there are a few hiccups along the way with how Fly configures Next.js by default, especially in regards to App router, SSR, and `standalone` output mode. So I'll detail my steps for setting up and deploying a Next.js app on Fly.io as so:
 
 ## Setting Up Your Next.js App
 
@@ -47,7 +48,7 @@ fly launch --no-deploy
 You will see that a `fly.toml`, `Dockerfile` and `docker-entrypoint.js` has been generated for you. However if you were to deploy right now, you'll run into a few issues regarding public environment variables not being bound correctly among other things.
 
 ## Making Your Build Output `standalone`
-To reduce the size of the final image deployed to Fly.io, the aforementioned blog article recommends to enable standalone output in `next.config.js`.
+To reduce the size of the final image deployed to Fly.io, the aforementioned blog article recommends to enable standalone output in `next.config.js`. However, doing so will require some changes in your `Dockerfile` and `docker-entrypoint.js` that the blog unfortunately doesn't cover extensively.
 
 ```js
 // next.config.js
