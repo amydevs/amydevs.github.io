@@ -4,7 +4,10 @@ const postFrontmatter = z.object({
   title: z.string(),
   description: z.string(),
   preview: z.string().optional(),
-  category: z.string().default("Miscellaneous"),
+  category: z.union([
+    z.string().transform((e) => [e]),
+    z.string().array(),
+  ]),
   date: z.date().transform((date) => date.toISOString()),
   lastModified: z
     .date()

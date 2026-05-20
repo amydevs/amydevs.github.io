@@ -119,7 +119,7 @@ function BlogPost({ post }: InferGetStaticPropsType<typeof getStaticProps>) {
           content={post.meta.keywords.join(", ")}
         />
         <meta key="author" name="author" content={env.NEXT_PUBLIC_GH_USER} />
-        <meta key="category" name="category" content={post.meta.category} />
+        <meta key="category" name="category" content={post.meta.category[0]} />
 
         <script
           key="json-ld"
@@ -130,7 +130,7 @@ function BlogPost({ post }: InferGetStaticPropsType<typeof getStaticProps>) {
       <main className="auto-limit-w flex max-w-5xl flex-col items-center">
         <div className="pb-24 pt-32 md:text-center">
           <div className="mb-4 font-bold text-primary">
-            {post.meta.category}
+            {post.meta.category[0]}
           </div>
           <h1 className="text-4xl font-extrabold">{post.meta.title}</h1>
         </div>

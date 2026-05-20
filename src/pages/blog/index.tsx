@@ -29,7 +29,9 @@ async function getStaticProps() {
 function BlogHome({ posts }: InferGetStaticPropsType<typeof getStaticProps>) {
   const [blogCategories] = React.useState(
     () =>
-      new Set(posts.reduce((acc, e) => [...acc, e.category], [] as string[])),
+      new Set(
+        posts.reduce((acc, e) => [...acc, ...e.category], [] as string[]),
+      ),
   );
   const [activatedCategories, setActivatedCategories] = React.useState(
     new Set<string>(),
@@ -49,6 +51,25 @@ function BlogHome({ posts }: InferGetStaticPropsType<typeof getStaticProps>) {
       window.removeEventListener("mousemove", handleMouseMove);
     };
   }, []);
+
+  const sortedPosts = React.useMemo(
+    () =>
+      posts
+        .filter((meta) => !meta.draft)
+        .filter((e) => {
+          if (activatedCategories.size === 0) {
+            return true;
+          }
+          let matchedTags = 0;
+          for (const tag of e.category ?? []) {
+            if (tag != null && activatedCategories.has(tag)) {
+              matchedTags++;
+            }
+          }
+          return matchedTags === activatedCategories.size;
+        }),
+    [posts],
+  );
 
   return (
     <>
@@ -90,14 +111,7 @@ function BlogHome({ posts }: InferGetStaticPropsType<typeof getStaticProps>) {
           ))}
         </div>
         <div className="grid grid-cols-1 gap-3 pt-1 md:grid-cols-2">
-          {posts
-            .filter((meta) => !meta.draft)
-            .filter((e) =>
-              activatedCategories.size === 0
-                ? true
-                : activatedCategories.has(e.category),
-            )
-            .map((meta, i) => (
+          {sortedPosts.map((meta, i) => (
               <Link key={i} href={`${asPath}/${meta.slug}`}>
                 <GlowCard
                   className="flex h-72 flex-col hover:shadow-xl"
