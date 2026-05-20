@@ -1,5 +1,5 @@
 ---
-title: Deploying a T3 Next.js App (App Router + SSR) on Fly.io
+title: Deploying a Next.js App (App Router + SSR) on Fly.io using Docker
 category: [WebDev, React]
 date: 2025-09-03T05:19:32.217Z
 lastModified: 2025-09-03T05:19:32.737Z
@@ -14,7 +14,7 @@ keywords:
   - react
   - ssr
   - app router
-draft: true
+draft: false
 ---
 
 Whilst working on a project for university (odysseat.fly.dev), I had decided to use Fly.io for my hosting as one of the requirements of our subject was to utilise a CI/CD pipeline for deployment. For setting this up, I vaguely followed the [official blog article](https://fly.io/docs/js/frameworks/nextjs/) for doing so. However, there are a few hiccups along the way with how Fly configures Next.js by default, especially in regards to App router and SSR. So I'll detail my steps for setting up and deploying a Next.js app on Fly.io as so:
@@ -143,4 +143,47 @@ CMD [ "node", "server.js" ]
 
 ## Modifying the `docker-entrypoint.js` File
 
-First of all when you
+The Fly.io provided `docker-entrypoint.js` file will try to execute `next build --experimental-build-mode generate-env` using `npx`. If this is not done to a built standalone Next.js app, you will notice that `NEXT_PUBLIC_`-prefixed environment variables will be missing. This step will be broken if you do not complete the previous step, as `npx` will discover that the `next` package is installed but will error upon not being able to find the Next.js CLI entrypoint in the `node_modules/.bin` directory. Since we copied the file over into the built Docker image it should run fine. However, in order to avoid incurring some delay when executing `npx`, I've changed the `docker-entrypoint.js` file to instead directly execute the Next.js CLI entrypoint at `node_modules/.bin/next`.
+
+```js
+// docker-entrypoint.js
+#!/usr/bin/env node
+
+import { spawn } from "node:child_process";
+
+const env = { ...process.env };
+
+// If running the web server then prerender pages
+if (process.argv.slice(-2).join(" ") === "node server.js") {
+  await exec(
+    "node_modules/.bin/next build --experimental-build-mode generate-env",
+  );
+}
+
+// launch application
+await exec(process.argv.slice(2).join(" "));
+
+/**
+ * @param {string} command
+ */
+function exec(command) {
+  const child = spawn(command, { shell: true, stdio: "inherit", env });
+  return /** @type {Promise<void>} */ (
+    new Promise((resolve, reject) => {
+      child.on("exit", (code) => {
+        if (code === 0) {
+          resolve();
+        } else {
+          reject(new Error(`${command} failed rc=${code}`));
+        }
+      });
+    })
+  );
+}
+```
+
+## All Done!
+
+After you run `fly deploy`, your Fly.io machine logs should look something like this!
+
+![all done logs](/blog/deploying-next-js-on-fly-io-using-docker/resultlogs.png)
